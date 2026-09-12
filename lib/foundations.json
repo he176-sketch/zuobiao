@@ -1,0 +1,515 @@
+{
+  "schemaVersion": 1,
+  "researchedAt": "2026-09-12",
+  "language": "zh-CN",
+  "purpose": "坐标 App 第一版哲学基座内容。原创中文转述和产品应用草案，供编辑审阅；不是原作者授权的哲学体系、心理治疗方案或效果验证。",
+  "researchScope": "以实际打开的哲学原文和学术百科进行有界核查；未抓取整站，未下载或保存受版权保护的著作全文。",
+  "editorialRules": [
+    "分别展示思想依据与结合当下处境的产品推导；后者不要写成哲学家的原话。",
+    "基座标签是导航，不是人格分类；推荐理由应来自用户明确表达的认同和困惑，不使用科学匹配率或诊断性标签。",
+    "四个基座不是四套已被证明有效的心理干预。心境平和属于愿景，不能承诺消除矛盾、痛苦或治疗疾病。",
+    "哲学解释回答的是如何评价和回应处境，不能代替对事情实际成因的事实核查。",
+    "个人基座可以修改，但不把明显冲突的主张自动拼接成无矛盾体系。保留用户的疑问和变化理由。",
+    "思想可以受到反驳。引用原作者不构成建议必然正确的证明，用户仍保留选择权。",
+    "急迫人身危险不能套用基座进行抽象辩论；需要有独立于哲学内容的危机响应。"
+  ],
+  "bases": [
+    {
+      "id": "stoic",
+      "name": "斯多葛：把心力放回行动",
+      "shortName": "斯多葛",
+      "kind": "school",
+      "kindLabel": "哲学流派",
+      "lineage": "以爱比克泰德伦理学为入口的斯多葛传统",
+      "tagline": "认真做自己能够负责的事，重新审视对结果的要求。",
+      "selectionPrompt": "你是否愿意更多用自己的判断、品格和行动，而非外界结果评价生活？",
+      "historicalScope": "选取伦理实践，不能代表完整斯多葛哲学。古代斯多葛的自然、理性、神意等主张在原体系中互相关联；本产品不要求用户接受其神学，也不把古代神学写成已证实的事实。",
+      "principles": [
+        {
+          "id": "stoic-agency",
+          "title": "分清哪些取决于自己",
+          "claim": "爱比克泰德把判断、选择与外部处境作区分；声望、财产和项目结果并不完全由个人决定。",
+          "sourceIds": [
+            "epictetus-handbook",
+            "sep-epictetus"
+          ],
+          "sections": [
+            "《手册》1",
+            "SEP 4.3 Volition"
+          ]
+        },
+        {
+          "id": "stoic-judgment",
+          "title": "检查判断，再决定怎样回应",
+          "claim": "在这个思想体系中，人对事情的价值判断会影响情绪与行动，因此值得检验最初印象。",
+          "sourceIds": [
+            "epictetus-handbook",
+            "sep-epictetus"
+          ],
+          "sections": [
+            "《手册》5、20",
+            "SEP 4.5 Emotional adjustment"
+          ]
+        },
+        {
+          "id": "stoic-character",
+          "title": "用行动体现品格与责任",
+          "claim": "善好生活的重点在于合宜地运用选择能力；这也包含对他人的关切，而非退出关系和公共生活。",
+          "sourceIds": [
+            "sep-epictetus"
+          ],
+          "sections": [
+            "SEP 4.4 Value",
+            "SEP 4.6 Appropriate other-concern"
+          ]
+        }
+      ],
+      "method": {
+        "label": "以下流程是产品应用，不是原书中的固定步骤",
+        "steps": [
+          "先了解发生了什么，把已知事实与用户对自己的评价分开。",
+          "区分可直接选择的行动、可以影响但不能保证的结果、已经无法改变的事实。这个三栏划分是产品编排。",
+          "询问用户希望怎样体现诚实、勇气、节制或对他人的责任。",
+          "提出一项现实可行的行动，并说明结果不保证时，怎样判断自己是否尽到了责任。"
+        ],
+        "sampleQuestion": "同龄人都比我成功，我是不是很失败？",
+        "sampleResponse": "从这个基座看，我们可以先检查：你正在用什么结果给整个人下结论？再找出其中值得负责和改进的部分。你愿意用什么行动标准评价接下来这一周？",
+        "applicationNote": "以上回应由产品团队拟写，依据相关观点进行现代情境转译。"
+      },
+      "boundaries": [
+        {
+          "title": "不能把受伤归咎于想法不对",
+          "text": "情绪并不总能随意改变，现实中的伤害、疾病与不公也不会因改换解释而消失。原文关于情绪和外物的强主张需要保留争议，产品不能拿它责备正在痛苦的人。",
+          "type": "philosophical-limitation-and-product-boundary"
+        },
+        {
+          "title": "接受边界不等于放弃改变",
+          "text": "对结果无法保证，不等于对处境没有影响力。需要检查是否过早放弃争取资源、求助、协作或反对不公。古代对角色服从的具体要求也不能直接当成现代关系规范。",
+          "type": "application-boundary"
+        }
+      ],
+      "topics": [
+        "结果焦虑与比较",
+        "他人评价",
+        "努力与挫折"
+      ],
+      "sources": [
+        {
+          "id": "epictetus-handbook",
+          "url": "https://classics.mit.edu/Epictetus/epicench.html",
+          "title": "The Enchiridion（《手册》）",
+          "author": "Epictetus（经 Arrian 记录编订）；English translation: Elizabeth Carter",
+          "publisher": "The Internet Classics Archive, MIT",
+          "type": "primary-text-translation",
+          "sections": [
+            "1",
+            "5",
+            "20",
+            "24",
+            "29"
+          ],
+          "verified": "完整页面已打开，作者、译者与章节可见",
+          "contentUse": "只写原创中文转述并链接章节。古代作品和旧译本的历史不意味着网站所有数字内容都可任意复用；本稿不复刻网页、注释或整本译文。"
+        },
+        {
+          "id": "sep-epictetus",
+          "url": "https://plato.stanford.edu/entries/epictetus/",
+          "title": "Epictetus",
+          "author": "Margaret Graver",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "type": "academic-reference",
+          "sections": [
+            "4.3 Volition",
+            "4.4 Value",
+            "4.5 Emotional adjustment",
+            "4.6 Appropriate other-concern"
+          ],
+          "verified": "完整页面已打开，页面标示 2025 年修订及作者",
+          "contentUse": "页面有版权；用于核查和少量原创转述，提供出处，不整页转载或作为可自由分发语料。"
+        }
+      ]
+    },
+    {
+      "id": "camus",
+      "name": "加缪：清醒地继续生活",
+      "shortName": "加缪",
+      "kind": "philosopher",
+      "kindLabel": "哲学家",
+      "lineage": "Albert Camus 的荒诞、反抗与共同尊严",
+      "tagline": "容纳没有最终答案的部分，在行动和关系中继续生活。",
+      "selectionPrompt": "即使找不到一个保证一切都有意义的答案，你是否愿意继续投入具体生活，并认真对待自己与他人的尊严？",
+      "historicalScope": "聚焦《西西弗神话》与《反抗者》的思想线索。加缪拒绝把自己简单归入存在主义，也没有给出一个包办一切的封闭体系；本基座是有明确选材范围的入口。",
+      "principles": [
+        {
+          "id": "camus-lucidity",
+          "title": "承认意义追问与世界之间的张力",
+          "claim": "加缪所说的荒诞，涉及人的意义与秩序需求同世界不能充分满足这种需求之间的冲突。",
+          "sourceIds": [
+            "sep-camus",
+            "iep-camus"
+          ],
+          "sections": [
+            "SEP 1",
+            "IEP 5.c.i The Absurd"
+          ]
+        },
+        {
+          "id": "camus-engagement",
+          "title": "没有最终保证，仍然投入生活",
+          "claim": "他的回应强调在清醒中继续生活，以持续的反抗回应荒诞，而不依靠一个解释所有事情的最终承诺。",
+          "sourceIds": [
+            "sep-camus"
+          ],
+          "sections": [
+            "SEP 3.4 Happiness in Facing One’s Fate",
+            "SEP 6 Philosopher of the Present"
+          ]
+        },
+        {
+          "id": "camus-solidarity",
+          "title": "维护尊严，也承认他人的尊严",
+          "claim": "在《反抗者》的讨论中，反抗通向共同的人类处境与团结；它受到限度约束，不能任意牺牲别人。",
+          "sourceIds": [
+            "iep-camus",
+            "sep-camus"
+          ],
+          "sections": [
+            "IEP 5.c.ii Revolt",
+            "SEP 4.1 Absurdity, Rebellion, and Murder"
+          ]
+        }
+      ],
+      "method": {
+        "label": "以下流程是产品应用，不是加缪给出的咨询方案",
+        "steps": [
+          "先辨认用户的困惑：是在寻找事实原因、人生的最终意义，还是面对重复生活而感到疏离。",
+          "把暂时没有答案的部分留下，不用未经证实的宏大意义填满它。",
+          "寻找用户仍愿意投入的一件事、一段关系，或一种希望守护的尊严。",
+          "提出小而具体的投入方式，并检查它是否尊重自己与他人。"
+        ],
+        "sampleQuestion": "每天重复工作，我不知道这样有什么意义。",
+        "sampleResponse": "借助加缪的视角，我们可以允许这个大问题暂时没有结论，同时看一看：在这些日子里，你仍愿意认真对待哪一件事、哪一个人？那份投入不必先证明整个世界有一个最终目的。",
+        "applicationNote": "以上回应由产品团队拟写；“仍愿意投入什么”的对话方式是现代产品应用。"
+      },
+      "boundaries": [
+        {
+          "title": "不能替用户宣布人生没有意义",
+          "text": "荒诞是一种可讨论的哲学立场，不是对用户人生的客观诊断。加缪从荒诞走向价值和反抗的论证本身也存在争议。",
+          "type": "philosophical-objection"
+        },
+        {
+          "title": "不能把坚持变成独自硬撑",
+          "text": "产品不把反抗改写成受苦者的英雄义务。环境需要改变、需要现实支持的时候，应当明确这些需要。涉及急迫安全问题时，不进行抽象的生死价值辩论。",
+          "type": "application-boundary"
+        }
+      ],
+      "topics": [
+        "重复生活与空虚",
+        "无法获得最终答案",
+        "尊严与不公平"
+      ],
+      "sources": [
+        {
+          "id": "sep-camus",
+          "url": "https://plato.stanford.edu/entries/camus/",
+          "title": "Albert Camus",
+          "author": "Ronald Aronson",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "type": "academic-reference",
+          "sections": [
+            "1 The Paradoxes of Camus’s Absurdist Philosophy",
+            "3.4 Happiness in Facing One’s Fate",
+            "4.1 Absurdity, Rebellion, and Murder",
+            "6 Philosopher of the Present"
+          ],
+          "verified": "完整页面已打开，页面标示 2021 年修订及作者",
+          "contentUse": "页面有版权；只作有限原创转述与链接。不把百科摘录的著作段落再次大量引用。"
+        },
+        {
+          "id": "iep-camus",
+          "url": "https://iep.utm.edu/albert-camus/",
+          "title": "Albert Camus (1913—1960)",
+          "author": "David Simpson",
+          "publisher": "Internet Encyclopedia of Philosophy",
+          "type": "academic-reference",
+          "sections": [
+            "5.c.i The Absurd",
+            "5.c.ii Revolt"
+          ],
+          "verified": "完整页面已打开；页尾署名 David Simpson, DePaul University",
+          "contentUse": "作为学术核查材料，原创转述和链接，不搬运整页或受保护作品译文。加缪作品和现代译本的版权需按具体版本与地区分别确认。"
+        }
+      ]
+    },
+    {
+      "id": "pragmatic",
+      "name": "经验与修订：让生活参与回答",
+      "shortName": "经验与修订",
+      "kind": "theory-combination",
+      "kindLabel": "理论组合",
+      "lineage": "以 William James 的实用主义方法和 John Dewey 的反思性探究为依据的产品编排",
+      "tagline": "把困惑变成可观察的问题，在行动与经验中修订判断。",
+      "selectionPrompt": "你是否愿意先形成一个暂定判断，通过实际经验检查它，并在发现新证据时修改？",
+      "historicalScope": "“经验与修订”是产品名称，不是历史流派名称。选择詹姆斯关于实际差异的方法与杜威关于探究的思路，不宣称两位作者在真理、宗教或政治等问题上完全一致。",
+      "principles": [
+        {
+          "id": "pragmatic-consequences",
+          "title": "问清一种想法会带来什么差异",
+          "claim": "詹姆斯的实用主义方法通过实际后果澄清观念的意义与分歧。",
+          "sourceIds": [
+            "james-pragmatism"
+          ],
+          "sections": [
+            "Lecture II. What Pragmatism Means"
+          ]
+        },
+        {
+          "id": "pragmatic-inquiry",
+          "title": "从具体困惑开展探究",
+          "claim": "杜威把反思理解为对信念依据和后果的考察；明确问题、提出可能解释、推演并观察检验是探究的重要环节。",
+          "sourceIds": [
+            "dewey-how-we-think"
+          ],
+          "sections": [
+            "Chapter I. What is Thought?",
+            "Chapter VI. The Analysis of a Complete Act of Thought"
+          ]
+        },
+        {
+          "id": "pragmatic-revision",
+          "title": "让信念接受经验与理由的检验",
+          "claim": "实用主义探究保留可错性与修订空间；实际后果不是只计算眼前便利，也不能把想要的结果直接当成事实。",
+          "sourceIds": [
+            "sep-pragmatism",
+            "james-pragmatism"
+          ],
+          "sections": [
+            "SEP 4 Pragmatist Epistemology",
+            "Lecture VI. Pragmatism’s Conception of Truth"
+          ]
+        }
+      ],
+      "method": {
+        "label": "由产品组合出的生活探究流程",
+        "steps": [
+          "把“我的人生是不是选错了”缩小到一个可以描述的实际困难。",
+          "写下目前的假设，以及如果它成立，生活里应当能观察到什么。",
+          "设计一个承担得起、可以撤回的尝试，同时约定观察时间和会改变判断的证据。",
+          "复盘结果，检查对自己和他人的长期影响，决定保留、修订还是放弃原有判断。"
+        ],
+        "sampleQuestion": "我不知道自己适不适合换一个职业。",
+        "sampleResponse": "这个基座会先问“适合”具体意味着什么。可以先选择一种低成本的真实体验，把想象和经历放在一起比较。你最希望验证的是工作的内容、日常节奏，还是别人对它的评价？",
+        "applicationNote": "小规模、可撤回的生活尝试是产品的实践设计，不能冒称詹姆斯或杜威的固定原法。"
+      },
+      "boundaries": [
+        {
+          "title": "有用不等于立即正确",
+          "text": "一次感觉更舒服或短期获利，不能证明信念真实或行为正当。需要核查事实、长期影响以及其他人的利益。",
+          "type": "philosophical-misreading-and-application-boundary"
+        },
+        {
+          "title": "有些选择无法完整试验",
+          "text": "人生经验有噪声，有些承诺不可逆，也有价值冲突无法靠一次试验解决。产品应承認这些限制，不能用小样本给出确定结论。",
+          "type": "application-boundary"
+        }
+      ],
+      "topics": [
+        "职业探索",
+        "选择困难",
+        "想法与行动脱节"
+      ],
+      "sources": [
+        {
+          "id": "james-pragmatism",
+          "url": "https://www.gutenberg.org/cache/epub/5116/pg5116-images.html",
+          "title": "Pragmatism: A New Name for Some Old Ways of Thinking",
+          "author": "William James",
+          "publisher": "Project Gutenberg; original lectures published 1907",
+          "type": "primary-text",
+          "sections": [
+            "Lecture II. What Pragmatism Means",
+            "Lecture VI. Pragmatism’s Conception of Truth"
+          ],
+          "verified": "完整页面已打开，作者与目录已核查",
+          "contentUse": "原文页面给出 Project Gutenberg 条款并提醒境外法律差异。本稿只保存原创中文转述和来源链接，不搬运整部电子书或现代中文译本。"
+        },
+        {
+          "id": "dewey-how-we-think",
+          "url": "https://www.gutenberg.org/cache/epub/37423/pg37423-images.html",
+          "title": "How We Think（1910 edition）",
+          "author": "John Dewey",
+          "publisher": "Project Gutenberg; original D. C. Heath & Co.",
+          "type": "primary-text",
+          "sections": [
+            "Chapter I. What is Thought?",
+            "Chapter VI. The Analysis of a Complete Act of Thought"
+          ],
+          "verified": "完整页面已打开，1910 版书目信息、目录与探究步骤均可见",
+          "contentUse": "不要混同后续修订版。本稿为原创转述。再分发 Gutenberg 电子书应遵守该版本所附条款，并分别核查目标地区和现代译本的版权。"
+        },
+        {
+          "id": "sep-pragmatism",
+          "url": "https://plato.stanford.edu/entries/pragmatism/",
+          "title": "Pragmatism",
+          "author": "Catherine Legg; Christopher Hookway",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "type": "academic-reference",
+          "sections": [
+            "1 The Development of Pragmatism",
+            "4 Pragmatist Epistemology"
+          ],
+          "verified": "完整页面已打开，作者与 2024 年版权标示已核查",
+          "contentUse": "受版权保护的学术百科。用于有限原创转述、交叉核查与链接，不作为开放授权全文库。"
+        }
+      ]
+    },
+    {
+      "id": "confucian",
+      "name": "孔子：在关系中修身",
+      "shortName": "仁与责任",
+      "kind": "philosopher",
+      "kindLabel": "哲学家与传统",
+      "lineage": "以《论语》中的仁、义、礼与学习为入口",
+      "tagline": "认真对待关系与责任，在日常行动中练习成为自己认可的人。",
+      "selectionPrompt": "你是否认为好的生活需要在与他人的关系里实现，并愿意把体谅、诚信和责任落实到日常？",
+      "historicalScope": "《论语》是后世编集的多层文本，不是孔子亲自撰写的单一论著。本基座不代表全部儒家，也不把古代礼制、等级和现代平等观念说成完全相同。",
+      "principles": [
+        {
+          "id": "confucian-care",
+          "title": "把他人的处境放进判断",
+          "claim": "仁与恕重视关切他人和推己及人；关系不是纯粹实现个人利益的工具。",
+          "sourceIds": [
+            "analects-legge",
+            "sep-confucius"
+          ],
+          "sections": [
+            "《论语》卫灵公：恕；Legge 版 Book XV, Chapter XXIII",
+            "SEP 4 Virtues and Character Formation"
+          ]
+        },
+        {
+          "id": "confucian-righteousness",
+          "title": "面对利益，仍然考虑是否合宜",
+          "claim": "义强调不只按个人收益判断，在承诺和公共责任中保有品格。",
+          "sourceIds": [
+            "analects-legge",
+            "sep-confucius"
+          ],
+          "sections": [
+            "《论语》里仁 4.16",
+            "SEP 4 Virtues and Character Formation"
+          ]
+        },
+        {
+          "id": "confucian-cultivation",
+          "title": "通过学习、反省和实践修身",
+          "claim": "学习与思考应互相支持，修养需要体现在实际言行和对人的态度中。",
+          "sourceIds": [
+            "analects-legge",
+            "sep-confucius"
+          ],
+          "sections": [
+            "《论语》为政 2.15",
+            "《论语》里仁 4.24",
+            "SEP 3 Ritual Psychology and Social Values"
+          ]
+        }
+      ],
+      "method": {
+        "label": "以下为现代产品应用，不把古代角色规范直接套给用户",
+        "steps": [
+          "辨认哪些具体关系、承诺和彼此的需要卷入了这件事。",
+          "把关心、约定的责任和未经讨论的期待分开，并询问哪些期待是否公平。",
+          "思考怎样在体谅他人的同时，保有诚实、尊重和可持续的边界。",
+          "拟定一次具体沟通或修复行动；保留分歧，检查自己是否言行一致。"
+        ],
+        "sampleQuestion": "父母希望我按他们安排生活，我不答应是不是不孝？",
+        "sampleResponse": "从这个入口出发，可以先把关心父母和接受每一项安排分开讨论。你愿意承担哪些照顾与联系，也有哪些人生选择需要坦诚表达？我们可以一起准备一次有尊重、也说得清自己立场的沟通。",
+        "applicationNote": "以上边界和协商方式属于现代应用，不能声称古代《论语》已经提出与当代相同的自主权观念。"
+      },
+      "boundaries": [
+        {
+          "title": "古代关系有等级与历史限制",
+          "text": "文本中的性别、政治和家庭秩序存在与现代平等观念的张力。产品需要明说这种差异，不以孝、礼或责任要求用户忍受伤害。",
+          "type": "historical-limitation-and-product-boundary"
+        },
+        {
+          "title": "关系和谐不保证没有冲突",
+          "text": "亲近者的需要可能与公正或个人生活发生冲突。体谅和修身不能代替协商、资源支持与必要的拒绝，也不能把所有矛盾都交给较弱的一方反省。",
+          "type": "philosophical-and-application-boundary"
+        }
+      ],
+      "topics": [
+        "家庭期待",
+        "关系与责任",
+        "诚信与利益冲突"
+      ],
+      "sources": [
+        {
+          "id": "analects-legge",
+          "url": "https://www.gutenberg.org/cache/epub/3330/pg3330-images.html",
+          "title": "The Analects of Confucius (from the Chinese Classics)",
+          "author": "《论语》编者群体，传统记录孔子及弟子言行；English translation: James Legge",
+          "publisher": "Project Gutenberg",
+          "type": "primary-text-translation",
+          "sections": [
+            "Book II, Chapter XV",
+            "Book IV, Chapters XVI, XVIII, XXIV",
+            "Book XV, Chapter XXIII（恕；与部分通行中文本章号不同）"
+          ],
+          "verified": "完整页面已打开；目录页列 James Legge 译、美国公版；已核查恕和谏父母的具体段落",
+          "contentUse": "古代原文与现代整理、译注须分开。本稿不复制现代中文译注。Legge 章号可能与通行中文本有差异，展示时应保留篇名和所用版本。"
+        },
+        {
+          "id": "sep-confucius",
+          "url": "https://plato.stanford.edu/entries/confucius/",
+          "title": "Confucius",
+          "author": "Mark Csikszentmihalyi",
+          "publisher": "Stanford Encyclopedia of Philosophy",
+          "type": "academic-reference",
+          "sections": [
+            "2 Sources for Confucius’s Life and Thought",
+            "3 Ritual Psychology and Social Values",
+            "4 Virtues and Character Formation",
+            "5 The Family and the State"
+          ],
+          "verified": "完整页面已打开，页面标示 2024 年修订及作者",
+          "contentUse": "受版权保护。以有限原创转述帮助核查历史脉络，不复制现代作者的整段解读或把该页面当作可自由分发的语料。"
+        }
+      ]
+    }
+  ],
+  "crossBaseTensions": [
+    {
+      "baseIds": [
+        "stoic",
+        "pragmatic"
+      ],
+      "tension": "斯多葛入口强调品格不由外在成功决定；实用主义入口强调经验后果对修订判断的重要性。可分别讨论行动品质和结果证据，但不能直接声称两者价值理论相同。"
+    },
+    {
+      "baseIds": [
+        "stoic",
+        "camus"
+      ],
+      "tension": "古代斯多葛的有序自然与神意，与加缪对最终意义保证的拒绝存在深层差异。产品对斯多葛采用伦理子集时，应明确选材范围。"
+    },
+    {
+      "baseIds": [
+        "confucian",
+        "camus"
+      ],
+      "tension": "关系角色和传承的权重，与反抗既定安排、维护个人及共同尊严的权重可能不同。实际冲突要交给用户判断，不能自动折中。"
+    }
+  ],
+  "linkAudit": {
+    "includedSources": 9,
+    "includedSourcesOpenedSuccessfully": 9,
+    "excludedOrSecondaryOnly": [
+      {
+        "url": "https://www.nobelprize.org/prizes/literature/1957/camus/speech/",
+        "status": "搜索结果可见，直接打开 403；不列为已完整核查的主要来源"
+      }
+    ]
+  }
+}
