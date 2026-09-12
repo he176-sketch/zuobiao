@@ -106,7 +106,8 @@
             "5",
             "20",
             "24",
-            "29"
+            "29",
+            "§8：调整对发生之事的要求"
           ],
           "verified": "完整页面已打开，作者、译者与章节可见",
           "contentUse": "只写原创中文转述并链接章节。古代作品和旧译本的历史不意味着网站所有数字内容都可任意复用；本稿不复刻网页、注释或整本译文。"
@@ -356,7 +357,8 @@
           "type": "academic-reference",
           "sections": [
             "1 The Development of Pragmatism",
-            "4 Pragmatist Epistemology"
+            "4 Pragmatist Epistemology",
+            "§4.1–4.2：探究、可错性与修订"
           ],
           "verified": "完整页面已打开，作者与 2024 年版权标示已核查",
           "contentUse": "受版权保护的学术百科。用于有限原创转述、交叉核查与链接，不作为开放授权全文库。"
@@ -455,7 +457,10 @@
           "sections": [
             "Book II, Chapter XV",
             "Book IV, Chapters XVI, XVIII, XXIV",
-            "Book XV, Chapter XXIII（恕；与部分通行中文本章号不同）"
+            "Book XV, Chapter XXIII（恕；与部分通行中文本章号不同）",
+            "I.4：反省与践行",
+            "II.17：知道与不知道",
+            "通行 XI.12 对应本译本 Book XI, Chapter XI：先理解人事"
           ],
           "verified": "完整页面已打开；目录页列 James Legge 译、美国公版；已核查恕和谏父母的具体段落",
           "contentUse": "古代原文与现代整理、译注须分开。本稿不复制现代中文译注。Legge 章号可能与通行中文本有差异，展示时应保留篇名和所用版本。"

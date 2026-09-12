@@ -29,7 +29,8 @@ export async function POST(request:Request){
   const data=await result.json() as {status?:string;output?:{content?:{type:string;text?:string}[]}[]};const text=data.output?.flatMap(item=>item.content||[]).filter(part=>part.type==="output_text").map(part=>part.text||"").join("");
   if(data.status&&data.status!=="completed")throw new Error("INCOMPLETE_ANSWER");
   if(!text)throw new Error("EMPTY_ANSWER");
-  const answer=validateAnswer(JSON.parse(text),base.sources.map(s=>s.id));
-  return response({answer,mode:answer.needsImmediateSupport?"support":"ai",baseId:input.baseId,profileRevision:input.profileRevision,materials:guideMaterials(input.baseId)});
+  const materials=guideMaterials(input.baseId,input.thinkingToolId);
+  const answer=validateAnswer(JSON.parse(text),materials.sources.map(s=>s.id),base.sources.map(s=>s.id));
+  return response({answer,mode:answer.needsImmediateSupport?"support":"ai",baseId:input.baseId,profileRevision:input.profileRevision,materials:answer.needsImmediateSupport?guideMaterials(input.baseId):materials});
  }catch(e){return response({error:e instanceof Error&&/timeout|abort/i.test(e.name)?"回答花的时间有些长，问题已保留，可以重试。":"这次回答未通过内容与来源检查，请重试。",code:"INVALID_OR_TIMEOUT"},502);}
 }

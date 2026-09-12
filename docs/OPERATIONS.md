@@ -11,7 +11,7 @@
 ## AI 接口
 
 - `GET /api/chat` 仅返回是否已配置、存储模式和内容版本，不返回密钥。
-- `POST /api/chat` 要求平台验证过的登录身份，并检查来源、请求格式、大小、角色、所选基座和原则数量。请求以流式读取累计限制为 1,000,000 字节，覆盖严格 schema 允许的中文原则与多轮历史。
+- `POST /api/chat` 要求平台验证过的登录身份，并检查来源、请求格式、大小、角色、所选基座、可选 thinkingToolId 和原则数量。请求以流式读取累计限制为 1,000,000 字节，覆盖严格 schema 允许的中文原则与多轮历史。
 - 使用服务端 `PHILOSOPHY_API_BASE_URL + /responses`，规则作为 developer 消息传入（实测该代理的独立 instructions 与 JSON 模式组合会返回 502），`store: false`，多轮上下文由本次请求显式携带。
 - 本版实际验证的路径为 `https://www.xiaoxiaoapi.com/responses`。不要擅自追加 `/v1` 或更换用户指定的模型。
 - 客户端停止等待会中止 fetch，服务器把请求取消与 90 秒超时信号传给提供商；Workers 开启 `enable_request_signal`。提供商收到取消后是否立即停止计算，取决于其实现。
@@ -40,4 +40,10 @@
 - [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
 - [gpt-5.6-sol 官方文档](https://developers.openai.com/api/docs/models/gpt-5.6-sol)
 - [AI SDK 消息结构](https://ai-sdk.dev/docs/reference/ai-sdk-core/ui-message)
-- 开源方案取舍见 `REUSE-RESEARCH.md`。当前仅参考其思路，未引入额外聊天或 RAG 框架。
+- 开源方案取舍见 `REUSE-RESEARCH.md`。已选编两套开源内容，固定版本与许可见 `../THIRD_PARTY_NOTICES.md`；未引入额外聊天或 RAG 框架。
+
+## 工具与历史兼容
+
+`thinkingToolId` 可省略或为 null，非空时必须属于六个已知 ID。服务器按 ID 读取受控材料，不接受客户端提交工具正文。返回的 `materials.thinkingTool` 和 `materials.philosophySupplement` 均为可选，旧消息无需迁移。请求工具 ID 使用当前枚举，历史快照 ID 使用字符串，以支持将来工具下架后仍能恢复。
+
+`validateAnswer` 校验当前来源集合，并单独要求至少一个当前基座来源；工具不能替代价值依据。紧急分流忽略工具。登录跳转会临时保存问题与经白名单恢复的工具 ID，不写入个人原则。

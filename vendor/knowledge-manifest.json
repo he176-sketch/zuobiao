@@ -1,0 +1,52 @@
+[
+  {
+    "path": "vendor/philoscopia/LICENSE",
+    "sha256": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5",
+    "url": "https://raw.githubusercontent.com/fbgallet/philoscopia-open/92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef/LICENSE"
+  },
+  {
+    "path": "vendor/philoscopia/data/movements/confucianism.json",
+    "sha256": "95a3f7f40e3f59cb764b1c4ffeb7fe53223a4509b6d5bad116650986afa9a07a",
+    "url": "https://raw.githubusercontent.com/fbgallet/philoscopia-open/92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef/data/movements/confucianism.json"
+  },
+  {
+    "path": "vendor/philoscopia/data/movements/pragmatism.json",
+    "sha256": "947309aee30895dcd1dfb5d8f3c34fdda8614184586d2787b88d3a818ed222db",
+    "url": "https://raw.githubusercontent.com/fbgallet/philoscopia-open/92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef/data/movements/pragmatism.json"
+  },
+  {
+    "path": "vendor/philoscopia/data/movements/stoicism.json",
+    "sha256": "e5fe9eaf915a3fda1e14a5217cd2946045b8fef55b05b3dbe1e731541bf3ab6b",
+    "url": "https://raw.githubusercontent.com/fbgallet/philoscopia-open/92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef/data/movements/stoicism.json"
+  },
+  {
+    "path": "vendor/philoscopia/data/philosophers/camus.json",
+    "sha256": "7dca529cc58cea7c297272c14dc97b1e7e24a0fd0bb66fb316b6b9612df5a926",
+    "url": "https://raw.githubusercontent.com/fbgallet/philoscopia-open/92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef/data/philosophers/camus.json"
+  },
+  {
+    "path": "vendor/model-thinking/LICENSE",
+    "sha256": "a16169ae9b6d1ee87fff01873f585423ca49760bfba04f542836a5a44cf1b54c",
+    "url": "https://raw.githubusercontent.com/kcchien/model-thinking/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE"
+  },
+  {
+    "path": "vendor/model-thinking/references/decisions.md",
+    "sha256": "71f0d0b6335089e547e3ba861607333490659b6a8418c473c2d4ca126ffa1c3d",
+    "url": "https://raw.githubusercontent.com/kcchien/model-thinking/c4027bedca713d9ace86032f94a4a2dba299385c/references/decisions.md"
+  },
+  {
+    "path": "vendor/model-thinking/references/economics.md",
+    "sha256": "9a5a93d5ea50bf2bd60d3ba3c3a7ae81ac7dd5457f014ca235a908c8354e87fb",
+    "url": "https://raw.githubusercontent.com/kcchien/model-thinking/c4027bedca713d9ace86032f94a4a2dba299385c/references/economics.md"
+  },
+  {
+    "path": "vendor/model-thinking/references/learning.md",
+    "sha256": "dec1da08651a4bc549cd9a8452ebf5df40dfb8b259343b11e74edf1459090500",
+    "url": "https://raw.githubusercontent.com/kcchien/model-thinking/c4027bedca713d9ace86032f94a4a2dba299385c/references/learning.md"
+  },
+  {
+    "path": "vendor/model-thinking/references/statistics.md",
+    "sha256": "001212a689ae7036c44888bf6d6f398c0b1bfcddbaa6c81285ffaacd0c8234f0",
+    "url": "https://raw.githubusercontent.com/kcchien/model-thinking/c4027bedca713d9ace86032f94a4a2dba299385c/references/statistics.md"
+  }
+]

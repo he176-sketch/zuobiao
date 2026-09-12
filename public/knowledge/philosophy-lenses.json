@@ -1,0 +1,227 @@
+{
+  "version": "2026-09-12.1",
+  "license": "CC BY-SA 4.0",
+  "copyright": "Philoscopia by Fabrice Gallet; Chinese adaptations by Zuobiao, 2026",
+  "cards": [
+    {
+      "baseId": "stoic",
+      "version": "2026-09-12.1",
+      "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+      "positions": [
+        {
+          "entryIndex": 3,
+          "axisId": "CONTROL_SCOPE",
+          "title": "分清自己能负责什么",
+          "claim": "把自己的判断与选择，同不能保证的外部结果分开，先决定眼下能负责的行动。",
+          "tradeoff": "需要接受控制范围有限；这不意味着放弃改善处境，也不能承诺任何环境下都能平静。",
+          "sourceIds": [
+            "epictetus-handbook"
+          ],
+          "epistemicStatus": "EXPLICIT",
+          "upstreamReferences": [
+            {
+              "fr": "Épictète, Manuel, §1",
+              "en": "Epictetus, Enchiridion, §1"
+            },
+            {
+              "fr": "Épictète, Entretiens",
+              "en": "Epictetus, Discourses"
+            }
+          ]
+        },
+        {
+          "entryIndex": 6,
+          "axisId": "DESIRE",
+          "title": "松动“结果必须如愿”的要求",
+          "claim": "练习调整对外部结果的要求，不把每件事都如愿当成过好生活的前提。",
+          "tradeoff": "原立场对欲望的节制要求很高；生活应用需要区分接受已发生之事与继续争取改变。",
+          "sourceIds": [
+            "epictetus-handbook"
+          ],
+          "epistemicStatus": "EXPLICIT",
+          "upstreamReferences": [
+            {
+              "fr": "Épictète, Manuel, §8",
+              "en": "Epictetus, Enchiridion, §8"
+            }
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "Fabrice Gallet",
+        "repository": "https://github.com/fbgallet/philoscopia-open",
+        "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+        "path": "data/movements/stoicism.json",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+      }
+    },
+    {
+      "baseId": "pragmatic",
+      "version": "2026-09-12.1",
+      "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+      "positions": [
+        {
+          "entryIndex": 6,
+          "axisId": "TRUTH_NATURE",
+          "title": "让想法接受经验检验",
+          "claim": "看一个想法怎样引导行动、解释经验，并能否经受后续检验，而不只看它是否听起来圆满。",
+          "tradeoff": "短期有用或让人舒服并不自动等于真实；仍要面对反证、更广的经验和长期后果。",
+          "sourceIds": [
+            "james-pragmatism"
+          ],
+          "epistemicStatus": "EXPLICIT",
+          "upstreamReferences": [
+            {
+              "fr": "Peirce, « Comment rendre nos idées claires » (1878)",
+              "en": "Peirce, 'How to Make Our Ideas Clear' (1878)"
+            },
+            {
+              "fr": "James, Le Pragmatisme (1907), leçons II et VI",
+              "en": "James, Pragmatism (1907), lectures II and VI"
+            }
+          ]
+        },
+        {
+          "entryIndex": 7,
+          "axisId": "CERTAINTY",
+          "title": "带着可修订的判断行动",
+          "claim": "从目前有理由接受的判断开始，遇到具体问题与反例再修订，不必先找到永不出错的根基。",
+          "tradeoff": "它不能提供永久确定的答案；需要说明什么证据会让自己改主意，避免随意更换原则。",
+          "sourceIds": [
+            "sep-pragmatism"
+          ],
+          "epistemicStatus": "EXPLICIT",
+          "upstreamReferences": [
+            {
+              "fr": "Peirce, « La fixation de la croyance » (1877)",
+              "en": "Peirce, 'The Fixation of Belief' (1877)"
+            },
+            {
+              "fr": "Dewey, Logique : la théorie de l'enquête (1938)",
+              "en": "Dewey, Logic: The Theory of Inquiry (1938)"
+            }
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "Fabrice Gallet",
+        "repository": "https://github.com/fbgallet/philoscopia-open",
+        "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+        "path": "data/movements/pragmatism.json",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+      }
+    },
+    {
+      "baseId": "confucian",
+      "version": "2026-09-12.1",
+      "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+      "positions": [
+        {
+          "entryIndex": 16,
+          "axisId": "INTERIORITY",
+          "title": "把反省落实在待人与行动里",
+          "claim": "回顾自己是否认真履行承诺、诚实待人，并把学到的东西付诸实践，以具体行动修养自己。",
+          "tradeoff": "反省应找到可以改进的一件事，不能把关系中的所有问题都归罪于自己。",
+          "sourceIds": [
+            "analects-legge"
+          ],
+          "epistemicStatus": "EXPLICIT",
+          "upstreamReferences": [
+            {
+              "fr": "Confucius, Entretiens (Lunyu), I, 4",
+              "en": "Confucius, Analects (Lunyu), 1.4"
+            },
+            {
+              "fr": "La Grande Étude (Daxue)",
+              "en": "The Great Learning (Daxue)"
+            }
+          ]
+        },
+        {
+          "entryIndex": 9,
+          "axisId": "CERTAINTY",
+          "title": "承认知道与不知道的边界",
+          "claim": "如实辨认自己知道什么、不知道什么，先认真理解并处理眼前的人事。",
+          "tradeoff": "它不能回答所有终极问题；认识上的谦逊是编者归纳，不能据此断言儒家否认宗教或形上学。",
+          "sourceIds": [
+            "analects-legge"
+          ],
+          "epistemicStatus": "INFERABLE",
+          "upstreamReferences": [
+            {
+              "fr": "Entretiens (Lunyu), II.17 et XI.12",
+              "en": "Analects (Lunyu), II.17 and XI.12"
+            }
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "Fabrice Gallet",
+        "repository": "https://github.com/fbgallet/philoscopia-open",
+        "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+        "path": "data/movements/confucianism.json",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+      }
+    },
+    {
+      "baseId": "camus",
+      "version": "2026-09-12.1",
+      "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+      "positions": [
+        {
+          "entryIndex": 3,
+          "axisId": "LIFE_MEANING",
+          "title": "没有终极答案，仍投入生活",
+          "claim": "面对人渴望意义而世界不保证答案的张力，仍在当下投入生活，形成愿意承担的价值。",
+          "tradeoff": "它不承诺消除这份张力；自己创造意义也不能替代加缪关于荒诞、反抗和限度的全部思考。",
+          "sourceIds": [
+            "sep-camus"
+          ],
+          "epistemicStatus": "EXPLICIT",
+          "upstreamReferences": [
+            {
+              "fr": "Le Mythe de Sisyphe (1942)",
+              "en": "The Myth of Sisyphus (1942)"
+            },
+            {
+              "fr": "L'Homme révolté (1951)",
+              "en": "The Rebel (1951)"
+            }
+          ]
+        },
+        {
+          "entryIndex": 0,
+          "axisId": "ETHICS_FOUNDATION",
+          "title": "反抗不公，也约束自己的手段",
+          "claim": "维护自己与他人共有的尊严，在拒绝不公时，也为自己的行动保留不能跨越的界限。",
+          "tradeoff": "共同尊严不能自动解决每个具体冲突；仍需要判断手段及其代价。",
+          "sourceIds": [
+            "sep-camus"
+          ],
+          "epistemicStatus": "INFERABLE",
+          "upstreamReferences": [
+            {
+              "fr": "L'Homme révolté",
+              "en": "The Rebel"
+            }
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "Fabrice Gallet",
+        "repository": "https://github.com/fbgallet/philoscopia-open",
+        "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+        "path": "data/philosophers/camus.json",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+      }
+    }
+  ]
+}

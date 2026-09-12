@@ -1,0 +1,313 @@
+{
+  "version": "2026-09-12.1",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2026 KC Chien; adaptations Copyright (c) 2026 Zuobiao",
+  "cards": [
+    {
+      "id": "opportunity-cost",
+      "version": "2026-09-12.1",
+      "name": "机会成本",
+      "purpose": "几件重要的事，争用同一份时间或精力",
+      "core": "把时间、精力或金钱投入一个选择，也意味着放弃另一种最值得做的可行选择。",
+      "steps": [
+        "列出真正做得到的选项，包括暂时维持现状。",
+        "在相同时间范围内，找出占用的关键资源与最佳替代。",
+        "写清愿意承担的取舍，不把所有放弃的选项加在一起。"
+      ],
+      "boundary": "关系、尊严和休息未必能折算为金钱；不能用虚构价格替你排定价值。",
+      "question": "如果这周的两个晚上不花在这件事上，你最想留给哪件实际做得到的事？",
+      "kind": "经济学概念的生活应用",
+      "sourceIds": [
+        "tool-opportunity-cost",
+        "model-thinking-opportunity-cost"
+      ],
+      "sources": [
+        {
+          "id": "tool-opportunity-cost",
+          "url": "https://ocw.mit.edu/ans7870/14/14.01SC/MIT14_01SCF11_rttext.pdf",
+          "title": "Principles of Microeconomics",
+          "author": "MIT OpenCourseWare",
+          "publisher": "原始方法与研究",
+          "sections": [
+            "机会成本：最佳放弃选项的价值；生活价值的排序由用户决定。"
+          ]
+        },
+        {
+          "id": "model-thinking-opportunity-cost",
+          "url": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/references/economics.md#card-2",
+          "title": "Model Thinking · 機會成本、邊際判斷與比較優勢",
+          "author": "KC Chien",
+          "publisher": "GitHub · MIT",
+          "sections": [
+            "用于方法选取与组织；生活练习由坐标改编。"
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "KC Chien",
+        "repository": "https://github.com/kcchien/model-thinking",
+        "commit": "c4027bedca713d9ace86032f94a4a2dba299385c",
+        "path": "references/economics.md",
+        "section": "card-2",
+        "license": "MIT",
+        "licenseUrl": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE",
+        "changes": "中文生活练习由坐标重新编写，补充原始来源与应用边界。"
+      }
+    },
+    {
+      "id": "sunk-cost",
+      "version": "2026-09-12.1",
+      "name": "从现在重新算",
+      "purpose": "已经付出很多，舍不得停下来",
+      "core": "已经付出的代价值得承认，但继续投入还需要一个今天依然成立的理由。",
+      "steps": [
+        "分开不可收回的过去投入与仍可使用的资产、经验。",
+        "比较从现在起继续、缩减或停止各自的收益、成本与责任。",
+        "写下继续的现实理由，检查是否只剩“已经投入这么多”。"
+      ],
+      "boundary": "合同义务、退出成本和已有能力仍会影响未来；这个工具不意味着应该立刻放弃。",
+      "question": "对已经买下的这门课，什么从今天起仍然有价值的理由，会让你愿意再投入一个晚上？",
+      "kind": "实证现象与决策启发",
+      "sourceIds": [
+        "tool-sunk-cost",
+        "model-thinking-sunk-cost"
+      ],
+      "sources": [
+        {
+          "id": "tool-sunk-cost",
+          "url": "https://doi.org/10.1016/0749-5978%2885%2990049-4",
+          "title": "The Psychology of Sunk Cost (1985)",
+          "author": "Hal R. Arkes & Catherine Blumer",
+          "publisher": "原始方法与研究",
+          "sections": [
+            "原研究摘要：过去投入可能增加继续的倾向；并非所有坚持都是偏误。"
+          ]
+        },
+        {
+          "id": "model-thinking-sunk-cost",
+          "url": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/references/decisions.md#card-17",
+          "title": "Model Thinking · 沉沒成本 Sunk Cost Fallacy",
+          "author": "KC Chien",
+          "publisher": "GitHub · MIT",
+          "sections": [
+            "用于方法选取与组织；生活练习由坐标改编。"
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "KC Chien",
+        "repository": "https://github.com/kcchien/model-thinking",
+        "commit": "c4027bedca713d9ace86032f94a4a2dba299385c",
+        "path": "references/decisions.md",
+        "section": "card-17",
+        "license": "MIT",
+        "licenseUrl": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE",
+        "changes": "中文生活练习由坐标重新编写，补充原始来源与应用边界。"
+      }
+    },
+    {
+      "id": "reversible-choice",
+      "version": "2026-09-12.1",
+      "name": "给决定留一条退路",
+      "purpose": "想换一个方向，又不敢一次押上所有",
+      "core": "先弄清能否撤回、撤回要付出什么，再决定需要多慎重、能否先试一小步。",
+      "steps": [
+        "列出决定会改变的事情，以及恢复原状所需的时间、钱和他人配合。",
+        "区分可分阶段尝试的部分与不可逆的承诺。",
+        "为可尝试的部分设定范围、复看时间和退出条件。"
+      ],
+      "boundary": "能够退出不等于没有损失；别人的信任、已签承诺和错过的机会可能无法恢复。",
+      "question": "在正式转向之前，你能先试哪一小部分，并清楚说出怎样退出？",
+      "kind": "决策启发",
+      "sourceIds": [
+        "tool-reversible-choice",
+        "model-thinking-reversible-choice"
+      ],
+      "sources": [
+        {
+          "id": "tool-reversible-choice",
+          "url": "https://ir.aboutamazon.com/files/doc_financials/annual/2015-Letter-to-Shareholders.PDF",
+          "title": "2015 Letter to Shareholders",
+          "author": "Jeff Bezos · Amazon",
+          "publisher": "原始方法与研究",
+          "sections": [
+            "PDF 第 5 页：可逆与难以撤回的企业决策；生活应用由坐标编写。"
+          ]
+        },
+        {
+          "id": "model-thinking-reversible-choice",
+          "url": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/references/decisions.md#card-7",
+          "title": "Model Thinking · 可逆性與選擇權",
+          "author": "KC Chien",
+          "publisher": "GitHub · MIT",
+          "sections": [
+            "用于方法选取与组织；生活练习由坐标改编。"
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "KC Chien",
+        "repository": "https://github.com/kcchien/model-thinking",
+        "commit": "c4027bedca713d9ace86032f94a4a2dba299385c",
+        "path": "references/decisions.md",
+        "section": "card-7",
+        "license": "MIT",
+        "licenseUrl": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE",
+        "changes": "中文生活练习由坐标重新编写，补充原始来源与应用边界。"
+      }
+    },
+    {
+      "id": "second-order-effects",
+      "version": "2026-09-12.1",
+      "name": "看见后续影响",
+      "purpose": "眼前能解决问题，却担心以后更麻烦",
+      "core": "除了眼前的结果，再想一步：这个改变会让谁调整行为，之后又会发生什么？",
+      "steps": [
+        "写下最直接的收益和代价。",
+        "选一条重要的后续链，考虑相关人的反应、反馈和时间延迟。",
+        "区分已知事实与猜测，找一个可以观察或询问的信号。"
+      ],
+      "boundary": "因果链越长越不确定；不能把想象的连锁反应当作必然发生的证据。",
+      "question": "如果你一直答应临时加来的工作，一个月后，别人可能怎样安排你的时间？",
+      "kind": "系统思考启发",
+      "sourceIds": [
+        "tool-second-order-effects",
+        "model-thinking-second-order-effects"
+      ],
+      "sources": [
+        {
+          "id": "tool-second-order-effects",
+          "url": "https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/",
+          "title": "Leverage Points: Places to Intervene in a System",
+          "author": "Donella Meadows",
+          "publisher": "原始方法与研究",
+          "sections": [
+            "延迟、反馈回路、信息与规则部分；不支持任何具体生活因果链。"
+          ]
+        },
+        {
+          "id": "model-thinking-second-order-effects",
+          "url": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/references/decisions.md#card-2",
+          "title": "Model Thinking · 二階思考",
+          "author": "KC Chien",
+          "publisher": "GitHub · MIT",
+          "sections": [
+            "用于方法选取与组织；生活练习由坐标改编。"
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "KC Chien",
+        "repository": "https://github.com/kcchien/model-thinking",
+        "commit": "c4027bedca713d9ace86032f94a4a2dba299385c",
+        "path": "references/decisions.md",
+        "section": "card-2",
+        "license": "MIT",
+        "licenseUrl": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE",
+        "changes": "中文生活练习由坐标重新编写，补充原始来源与应用边界。"
+      }
+    },
+    {
+      "id": "evidence-updating",
+      "version": "2026-09-12.1",
+      "name": "让判断跟着证据变化",
+      "purpose": "脑中有一个结论，却不知道是否想错了",
+      "core": "新信息出现时，先判断它更支持哪一种解释，再决定自己需要改变多少看法。",
+      "steps": [
+        "写下当前判断和至少一种其他解释。",
+        "找一项可核实的信息，比较它在不同解释下是否都容易出现。",
+        "说明哪种解释更可信、还有什么未知，并留下下一次改变判断的条件。"
+      ],
+      "boundary": "没有可靠基准率和证据出现概率时，不编造百分比；同一消息被反复转述不等于独立证据。",
+      "question": "关于这次工作变化，哪一个实际查得到的信息，最可能让你改变现在的判断？",
+      "kind": "受概率推理启发的生活练习",
+      "sourceIds": [
+        "tool-evidence-updating",
+        "model-thinking-evidence-updating"
+      ],
+      "sources": [
+        {
+          "id": "tool-evidence-updating",
+          "url": "https://www.ocw.mit.edu/courses/6-1200j-mathematics-for-computer-science-spring-2024/mit6_1200j_s24_lec19.pdf",
+          "title": "Lecture 19: Conditional Probability",
+          "author": "MIT OpenCourseWare",
+          "publisher": "原始方法与研究",
+          "sections": [
+            "§4–5：先验、似然与后验；本练习不进行概率测算。"
+          ]
+        },
+        {
+          "id": "model-thinking-evidence-updating",
+          "url": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/references/statistics.md#card-1",
+          "title": "Model Thinking · 條件機率、基準率、Bayes 與獨立性",
+          "author": "KC Chien",
+          "publisher": "GitHub · MIT",
+          "sections": [
+            "用于方法选取与组织；生活练习由坐标改编。"
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "KC Chien",
+        "repository": "https://github.com/kcchien/model-thinking",
+        "commit": "c4027bedca713d9ace86032f94a4a2dba299385c",
+        "path": "references/statistics.md",
+        "section": "card-1",
+        "license": "MIT",
+        "licenseUrl": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE",
+        "changes": "中文生活练习由坐标重新编写，补充原始来源与应用边界。"
+      }
+    },
+    {
+      "id": "small-experiment",
+      "version": "2026-09-12.1",
+      "name": "用小试验换一点了解",
+      "purpose": "想了很久，仍不知道一个方向适不适合",
+      "core": "用一个损失可承受、结果看得见的小尝试，换取下一步所需的信息。",
+      "steps": [
+        "把困惑缩成一个可观察的问题，写下预期结果。",
+        "设定小范围、时长、成本上限与停止条件，再尝试。",
+        "对照实际结果与预期，决定保留、调整还是停止。"
+      ],
+      "boundary": "一次尝试不能证明普遍因果；涉及人身安全、他人权益或不可逆损失时，先改用模拟、征询或专业支持。",
+      "question": "不辞职、不作长期承诺，你能用哪一个周末的小尝试，多了解一点新方向是否适合自己？",
+      "kind": "行动学习启发",
+      "sourceIds": [
+        "tool-small-experiment",
+        "model-thinking-small-experiment"
+      ],
+      "sources": [
+        {
+          "id": "tool-small-experiment",
+          "url": "https://www.ihi.org/library/model-for-improvement/testing-changes",
+          "title": "Model for Improvement: Testing Changes",
+          "author": "Institute for Healthcare Improvement",
+          "publisher": "原始方法与研究",
+          "sections": [
+            "PDSA：预测、小范围测试、记录、比较与修订；职业探索为坐标的应用。"
+          ]
+        },
+        {
+          "id": "model-thinking-small-experiment",
+          "url": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/references/learning.md#card-16",
+          "title": "Model Thinking · Fail Fast、Antifragility in Learning",
+          "author": "KC Chien",
+          "publisher": "GitHub · MIT",
+          "sections": [
+            "用于方法选取与组织；生活练习由坐标改编。"
+          ]
+        }
+      ],
+      "provenance": {
+        "author": "KC Chien",
+        "repository": "https://github.com/kcchien/model-thinking",
+        "commit": "c4027bedca713d9ace86032f94a4a2dba299385c",
+        "path": "references/learning.md",
+        "section": "card-16",
+        "license": "MIT",
+        "licenseUrl": "https://github.com/kcchien/model-thinking/blob/c4027bedca713d9ace86032f94a4a2dba299385c/LICENSE",
+        "changes": "中文生活练习由坐标重新编写，补充原始来源与应用边界。"
+      }
+    }
+  ]
+}
