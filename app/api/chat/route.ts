@@ -1,3 +1,4 @@
+import { readRequestBody,responseSignal } from "@/lib/request-limits";
 import { env } from "cloudflare:workers";
 import { getChatGPTUser } from "@/app/chatgpt-auth";
 import { ChatInputSchema,needsUrgentSupport,supportAnswer,validateAnswer } from "@/lib/contracts";
@@ -12,7 +13,7 @@ export async function POST(request:Request){
  if(origin&&origin!==new URL(request.url).origin)return response({error:"请求来源不一致，请重新打开页面。"},403);
  const user=await getChatGPTUser();if(!user)return response({error:"请先登录，再开始对话。"},401);
  if(!request.headers.get("content-type")?.includes("application/json"))return response({error:"请求格式不正确。"},415);
- const body=await request.text();if(new TextEncoder().encode(body).length>80000)return response({error:"这次内容太长了，请缩短后再试。"},413);
+ let body:string;try{body=await readRequestBody(request);}catch(e){return response({error:e instanceof Error&&e.message==="REQUEST_TOO_LARGE"?"累计内容过长，请减少原则内容或另开一次对话。":"请求内容无法读取。"},e instanceof Error&&e.message==="REQUEST_TOO_LARGE"?413:400);}
  let raw:unknown;try{raw=JSON.parse(body);}catch{return response({error:"请求内容无法读取。"},400);}
  const parsed=ChatInputSchema.safeParse(raw);if(!parsed.success)return response({error:"请检查问题、基座或原则内容后重试。"},400);
  const input=parsed.data;const base=foundations.find(b=>b.id===input.baseId)!;
@@ -23,7 +24,7 @@ export async function POST(request:Request){
  limits.set(user.userId,bucket&&now-bucket.at<60000?{at:bucket.at,count:bucket.count+1}:{at:now,count:1});
  let api:URL;try{api=new URL(c.base.replace(/\/$/,"")+"/responses");if(api.protocol!=="https:")throw new Error();}catch{return response({error:"AI 服务配置需要修复，请稍后再试。"},503);}
  try{
-  const result=await fetch(api,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${c.key}`},signal:AbortSignal.timeout(90000),body:JSON.stringify({model:c.model,input:[{role:"developer",content:buildGuide(input)},...input.messages],reasoning:{effort:c.reasoning},text:{format:{type:"json_object"}},stream:false,store:false,max_output_tokens:6500})});
+  const result=await fetch(api,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${c.key}`},signal:responseSignal(request.signal),body:JSON.stringify({model:c.model,input:[{role:"developer",content:buildGuide(input)},...input.messages],reasoning:{effort:c.reasoning},text:{format:{type:"json_object"}},stream:false,store:false,max_output_tokens:6500})});
   if(!result.ok)return response({error:result.status===429?"AI 服务暂时繁忙，请稍后重试。":"AI 服务暂时未能完成回答，请稍后重试。",code:"PROVIDER_ERROR"},502);
   const data=await result.json() as {status?:string;output?:{content?:{type:string;text?:string}[]}[]};const text=data.output?.flatMap(item=>item.content||[]).filter(part=>part.type==="output_text").map(part=>part.text||"").join("");
   if(data.status&&data.status!=="completed")throw new Error("INCOMPLETE_ANSWER");
