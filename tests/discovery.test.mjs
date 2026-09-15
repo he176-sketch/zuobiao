@@ -8,7 +8,7 @@ test('12个情境没有漏项，四类选项轮换但映射不变，简介来源
  assert.equal(DISCOVERY_QUESTIONS.length, 12);
  assert.equal(new Set(DISCOVERY_QUESTIONS.map(q => q.id)).size, 12);
  const bases=JSON.parse(readFileSync(new URL('../lib/foundations.json',import.meta.url),'utf8')).bases;
- for(const q of DISCOVERY_QUESTIONS)assert.deepEqual([...q.options.map(o=>o.foundation)].sort(),[...FOUNDATION_IDS].sort());
+ for(const q of DISCOVERY_QUESTIONS)assert.deepEqual([...q.options.filter(o=>o.foundation).map(o=>o.foundation)].sort(),[...FOUNDATION_IDS].sort());
  for(const base of bases)for(const source of FOUNDATION_INTROS[base.id].sourceIds)assert.ok(base.sources.some(s=>s.id===source));
 });
 test('四种明确偏好都可成为首选，对照入口不会伪装为匹配', () => {
@@ -25,4 +25,12 @@ test('四方同分不会隐藏第四个同分入口', () => {
 });
 test('返回修改回答后，推荐依据与排序一起变化', () => {
  const before=answersFor('stoic');const after=answersFor('camus');assert.equal(recommendFoundations(before).recommendations[0].id,'stoic');assert.equal(recommendFoundations(after).recommendations[0].id,'camus');
+});
+
+test('消极反应、矛盾和说不清均不参与哲学推荐，旧选项不重新解释', () => {
+ for(const suffix of ['tired','angry','unsure']) {
+  const answers=Object.fromEntries(DISCOVERY_QUESTIONS.map(q=>[q.id,`${q.id}-${suffix}`]));
+  assert.equal(recommendFoundations(answers).recommendations.length,0);
+ }
+ assert.equal(recommendFoundations({setback:'setback-0'}).answered,0);
 });

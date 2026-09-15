@@ -16,7 +16,7 @@ export async function POST(request:Request){
  let body:string;try{body=await readRequestBody(request);}catch(e){return response({error:e instanceof Error&&e.message==="REQUEST_TOO_LARGE"?"累计内容过长，请减少原则内容或另开一次对话。":"请求内容无法读取。"},e instanceof Error&&e.message==="REQUEST_TOO_LARGE"?413:400);}
  let raw:unknown;try{raw=JSON.parse(body);}catch{return response({error:"请求内容无法读取。"},400);}
  const parsed=ChatInputSchema.safeParse(raw);if(!parsed.success)return response({error:"请检查问题、基座或原则内容后重试。"},400);
- const input=parsed.data;const base=foundations.find(b=>b.id===input.baseId)!;
+ const input=parsed.data;const base=foundations.find(b=>b.id===input.baseId);
  if(needsUrgentSupport(input.messages.at(-1)!.content))return response({answer:supportAnswer(),mode:"support",baseId:input.baseId,profileRevision:input.profileRevision,materials:guideMaterials(input.baseId)});
  const c=config();if(!c.key||!c.model)return response({error:"AI 对话尚未接通。你的问题仍在输入框里，可以先浏览基座或阅读示例。",code:"AI_NOT_CONFIGURED"},503);
  const now=Date.now();const bucket=limits.get(user.userId);if(bucket&&now-bucket.at<60000&&bucket.count>=6)return response({error:"刚才的问题有点密集，请稍等一分钟再继续。"},429);
@@ -30,7 +30,7 @@ export async function POST(request:Request){
   if(data.status&&data.status!=="completed")throw new Error("INCOMPLETE_ANSWER");
   if(!text)throw new Error("EMPTY_ANSWER");
   const materials=guideMaterials(input.baseId,input.thinkingToolId);
-  const answer=validateAnswer(JSON.parse(text),materials.sources.map(s=>s.id),base.sources.map(s=>s.id));
+  const answer=validateAnswer(JSON.parse(text),materials.sources.map(s=>s.id),base?.sources.map(s=>s.id)||[],!base);
   return response({answer,mode:answer.needsImmediateSupport?"support":"ai",baseId:input.baseId,profileRevision:input.profileRevision,materials:answer.needsImmediateSupport?guideMaterials(input.baseId):materials});
- }catch(e){return response({error:e instanceof Error&&/timeout|abort/i.test(e.name)?"回答花的时间有些长，问题已保留，可以重试。":"这次回答未通过内容与来源检查，请重试。",code:"INVALID_OR_TIMEOUT"},502);}
+ }catch(e){if(e instanceof Error&&/network connection lost|fetch failed/i.test(e.message))return response({error:"AI 服务连接中断，问题已保留，请重试。",code:"PROVIDER_CONNECTION_ERROR"},502);return response({error:e instanceof Error&&/timeout|abort/i.test(e.name)?"回答花的时间有些长，问题已保留，可以重试。":"这次回答未通过内容与来源检查，请重试。",code:"INVALID_OR_TIMEOUT"},502);}
 }

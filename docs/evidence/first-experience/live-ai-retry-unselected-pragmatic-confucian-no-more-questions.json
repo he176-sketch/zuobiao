@@ -1,0 +1,362 @@
+{
+  "executedAt": "2026-09-15T06:43:44.723Z",
+  "kind": "real local app route and real configured provider; synthetic input",
+  "results": [
+    {
+      "case": "pragmatic",
+      "constructed": true,
+      "request": {
+        "baseId": "pragmatic",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 502,
+      "elapsedMs": 3207,
+      "result": {
+        "error": "这次回答未通过内容与来源检查，请重试。",
+        "code": "INVALID_OR_TIMEOUT"
+      }
+    },
+    {
+      "case": "confucian",
+      "constructed": true,
+      "request": {
+        "baseId": "confucian",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 200,
+      "elapsedMs": 27191,
+      "result": {
+        "answer": {
+          "understanding": "你不是在抽象地否定努力，而是在承受一种很具体的落差：投入了时间、期待和心力，结果却没有得到认可。此刻觉得“没有意义”可以理解，但这更像失望之下的结论，还不是已经被事实证明的判断。没选上只确认了本次结果；评审标准、名额、匹配度和项目质量各占多少原因，目前仍不清楚。",
+          "perspective": "《论语》所强调的学习、反省与践行，把修养放在持续行动和待人处事中，而不只以一次成败衡量。依据这个观点，我们可以检验这次准备是否增长了能力、留下了可复用成果，也诚实检查哪里需要改进。但这不等于把失败美化成收获：时间和机会成本确实存在，若方向不合适，停止或调整同样可以是负责的选择。",
+          "nextStep": "今天先不要逼自己决定以后还要不要努力。只写三栏：已经确定的事实、仍不知道的原因、这次留下的可复用成果。然后向评审或可信任的同行提出一个具体请求，例如请对方指出最影响结果的一项不足。拿到信息后，再决定修改、换方向还是暂停，避免用最难受的这一刻替未来作总判决。",
+          "question": "你现在更需要把这份失落说清楚，还是想和我一起复盘项目为什么没选上？",
+          "sourceIds": [
+            "analects-legge",
+            "sep-confucius"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "confucian",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-12.1",
+          "name": "仁与责任",
+          "scope": "《论语》是后世编集的多层文本，不是孔子亲自撰写的单一论著。本基座不代表全部儒家，也不把古代礼制、等级和现代平等观念说成完全相同。",
+          "principles": [
+            {
+              "title": "把他人的处境放进判断",
+              "claim": "仁与恕重视关切他人和推己及人；关系不是纯粹实现个人利益的工具。",
+              "sourceIds": [
+                "analects-legge",
+                "sep-confucius"
+              ]
+            },
+            {
+              "title": "面对利益，仍然考虑是否合宜",
+              "claim": "义强调不只按个人收益判断，在承诺和公共责任中保有品格。",
+              "sourceIds": [
+                "analects-legge",
+                "sep-confucius"
+              ]
+            },
+            {
+              "title": "通过学习、反省和实践修身",
+              "claim": "学习与思考应互相支持，修养需要体现在实际言行和对人的态度中。",
+              "sourceIds": [
+                "analects-legge",
+                "sep-confucius"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "analects-legge",
+              "url": "https://www.gutenberg.org/cache/epub/3330/pg3330-images.html",
+              "title": "The Analects of Confucius (from the Chinese Classics)",
+              "author": "《论语》编者群体，传统记录孔子及弟子言行；English translation: James Legge",
+              "publisher": "Project Gutenberg",
+              "sections": [
+                "Book II, Chapter XV",
+                "Book IV, Chapters XVI, XVIII, XXIV",
+                "Book XV, Chapter XXIII（恕；与部分通行中文本章号不同）",
+                "I.4：反省与践行",
+                "II.17：知道与不知道",
+                "通行 XI.12 对应本译本 Book XI, Chapter XI：先理解人事"
+              ]
+            },
+            {
+              "id": "sep-confucius",
+              "url": "https://plato.stanford.edu/entries/confucius/",
+              "title": "Confucius",
+              "author": "Mark Csikszentmihalyi",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "2 Sources for Confucius’s Life and Thought",
+                "3 Ritual Psychology and Social Values",
+                "4 Virtues and Character Formation",
+                "5 The Family and the State"
+              ]
+            }
+          ],
+          "philosophySupplement": {
+            "baseId": "confucian",
+            "version": "2026-09-12.1",
+            "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+            "positions": [
+              {
+                "entryIndex": 16,
+                "axisId": "INTERIORITY",
+                "title": "把反省落实在待人与行动里",
+                "claim": "回顾自己是否认真履行承诺、诚实待人，并把学到的东西付诸实践，以具体行动修养自己。",
+                "tradeoff": "反省应找到可以改进的一件事，不能把关系中的所有问题都归罪于自己。",
+                "sourceIds": [
+                  "analects-legge"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Confucius, Analects (Lunyu), 1.4",
+                    "fr": "Confucius, Entretiens (Lunyu), I, 4"
+                  },
+                  {
+                    "en": "The Great Learning (Daxue)",
+                    "fr": "La Grande Étude (Daxue)"
+                  }
+                ]
+              },
+              {
+                "entryIndex": 9,
+                "axisId": "CERTAINTY",
+                "title": "承认知道与不知道的边界",
+                "claim": "如实辨认自己知道什么、不知道什么，先认真理解并处理眼前的人事。",
+                "tradeoff": "它不能回答所有终极问题；认识上的谦逊是编者归纳，不能据此断言儒家否认宗教或形上学。",
+                "sourceIds": [
+                  "analects-legge"
+                ],
+                "epistemicStatus": "INFERABLE",
+                "upstreamReferences": [
+                  {
+                    "en": "Analects (Lunyu), II.17 and XI.12",
+                    "fr": "Entretiens (Lunyu), II.17 et XI.12"
+                  }
+                ]
+              }
+            ],
+            "provenance": {
+              "author": "Fabrice Gallet",
+              "repository": "https://github.com/fbgallet/philoscopia-open",
+              "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+              "path": "data/movements/confucianism.json",
+              "license": "CC BY-SA 4.0",
+              "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+              "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "unselected",
+      "constructed": true,
+      "request": {
+        "baseId": null,
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我不知道，也不想答这些题。"
+          }
+        ]
+      },
+      "httpStatus": 200,
+      "elapsedMs": 12661,
+      "result": {
+        "answer": {
+          "understanding": "可以，不答这些题。你已经明确表达了当下的边界：不确定答案，也不想通过问卷被迫整理自己。我不会把这种抗拒解释成逃避，更不会据此判断你的性格或哲学倾向。",
+          "perspective": "这是一次未选定哲学基座的探索回应，因此暂不套用任何学派。现在能确定的只有：继续追问会增加你的负担，而尊重“不想答”是继续交流的前提。至于你真正困扰的事情、希望得到倾听还是建议，目前都还不确定，我不会替你猜。",
+          "nextStep": "先把题目放下。之后你愿意说时，可以直接从眼前最烦、最难决定或最想吐槽的一件事讲起，不需要完整背景，也不必总结价值观；你只说事实或感受都可以。我会依据你实际说出的内容回应。现在不想继续，也可以就停在这里。",
+          "question": "",
+          "sourceIds": [],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": null,
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-15.exploration",
+          "name": "探索回应 · 未选定基座",
+          "scope": "帮助澄清处境与现实取舍，不代表用户已经确认哲学立场。",
+          "principles": [],
+          "sources": []
+        }
+      }
+    },
+    {
+      "case": "no-more-questions",
+      "constructed": true,
+      "request": {
+        "baseId": "stoic",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。\n你还没回答我，别再一直反问了。"
+          }
+        ]
+      },
+      "httpStatus": 200,
+      "elapsedMs": 25842,
+      "result": {
+        "answer": {
+          "understanding": "这次没选上，首先意味着你认真争取的那个具体结果落空了，而不是你的努力自动变得毫无意义。失望很真实：你投入的时间可能无法收回，项目机会、回报和认可也确实失去了。更准确的判断是：“这次努力没有换来我最想要的结果，目前也未必得到相称回报。”这比“努力都没有意义”更符合现有事实，也不要求你马上振作。",
+          "perspective": "斯多葛会区分自己的判断与行动，以及无法由个人保证的外部结果。评选还受名额、标准、竞争者和评审偏好影响，不能仅凭落选反推你的能力或全部投入。依据这个观点，我们可以把意义放在两处检验：这段准备是否形成了可复用的作品、能力或信息；你是否认真、诚实地完成了自己能够负责的部分。代价是承认：尽责不保证入选，有些努力也可能确实回报很低。接受这一点不是放弃，而是避免让一次结果替你判决今后所有努力。",
+          "nextStep": "今天先不要决定“以后还要不要努力”。给自己二十分钟做一次只看证据的复盘：写下三项已经完成且可复用的成果、一项确实需要改进的问题，以及一个可获取的外部反馈渠道。随后只做一个低成本动作，例如整理材料、索取评审意见或保存项目模板。等失望稍缓，再依据反馈决定继续、改投还是停止；停止一个回报不合理的方向，也可以是负责的选择。",
+          "question": "",
+          "sourceIds": [
+            "epictetus-handbook",
+            "sep-epictetus"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "stoic",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-12.1",
+          "name": "斯多葛",
+          "scope": "选取伦理实践，不能代表完整斯多葛哲学。古代斯多葛的自然、理性、神意等主张在原体系中互相关联；本产品不要求用户接受其神学，也不把古代神学写成已证实的事实。",
+          "principles": [
+            {
+              "title": "分清哪些取决于自己",
+              "claim": "爱比克泰德把判断、选择与外部处境作区分；声望、财产和项目结果并不完全由个人决定。",
+              "sourceIds": [
+                "epictetus-handbook",
+                "sep-epictetus"
+              ]
+            },
+            {
+              "title": "检查判断，再决定怎样回应",
+              "claim": "在这个思想体系中，人对事情的价值判断会影响情绪与行动，因此值得检验最初印象。",
+              "sourceIds": [
+                "epictetus-handbook",
+                "sep-epictetus"
+              ]
+            },
+            {
+              "title": "用行动体现品格与责任",
+              "claim": "善好生活的重点在于合宜地运用选择能力；这也包含对他人的关切，而非退出关系和公共生活。",
+              "sourceIds": [
+                "sep-epictetus"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "epictetus-handbook",
+              "url": "https://classics.mit.edu/Epictetus/epicench.html",
+              "title": "The Enchiridion（《手册》）",
+              "author": "Epictetus（经 Arrian 记录编订）；English translation: Elizabeth Carter",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "1",
+                "5",
+                "20",
+                "24",
+                "29",
+                "§8：调整对发生之事的要求"
+              ]
+            },
+            {
+              "id": "sep-epictetus",
+              "url": "https://plato.stanford.edu/entries/epictetus/",
+              "title": "Epictetus",
+              "author": "Margaret Graver",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "4.3 Volition",
+                "4.4 Value",
+                "4.5 Emotional adjustment",
+                "4.6 Appropriate other-concern"
+              ]
+            }
+          ],
+          "philosophySupplement": {
+            "baseId": "stoic",
+            "version": "2026-09-12.1",
+            "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+            "positions": [
+              {
+                "entryIndex": 3,
+                "axisId": "CONTROL_SCOPE",
+                "title": "分清自己能负责什么",
+                "claim": "把自己的判断与选择，同不能保证的外部结果分开，先决定眼下能负责的行动。",
+                "tradeoff": "需要接受控制范围有限；这不意味着放弃改善处境，也不能承诺任何环境下都能平静。",
+                "sourceIds": [
+                  "epictetus-handbook"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Epictetus, Enchiridion, §1",
+                    "fr": "Épictète, Manuel, §1"
+                  },
+                  {
+                    "en": "Epictetus, Discourses",
+                    "fr": "Épictète, Entretiens"
+                  }
+                ]
+              },
+              {
+                "entryIndex": 6,
+                "axisId": "DESIRE",
+                "title": "松动“结果必须如愿”的要求",
+                "claim": "练习调整对外部结果的要求，不把每件事都如愿当成过好生活的前提。",
+                "tradeoff": "原立场对欲望的节制要求很高；生活应用需要区分接受已发生之事与继续争取改变。",
+                "sourceIds": [
+                  "epictetus-handbook"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Epictetus, Enchiridion, §8",
+                    "fr": "Épictète, Manuel, §8"
+                  }
+                ]
+              }
+            ],
+            "provenance": {
+              "author": "Fabrice Gallet",
+              "repository": "https://github.com/fbgallet/philoscopia-open",
+              "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+              "path": "data/movements/stoicism.json",
+              "license": "CC BY-SA 4.0",
+              "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+              "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

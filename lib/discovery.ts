@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-export const DISCOVERY_VERSION = '2026-09-12.v1';
+export const DISCOVERY_VERSION = '2026-09-15.exploration';
 export const FOUNDATION_IDS = ['stoic', 'camus', 'pragmatic', 'confucian'] as const;
 export type FoundationId = typeof FOUNDATION_IDS[number];
-type Option = { id: string; label: string; foundation: FoundationId };
+type Option = { id: string; label: string; foundation?: FoundationId };
 type Question = { id: string; topic: string; title: string; options: Option[] };
 
 // These are editorial prompts for choosing a reading starting point, not a validated scale.
@@ -23,9 +23,10 @@ const scenes: [string, string, string, string, string, string, string][] = [
 ];
 
 export const DISCOVERY_QUESTIONS: Question[] = scenes.map(([id, topic, title, ...labels], index) => {
- const options = labels.map((label, i) => ({ id: `${id}-${i}`, label, foundation: FOUNDATION_IDS[i] }));
+ id = `explore-${id}`;
+ const options: Option[] = labels.map((label, i) => ({ id: `${id}-${i}`, label: `我愿意试着这样想：${label}`, foundation: FOUNDATION_IDS[i] }));
  const offset = index % options.length;
- return { id, topic, title, options: [...options.slice(offset), ...options.slice(0, offset)] };
+ return { id, topic, title, options: [...options.slice(offset), ...options.slice(0, offset), {id:`${id}-tired`,label:'我很疲惫，想先躲一会儿。'}, {id:`${id}-angry`,label:'我不服，也嫉妒，暂时不想讲道理。'}, {id:`${id}-unsure`,label:'我很矛盾，说不清，或者都不像。'}] };
 });
 
 export const FOUNDATION_INTROS: Record<FoundationId, { core: string; direction: string; tradeoff: string; sourceIds: string[] }> = {
@@ -45,7 +46,7 @@ export function recommendFoundations(raw: unknown) {
  let answered = 0;
  for (const question of DISCOVERY_QUESTIONS) {
   const selected = question.options.find(option => option.id === answers[question.id]);
-  if (!selected) continue;
+  if (!selected?.foundation) continue;
   answered++;
   const entry = entries.find(candidate => candidate.id === selected.foundation)!;
   entry.score++;

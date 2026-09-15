@@ -21,15 +21,16 @@ export const MaterialSnapshotSchema=z.object({version:z.string(),name:z.string()
 export type SourceSnapshot=z.infer<typeof SourceSnapshotSchema>;
 export type MaterialSnapshot=z.infer<typeof MaterialSnapshotSchema>;
 export const emptyProfile=():Profile=>({schemaVersion:1,baseId:null,revision:1,principles:[],history:[]});
-export const ChatInputSchema=z.object({baseId:BaseIdSchema,thinkingToolId:ThinkingToolIdSchema.nullable().optional(),profileRevision:z.number().int().positive(),principles:z.array(PrincipleSchema).max(20),messages:z.array(z.object({role:z.enum(["user","assistant"]),content:z.string().min(1).max(6000)}).strict()).min(1).max(12)}).strict().refine(v=>v.messages.at(-1)?.role==="user","最后一条必须是用户问题");
+export const ChatInputSchema=z.object({baseId:BaseIdSchema.nullable(),thinkingToolId:ThinkingToolIdSchema.nullable().optional(),profileRevision:z.number().int().positive(),principles:z.array(PrincipleSchema).max(20),messages:z.array(z.object({role:z.enum(["user","assistant"]),content:z.string().min(1).max(12000)}).strict()).min(1).max(12)}).strict().refine(v=>v.messages.at(-1)?.role==="user","最后一条必须是用户问题");
 export const AnswerSchema=z.object({understanding:z.string().min(1).max(2200),perspective:z.string().max(3000),nextStep:z.string().max(1800),question:z.string().max(600),sourceIds:z.array(z.string().max(100)).max(6),principleProposal:ProposalSchema.nullable(),needsImmediateSupport:z.boolean()}).strict();
 export type Answer=z.infer<typeof AnswerSchema>;
 export type ChatInput=z.infer<typeof ChatInputSchema>;
 export type Message={id:string;role:"user"|"assistant";content:string;answer?:Answer;mode?:"ai"|"example"|"support";baseId:string;revision:number;principlesSnapshot:Principle[];materials?:MaterialSnapshot};
-export function validateAnswer(raw:unknown,allowedIds:string[],baseSourceIds:string[]=allowedIds):Answer{
+export function validateAnswer(raw:unknown,allowedIds:string[],baseSourceIds:string[]=allowedIds,exploration=false):Answer{
  const a=AnswerSchema.parse(raw);
  if(a.needsImmediateSupport)return {...a,principleProposal:null,sourceIds:[],perspective:"",nextStep:a.nextStep};
  if(a.sourceIds.some(id=>!allowedIds.includes(id)))throw new Error("INVALID_SOURCE");
+ if(exploration)return {...a,principleProposal:null};
  if(!a.needsImmediateSupport&&!a.sourceIds.length)throw new Error("MISSING_SOURCE");
  if(!a.sourceIds.some(id=>baseSourceIds.includes(id)))throw new Error("MISSING_FOUNDATION_SOURCE");
  return a;
