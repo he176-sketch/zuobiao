@@ -1,0 +1,42 @@
+{
+  "executedAt": "2026-09-15T07:19:40.617Z",
+  "kind": "real local app route and existing provider; constructed input",
+  "attempts": 1,
+  "request": {
+    "baseId": null,
+    "profileRevision": 1,
+    "principles": [],
+    "messages": [
+      {
+        "role": "user",
+        "content": "这是构造测试。我周末只有半天，既想休息又想完成个人项目。请直接给出如何取舍的判断，不用问卷，也不要替我形成原则。"
+      }
+    ]
+  },
+  "status": "completed",
+  "usage": null,
+  "cost": null,
+  "httpStatus": 200,
+  "result": {
+    "answer": {
+      "understanding": "【探索回应】你不是在“休息”和“上进”之间选一个身份，而是在有限的半天里分配恢复能力与项目进展。直接判断：若个人项目没有本周末必须兑现的外部承诺，优先保证休息，同时给项目一个小而封闭的推进时段；不要平均切碎，也不要把半天全部押给项目。这样会牺牲一些进度，但能降低下周透支和“既没休好也没做完”的概率。",
+      "perspective": "目前没有选定哲学基座，也没有你确认的个人原则，因此这里只作现实取舍，不把建议包装成某种哲学结论。判断前提是：项目可拆分、延期一周没有明显损失，而你确实需要恢复。若你已明显缺觉、身体不适或连续疲惫，应把整段休息放在首位；若项目存在明确截止日期、合作承诺或经济后果，则应提高项目优先级。未知之处是你当前疲劳程度和项目时限，所以建议采用可随事实调整的默认方案。",
+      "nextStep": "把半天划成三个连续区段：先用约两小时真正休息，不处理项目；再用九十分钟只完成一个可验收成果，例如写完一个页面、修复一个问题或做出可运行版本；最后留三十分钟收尾并决定下次起点。九十分钟结束就停，不因未完成而侵占剩余休息。若开始前发现自己困倦到难以专注，就取消项目时段；若四十八小时内有硬截止，则改为先做两小时关键任务，再休息。",
+      "question": "",
+      "sourceIds": [],
+      "principleProposal": null,
+      "needsImmediateSupport": false
+    },
+    "mode": "ai",
+    "baseId": null,
+    "profileRevision": 1,
+    "materials": {
+      "version": "2026-09-15.exploration",
+      "name": "探索回应 · 未选定基座",
+      "scope": "帮助澄清处境与现实取舍，不代表用户已经确认哲学立场。",
+      "principles": [],
+      "sources": []
+    }
+  },
+  "elapsedMs": 32426
+}

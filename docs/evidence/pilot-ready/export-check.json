@@ -1,0 +1,14 @@
+{
+  "constructed": true,
+  "parsed": true,
+  "messages": 4,
+  "baseIds": [
+    "none",
+    "none",
+    "stoic",
+    "stoic"
+  ],
+  "knownSecretHits": 0,
+  "internalErrorMarkerHits": 0,
+  "rawExportCommitted": false
+}

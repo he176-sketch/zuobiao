@@ -14,7 +14,7 @@
 - `POST /api/chat` 要求平台验证过的登录身份，并检查来源、请求格式、大小、角色、明确选定或为 null 的基座、可选 thinkingToolId 和原则数量。请求以流式读取累计限制为 1,000,000 字节，覆盖严格 schema 允许的中文原则与多轮历史。
 - 使用服务端 `PHILOSOPHY_API_BASE_URL + /responses`，规则作为 developer 消息传入（实测该代理的独立 instructions 与 JSON 模式组合会返回 502），`store: false`，多轮上下文由本次请求显式携带。
 - 本版实际验证的路径为 `https://www.xiaoxiaoapi.com/responses`。不要擅自追加 `/v1` 或更换用户指定的模型。
-- 客户端停止等待会中止 fetch，服务器把请求取消与 90 秒超时信号传给提供商；Workers 开启 `enable_request_signal`。提供商收到取消后是否立即停止计算，取决于其实现。
+- 客户端停止等待会中止 fetch；客户端最多等待 100 秒（包含响应正文读取），服务器把请求取消与 90 秒超时信号传给提供商；Workers 开启 `enable_request_signal`。提供商收到取消后是否立即停止计算，取决于其实现。
 - 超时、空输出、不完整 JSON、无来源或未知来源均显示失败并保留输入，不返回伪装成 AI 的预写回答。
 - 提供商是否保留请求仍由其自身政策决定；`store:false` 不等于所有服务端日志不存在。
 
@@ -54,4 +54,8 @@
 
 单条消息上限 12000 字，与已有本机读取上限对齐，避免原问题加深入探索被静默截断；累计请求 1000000 字节、最多 12 条消息及其他输入检查不变。提供商连接中断独立提示并保留问题，不自动付费重试。
 
-本轮复现实测：`node --experimental-strip-types scripts/verify-first-experience.mjs`，可用参数指定逗号分隔的用例 ID。该脚本只接受 localhost/127.0.0.1，并通过既有开发登录使用本地配置的真实服务；会产生真实 API 用量。详细结果和失败见 [CONTROL.md](CONTROL.md)。本轮不部署。
+第 01 轮复现实测：`node --experimental-strip-types scripts/verify-first-experience.mjs`，可用参数指定逗号分隔的用例 ID。该脚本只接受 localhost/127.0.0.1，并通过既有开发登录使用本地配置的真实服务；会产生真实 API 用量。第 01 轮结果和失败保留在 `docs/evidence/first-experience/`。此脚本默认会发起 6 次真实请求，不要为本轮验收再次运行整套。第 02 轮状态以 [CONTROL.md](CONTROL.md) 为准。
+
+## 第 02 轮失败恢复
+
+`lib/chat-request.ts` 只向界面返回固定产品提示，不透传网络、代理 HTML 或 schema 内部错误。失败不插入消息，显式重试尊重用户先前跳过探索的意图；不自动重试。新一次请求使用当时确认的基座和原则，旧回答快照不变。客户端 100 秒是前台运行时的截止时间；浏览器挂起/休眠时定时器可能延迟，重新调度后才会显示超时。未发送或失败问题仍只在页面内存，手动刷新会丢失草稿；不要把“本机保留对话”理解成保存输入草稿。

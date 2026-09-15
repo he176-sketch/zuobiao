@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-15",
+  "site": {
+    "projectId": "appgprj_6aa4e53b21e08191a1782e3621dd7995",
+    "url": "https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site",
+    "version": 3,
+    "accessMode": "custom",
+    "ownerOnly": true,
+    "allowedUsers": 1,
+    "externalVisitors": 0,
+    "editors": 0,
+    "groups": 0,
+    "accessRevision": 1,
+    "previewUrl": null
+  },
+  "unauthorized": {
+    "method": "cookie-free Node fetch, redirect manual; no bypass or admin headers",
+    "home": 401,
+    "apiGet": 401
+  },
+  "source": {
+    "provider": "cloudflare_artifact",
+    "branch": "main",
+    "publishOnPushAccepted": false,
+    "publishOnPushExpiresAt": null
+  },
+  "github": {
+    "repository": "he176-sketch/zuobiao",
+    "visibility": "private",
+    "main": "cf0d19ef544bef9af5a38e9aa408275143006978",
+    "workflows": 0,
+    "repositoryWebhooks": 0,
+    "externalAppDeploymentTriggers": "not exhaustively verified; no push performed"
+  },
+  "deployment": {
+    "attempted": false,
+    "reason": "Existing Sites save contract requires configured remote source branch HEAD (main); no isolated feature-branch preview configuration exposed. Preserve main under this round's instruction. No public or private site updated.",
+    "rollbackVersionId": "appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_99f3913b49cc819186fb6dd2b2b07091",
+    "rollbackCommit": "cf0d19ef544bef9af5a38e9aa408275143006978",
+    "historicalVersion3Status": "succeeded",
+    "historicalDeploymentId": "appgdep_6aa5064171d48191938094d35c53cdab",
+    "historicalDeploymentUpdatedAt": "2026-09-12T07:59:50.073566+00:00"
+  },
+  "runtime": {
+    "local": "http://localhost:5175",
+    "node": "22.23.2",
+    "browser": "Ego Chromium",
+    "desktop": "1440x1000",
+    "mobileEmulation": "390x844",
+    "physicalPhone": "unverified",
+    "safari": "unverified"
+  }
+}

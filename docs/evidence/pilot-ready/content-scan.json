@@ -1,0 +1,11 @@
+{
+  "forbiddenCodePoints": [
+    "U+9752",
+    "U+56CA"
+  ],
+  "forbiddenNameHits": [],
+  "secretHits": [],
+  "knownSecretValuesChecked": 1,
+  "filesChecked": 266,
+  "scope": "tracked and nonignored candidate files plus dist; no raw exports; no secret values printed"
+}
