@@ -12,7 +12,11 @@ Cloudflare 账户页面实际显示 Requests today `0 / 100,000`；CLI OAuth 可
 
 保留原个人站 Pages 生产部署 `f3f59fc4-9470-48cc-abd5-27b80defcd75`，来源 `8ca13eb2696bd6b5a545837f4e7f332750be5adb`，2026-09-14 17:20:23 UTC 成功；未删除旧部署。Pages 当前绑定 `yuechengai.pages.dev` 与 `aiyuecheng.cn`，替换生产内容也会更新已有绑定域名。
 
-预览部署 `cadcc240-29ac-4897-b9f3-6b7ab5a4cf72` 于 2026-09-16 13:39:47 UTC 成功。实际浏览器页面显示坐标；首页引用的六个资源和两份许可文件均 200、SHA-256 与原构建一致。未持码和无效码均 401，页面填写当前码后状态 authenticated=true / remaining=null，持码空 schema 为 400，无模型调用；`/.env`、`/docs/CONTROL.md`、`/api/admin` 全部 404。六组网关边界测试和定向 lint 通过，独立 Miniflare 模拟验证运行时、Cookie 与取消信号通过。正式替换回执与访客结果补在本节后方。
+预览部署 `cadcc240-29ac-4897-b9f3-6b7ab5a4cf72` 于 2026-09-16 13:39:47 UTC 成功。实际浏览器页面显示坐标；首页引用的六个资源和两份许可文件均 200、SHA-256 与原构建一致。未持码和无效码均 401，页面填写当前码后状态 authenticated=true / remaining=null，持码空 schema 为 400，无模型调用；`/.env`、`/docs/CONTROL.md`、`/api/admin` 全部 404。六组网关边界测试和定向 lint 通过，独立 Miniflare 模拟验证运行时、Cookie 与取消信号通过。正式部署 `80131755-347b-4b9a-9963-c237657767ba` 于 2026-09-16 13:44:11 UTC 成功，生产来源 `acd94d39f4910eb130aa491f6de96ce063cee5ce`，元数据 commit_dirty=false。Pages canonical deployment 已切换到该版本，正式入口 `https://yuechengai.pages.dev/` 已实际显示坐标。
+
+正式网址的普通浏览路径再次通过：首页显示坐标、页面和 API 的资源请求全部同源 Pages，未使用负责人身份或 bypass；无邀请码 POST 401，UI 填码后 authenticated=true / remaining=null，持码空 schema 400，退出后 authenticated=false。十二个基座详情均逐一打开，来源链接每项 4–8 个。选择斯多葛后刷新保留；1440×1000 桌面与 390×844 移动模拟均已视觉检查、无水平溢出。两份许可全文与页面资源通过预览的字节一致性检查，正式生产为同一网关源代码。
+
+Pages 域名首次浏览 localStorage 为空，测试只新增斯多葛 profile 与匿名协调标识，未创建真实对话；结束时退出试用并移除本次构造的 profile，不碰其他域名或原私人对话。新入口的真实首答、续聊、对话导出与来源快照没有重新做模型实测；应用本体及数据功能沿用 version 7 的既有验收，不冒称新增覆盖。签发和校验请求没有扣模型用量，切换期间 D1 读回仍为 total=3 / used1=3。GitHub main 仍为 `cf0d19ef544bef9af5a38e9aa408275143006978`，原 worktree 问卷仍为 55 行新增、25 行删除。
 
 此前第 04 轮真实模型 3/3 已用完；此次入口替换不续用旧授权，新增真实调用 0。当前负责人已确认旧 Pages 地址能直连；替换后的页面和 AI 链路仍需在其无 VPN 网络上验收，不能用本机代理访问或预览页面成功代替。其他域名的本机记录与 Cookie 不会自动搬到 Pages，未复制或清除负责人原有记录。
 

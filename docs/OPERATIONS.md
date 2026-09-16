@@ -2,7 +2,7 @@
 
 ## 原 Pages 地址的直接替换
 
-分享入口使用已有 **https://yuechengai.pages.dev/**。`deploy/pages/_worker.js` 是固定上游的服务端网关；浏览器从 Pages 加载首页、全部资源及邀请码/对话 API，后台仍使用既有 Sites version 7、同一模型和 D1。它不含模型密钥或邀请码，不用负责人身份登录上游。不要把这描述成应用已完全迁出 Sites。
+分享入口使用已有 **https://yuechengai.pages.dev/**。当前生产部署 `80131755-347b-4b9a-9963-c237657767ba`，来源 `acd94d39f4910eb130aa491f6de96ce063cee5ce`，2026-09-16 13:44:11 UTC 成功。`deploy/pages/_worker.js` 是固定上游的服务端网关；浏览器从 Pages 加载首页、全部资源及邀请码/对话 API，后台仍使用既有 Sites version 7、同一模型和 D1。它不含模型密钥或邀请码，不用负责人身份登录上游。不要把这描述成应用已完全迁出 Sites。
 
 部署：在本项目干净工作分支提交并推送 GitHub 后，运行 `node scripts/deploy-pages.mjs main`。这里的 `main` 是 **Pages 项目的生产环境标记**，不会切换、提交或推送 GitHub main。脚本从当前受控源文件准备仅 `_worker.js` / `_routes.json` 两文件，在独立临时目录运行现有 Wrangler，上传到原 `yuechengai` 项目，并清除临时目录；不干扰 Vinext 的 Sites 构建配置。`codex-pages-check` 可作同一项目的预览环境。网络代理如有需要仅从负责人现有系统配置传给命令，不写入产品配置。
 
