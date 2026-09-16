@@ -1,7 +1,7 @@
 import { sql } from "drizzle-orm";
 import { check, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-// One permanent first-pilot budget. Never reset on deployment or by date.
+// Permanent usage accounting and rate gates. Preserve the original row and history.
 export const trialBudget = sqliteTable("trial_budget", {
   id: text("id").primaryKey(),
   total: integer("total").notNull().default(0),
@@ -16,4 +16,4 @@ export const trialBudget = sqliteTable("trial_budget", {
   last3: integer("last3").notNull().default(0),
   last4: integer("last4").notNull().default(0),
   last5: integer("last5").notNull().default(0),
-}, t => [check("trial_fixed_budget", sql`${t.id} = 'first-50' AND ${t.total} BETWEEN 0 AND 50 AND ${t.used1} BETWEEN 0 AND 10 AND ${t.used2} BETWEEN 0 AND 10 AND ${t.used3} BETWEEN 0 AND 10 AND ${t.used4} BETWEEN 0 AND 10 AND ${t.used5} BETWEEN 0 AND 10 AND ${t.total} = ${t.used1}+${t.used2}+${t.used3}+${t.used4}+${t.used5}`)]);
+}, t => [check("trial_usage_accounting", sql`${t.id} = 'first-50' AND ${t.total} >= 0 AND ${t.used1} >= 0 AND ${t.used2} >= 0 AND ${t.used3} >= 0 AND ${t.used4} >= 0 AND ${t.used5} >= 0 AND ${t.total} = ${t.used1}+${t.used2}+${t.used3}+${t.used4}+${t.used5}`)]);

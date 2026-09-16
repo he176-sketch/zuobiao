@@ -10,7 +10,7 @@ function config(){const e=env as unknown as Record<string,string|undefined>;retu
 export async function GET(request:Request){
  const c=config();const e=env as unknown as TrialEnv;
  try{let slot:number|undefined;try{slot=await inviteSlot(inviteFromRequest(request),e);}catch(error){if(!(error instanceof TrialError)||error.status!==401)throw error;}
- const state=await trialStatus(e,slot);return response({ready:!!(c.key&&c.model)&&state.ready,authenticated:!!slot,remaining:state.remaining,storage:"device-only",sourcesVersion:content.version});
+ const state=await trialStatus(e);return response({ready:!!(c.key&&c.model)&&state.ready,authenticated:!!slot,remaining:state.remaining,storage:"device-only",sourcesVersion:content.version});
  }catch{return response({ready:false,authenticated:false,remaining:null,storage:"device-only",sourcesVersion:content.version});}
 }
 export async function POST(request:Request){
