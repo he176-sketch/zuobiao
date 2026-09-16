@@ -6,13 +6,19 @@
 
 追加 `0001` 迁移移除数据库上界，保留所有累计用量与时间戳、非负及总数求和约束；历史行 ID `first-50` 不再表示限额。发布前生产累计 3 次，均来自上一轮实测。受控 D1 测试 47 项通过，覆盖旧库迁移后第 51 次、单码第 11 次、持续 60 次、并发、重启、失败计数与缺失行拒绝；类型、lint 与构建通过。此次新增真实模型请求 0。
 
-自定义入口 `zuobiao.aiyuecheng.cn` 仍待 DNS 配置。负责人网页登录成功，但当前是另一账户，已请切换回原站所属账户；尚未修改 DNS 或旧个人站。国内无代理可达性未验证，新旧域名浏览器数据与 Cookie 不会自动迁移。下文 version 6 和 50/10 次均为历史记录，新状态以本节后续实际发布回执为准。
+新入口 **<https://zuobiao.aiyuecheng.cn> 已实际接通**。2026-09-16 12:55:13 UTC，Sites 域名、Cloudflare 路由与 SSL 均为 active。负责人已切换到原站账户；使用已有域名和免费 DNS，新增一条 DNS-only CNAME 与两条 TXT 验证记录，未购买域名、付费套餐或迁移应用。新旧域名浏览器数据与 Cookie 不会自动迁移。国内无代理访问已请负责人测试，尚待反馈；当前本机网络的成功不能替代目标网络验收。下文 version 6 和 50/10 次均为历史记录。
 
 实际应用提交 `a56ac8ae025025f7a22b51aff800ac2f7eb48ff7`，Sites version 7：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`。部署 `appgdep_6aaa8c4eb20481918bff5bc9a5e039f7` 于 2026-09-16 12:33:09 UTC succeeded，环境 revision 6、public policy revision 2。实际入口仍为 <https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site>。GitHub 仅推送工作分支，main 未改，原 worktree 问卷仍为 55 行新增、25 行删除。
 
 迁移前先以环境 revision 5 关闭 version 6（部署 `appgdep_6aaa8bdca6708191bf6a9beed32a02bc` 成功），匿名状态 ready=false、数据库所有字段保持原值；再发布新迁移和新版本。发布后数据库 13 个字段逐一与迁移前一致，total=3、used1=3，其他用量为 0。新码兑换 200，当前 cookie 状态 authenticated=true / remaining=null；无邀请码 401、旧五码兑换全为 401、旧 cookie 调用 401。新 cookie 配空 schema 返回 400，验证鉴权通过且不调用模型。真实请求数本次为 0，第 04 轮合计仍为 3。
 
-本地实际构建通过 HTTP 验证短码、跨源 403、无身份 401、超过 50 次、模拟供应商失败仍计数、连续发送 429、关闭 503。上线后的首页和资源与构建核对，私人文档、环境及管理路径仍拒绝公开。生产没有人为写入测试用量。此小改尚未重新执行桌面/移动浏览器交互及真实回答；沿用 version 6 的基础界面与对话验收，不能作为新域名验收。Cloudflare 登录窗口已交回负责人，等待切换到原站账户，未绕过登录。
+本地实际构建通过 HTTP 验证短码、跨源 403、无身份 401、超过 50 次、模拟供应商失败仍计数、连续发送 429、关闭 503。上线后的首页和资源与构建核对，私人文档、环境及管理路径仍拒绝公开。生产没有人为写入测试用量。新域名真实模型首答与续聊未另测，沿用同一应用的既有模型验收，不冒称完成新域名真实回答验证。
+
+新域名匿名 HTTP：首页 200、六个页面资源与本地构建哈希一致；`/api/chat` 未登录 authenticated=false，无邀请码 POST 401，无效码 401，有效码兑换 200，持码空 schema 请求 400（验证来源与身份通过，不调用模型）。`/.env`、`/docs/CONTROL.md`、`/api/admin` 均 404。Ego 新页面首次本域 localStorage 为空、无试用会话，不使用负责人 ChatGPT 登录、身份头或 bypass；此页沿用浏览器配置，并非独立无痕环境，不能把它记成重新完成了无痕全流程。
+
+新域名已实际打开十二个基座详情与来源，选择斯多葛后刷新仍保留所选基座及邀请码登录。桌面 1440×1000、移动模拟 390×844 均无水平溢出，已视觉检查。用明确标注的预写示例验证本机保存与刷新，两条消息保留，依据仍为斯多葛、原则修订 2、材料版本 `2026-09-16.03.1`；它不是模型实测。只使用新域名构造记录，不复制或清除旧域名私人对话。此阶段结束前 D1 total 仍为 3。
+
+随后切换到加缪，旧两条示例消息及斯多葛来源快照保持；实际导出 JSON 解析通过，当前 profile 为加缪 / 修订 3，conversation 两条均为 stoic / example / 修订 2，不含邀请码。退出试用后 authenticated=false、两条本机消息仍在，证实退出不会删除记录。测试结束仅清除本次新域名构造数据与临时导出、截图。没有新代码提交或重建部署，继续使用上述 version 7。
 
 更新：2026-09-16。本轮从干净 `cbe287ef7ca9a7e7f809cd7c5b007df2151e9ee1` 建立 `codex/public-trial`，保留十二基座、原域名和现有小小 API / gpt-5.6-sol / xhigh。GitHub 仓库已实查为 private，main 仍为 `cf0d19ef544bef9af5a38e9aa408275143006978`；原 worktree 的问卷改稿仍为 55 行新增、25 行删除，未触碰。
 
@@ -38,13 +44,13 @@ D1 `DB.trial_budget` 的永久 `first-50` 记录以一条条件 UPDATE 同时预
 
 
 
-## 自定义入口配置记录（尚未完成）
+## 自定义入口配置记录（已生效）
 
-负责人反馈原 chatgpt.site 入口需要代理，并表示原个人站已不再需要。已实查负责人 Cloudflare 账户中的 `yuechengai` Pages 项目绑定 `yuechengai.pages.dev` 与 `aiyuecheng.cn`；前者是平台分配地址，后者是已有独立域名。本次沿用现有 Sites 应用，准备子域名 `zuobiao.aiyuecheng.cn`，不另购域名或迁移应用。
+负责人反馈原 chatgpt.site 入口需要代理，并表示原个人站已不再需要。已实查负责人 Cloudflare 账户中的 `yuechengai` Pages 项目绑定 `yuechengai.pages.dev` 与 `aiyuecheng.cn`；前者是平台分配地址，后者是已有独立域名。本次沿用现有 Sites 应用，启用子域名 `zuobiao.aiyuecheng.cn`，不另购域名或迁移应用。原根域与 www 的 Pages 记录保留，不必为新入口删除旧个人站。
 
-2026-09-16 已在 Sites 创建域名绑定 `appgdom_6aaa858eda00819197c2d66d1725f7f6`，当前 pending，SSL initializing。待添加 DNS：`zuobiao` CNAME → `custom-domains.chatgpt.site.`，以及平台返回的两条 TXT 所有权验证记录。记录值通过 Sites 查询取得，不是邀请码或模型密钥。现有 Cloudflare CLI 仅有 Pages 权限；网页登录已完成，但进入另一账户，尚待切换到原站账户。因此尚未修改 DNS、切换入口或改变个人站内容。
+Sites 域名绑定 `appgdom_6aaa858eda00819197c2d66d1725f7f6`，2026-09-16 12:55:13 UTC 状态 active / provider active / SSL active。Cloudflare 已保存：`zuobiao` CNAME → `custom-domains.chatgpt.site.`（DNS only、TTL Auto）；`_openai-site-verification.zuobiao` 与 `_cf-custom-hostname.zuobiao` 两条 TXT。验证值取自平台，不是邀请码或模型密钥。账户域名方案显示 free，DNS 记录数由 2 增为 5（额度 200），未启用付费方案。配置由负责人已登录会话完成，不索取密码、不绕过验证。
 
-此候选地址尚未生效，国内无代理可达性尚未验证。更换域名不会自动迁移旧 Cookie 或浏览器记录。负责人已明确取消全部累计次数限制，执行结果见顶部 version 7 回执。
+移除新入口时只移除这个 Sites 域名绑定及本次三条 DNS 记录，不删除原根域、www 或旧应用。恢复原私人权限仍须在 Sites 设置 owner-only，并分别检查新旧入口匿名页面与 API 均被拒绝；只回退代码或移除一个域名不等于恢复私人权限。取消全部累计次数限制的结果见顶部 version 7 回执。
 
 ## 实际公开发布与访客验收
 
