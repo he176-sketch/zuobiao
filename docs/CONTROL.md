@@ -1,12 +1,28 @@
 # 坐标｜04 免费网址与公开试用部署
 
+## 后续更新：直接替换原 Pages 地址
+
+2026-09-16，负责人明确要求把不再使用的个人站 `https://yuechengai.pages.dev/` 直接替换为坐标，不再调换入口域名。从干净文档提交 `76b19713d25db7cc29497df82d5eb130c04c14d5` 建立 `codex/pages-replacement`。复用负责人 Cloudflare 账户 `506d95d56fdbdcde82de00c0f0599f31` 下现有 Pages 项目 `yuechengai`，没有创建新站、购买套餐或改变 GitHub main/private。
+
+Pages 部署固定上游的服务端网关，覆盖首页、完整静态资源、许可资料、`/api/chat` 和 `/api/trial`。访客页面与 API 请求都留在 Pages 域名；应用、模型密钥和 D1 继续在现有 Sites version 7。**这是 Pages 入口加 Sites 后端，不是完全迁出 Sites。** 累计上限取消和当前共享码保持；没有复制数据库、清零计数或新增原始对话日志。
+
+网关先检查访客实际 Origin，再转换成固定上游 Origin；只传当前试用 Cookie，不传负责人登录、其他个人站 Cookie、Authorization 或身份头。只开放精确产品路由和构建静态路径，禁止文档、管理、登录回调及任意目标代理；禁止跟随上游重定向，所有响应 no-store，不自动重试模型请求。请求和取消信号边界保留。源码及上传目录的实际密钥、邀请码和转义禁用名称检查为零命中。
+
+Cloudflare 账户页面实际显示 Requests today `0 / 100,000`；CLI OAuth 可读账户并写 Pages。没有启用付费 Workers。全站网关请求计入每日 Workers Free 额度，模型接口仍由原供应商计费，Sites 仍需现有账户与额度。此前新子域名的橙云试验已恢复为 DNS-only，目标与两条验证 TXT 未变。
+
+保留原个人站 Pages 生产部署 `f3f59fc4-9470-48cc-abd5-27b80defcd75`，来源 `8ca13eb2696bd6b5a545837f4e7f332750be5adb`，2026-09-14 17:20:23 UTC 成功；未删除旧部署。Pages 当前绑定 `yuechengai.pages.dev` 与 `aiyuecheng.cn`，替换生产内容也会更新已有绑定域名。
+
+预览部署 `cadcc240-29ac-4897-b9f3-6b7ab5a4cf72` 于 2026-09-16 13:39:47 UTC 成功。实际浏览器页面显示坐标；首页引用的六个资源和两份许可文件均 200、SHA-256 与原构建一致。未持码和无效码均 401，页面填写当前码后状态 authenticated=true / remaining=null，持码空 schema 为 400，无模型调用；`/.env`、`/docs/CONTROL.md`、`/api/admin` 全部 404。六组网关边界测试和定向 lint 通过，独立 Miniflare 模拟验证运行时、Cookie 与取消信号通过。正式替换回执与访客结果补在本节后方。
+
+此前第 04 轮真实模型 3/3 已用完；此次入口替换不续用旧授权，新增真实调用 0。当前负责人已确认旧 Pages 地址能直连；替换后的页面和 AI 链路仍需在其无 VPN 网络上验收，不能用本机代理访问或预览页面成功代替。其他域名的本机记录与 Cookie 不会自动搬到 Pages，未复制或清除负责人原有记录。
+
 ## 后续更新：取消累计上限与轮换邀请码（已发布 version 7）
 
 2026-09-16，负责人明确要求同时取消每码 10 次和全站 50 次累计上限，并指定新的共享邀请码。旧随机码全部轮换作废，新码只存服务端哈希和仓库外领取文件，不写入本文件。保留邀请码核验、共享码 10 秒和全站 2 秒频率限制、输入输出边界与关闭开关；模型服务和费用承担方式不变。
 
 追加 `0001` 迁移移除数据库上界，保留所有累计用量与时间戳、非负及总数求和约束；历史行 ID `first-50` 不再表示限额。发布前生产累计 3 次，均来自上一轮实测。受控 D1 测试 47 项通过，覆盖旧库迁移后第 51 次、单码第 11 次、持续 60 次、并发、重启、失败计数与缺失行拒绝；类型、lint 与构建通过。此次新增真实模型请求 0。
 
-新入口 **<https://zuobiao.aiyuecheng.cn> 已实际接通**。2026-09-16 12:55:13 UTC，Sites 域名、Cloudflare 路由与 SSL 均为 active。负责人已切换到原站账户；使用已有域名和免费 DNS，新增一条 DNS-only CNAME 与两条 TXT 验证记录，未购买域名、付费套餐或迁移应用。新旧域名浏览器数据与 Cookie 不会自动迁移。国内无代理访问已请负责人测试，尚待反馈；当前本机网络的成功不能替代目标网络验收。下文 version 6 和 50/10 次均为历史记录。
+新入口 **<https://zuobiao.aiyuecheng.cn> 已实际接通**。2026-09-16 12:55:13 UTC，Sites 域名、Cloudflare 路由与 SSL 均为 active。负责人已切换到原站账户；使用已有域名和免费 DNS，新增一条 DNS-only CNAME 与两条 TXT 验证记录，未购买域名、付费套餐或迁移应用。新旧域名浏览器数据与 Cookie 不会自动迁移。负责人随后实测反馈：新网址无 VPN 显示错误，原 yuechengai.pages.dev 能打开。因此新域名接通不等于直连验收通过，后续改为直接替换原 Pages 项目。下文 version 6 和 50/10 次均为历史记录。
 
 实际应用提交 `a56ac8ae025025f7a22b51aff800ac2f7eb48ff7`，Sites version 7：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`。部署 `appgdep_6aaa8c4eb20481918bff5bc9a5e039f7` 于 2026-09-16 12:33:09 UTC succeeded，环境 revision 6、public policy revision 2。实际入口仍为 <https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site>。GitHub 仅推送工作分支，main 未改，原 worktree 问卷仍为 55 行新增、25 行删除。
 

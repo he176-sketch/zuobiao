@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "yuechengai",
+  "pages_build_output_dir": "../../.wrangler/pages-dist",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["enable_request_signal"]
+}
