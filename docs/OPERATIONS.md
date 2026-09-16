@@ -1,28 +1,30 @@
 # 运行与配置
 
-## 原 Pages 地址的直接替换
+## 当前部署：原 Pages 地址独立运行
 
-分享入口使用已有 **https://yuechengai.pages.dev/**。当前生产部署 `80131755-347b-4b9a-9963-c237657767ba`，来源 `acd94d39f4910eb130aa491f6de96ce063cee5ce`，2026-09-16 13:44:11 UTC 成功。`deploy/pages/_worker.js` 是固定上游的服务端网关；浏览器从 Pages 加载首页、全部资源及邀请码/对话 API，后台仍使用既有 Sites version 7、同一模型和 D1。它不含模型密钥或邀请码，不用负责人身份登录上游。不要把这描述成应用已完全迁出 Sites。
+分享入口 **https://yuechengai.pages.dev/**，复用负责人现有 `yuechengai` Pages 项目。原应用的完整 Worker、静态资源、邀请码与对话接口直接在 Cloudflare 运行，不再转发 Sites。原个人站部署 `f3f59fc4-9470-48cc-abd5-27b80defcd75` 保留；Sites version 5 / 7 保留，旧 version 7 当前 AI 已关闭。2026-09-16 的 Pages 网关尝试因负责人无 VPN 验收失败已被替换，不能回退网关并声称直连修复。
 
-部署：在本项目干净工作分支提交并推送 GitHub 后，运行 `node scripts/deploy-pages.mjs main`。这里的 `main` 是 **Pages 项目的生产环境标记**，不会切换、提交或推送 GitHub main。脚本从当前受控源文件准备仅 `_worker.js` / `_routes.json` 两文件，在独立临时目录运行现有 Wrangler，上传到原 `yuechengai` 项目，并清除临时目录；不干扰 Vinext 的 Sites 构建配置。`codex-pages-check` 可作同一项目的预览环境。网络代理如有需要仅从负责人现有系统配置传给命令，不写入产品配置。
+生产设置在 `deploy/pages/wrangler.json`：现有模型、`TRIAL_ENABLED`、`SITE_PUBLIC_ENABLED` 和 D1 绑定。DB 为负责人账户里的 `zuobiao-trial` / `da7beafc-88aa-475a-821a-3e7ef43fa016`；13 字段原用量完整迁入，没有清零。密钥 `PHILOSOPHY_API_KEY` 和 `TRIAL_INVITE_HASHES` 只存 Pages production secrets，不写入配置或构建。预览 TRIAL_ENABLED=false 且不提供模型密钥。平台 production 与 preview 均保持 fail_open=false，超出 Function 额度时拒绝服务。
 
-关闭 AI、换码和撤销码仍按下节在 Sites 修改并重新部署 version 7，Pages 使用同一后端，旧 Cookie 也会重新鉴权。恢复私人状态：先关闭 AI 并在 Sites 设置 owner-only，核验原 Sites、自定义域名、Pages 三个入口的匿名请求均拒绝；网关禁止登录重定向，不以负责人身份访问。必要时在 Pages 生产变量中设 `PAGES_GATEWAY_ENABLED=false` 并重新部署，可单独关闭整个 Pages 入口；没有新增管理页面。代码回滚与访问权限恢复必须分别操作，未做生产私人回退演练。
+发布：应用改动先按锁文件构建 `npm run build`，检查产物；本次应用未改，沿用已验证的 version 7 构建。在干净工作分支提交并推送后，运行 `node scripts/deploy-pages.mjs main`。这里 main 只是 Pages 的生产标记，不会修改 GitHub main。脚本把服务器 JS 模块装入 `_worker.js/`，只复制许可、知识与前端资产；在隔离目录以 Wrangler `--no-bundle` 发布并清除临时目录。`codex-pages-native-check` 用于预览。不要把 `.env`、docs、验收材料或 owner 私密文件加入上传目录。
 
-需要撤销本次个人站替换时，可在 Cloudflare Pages 的生产部署中回滚到 `f3f59fc4-9470-48cc-abd5-27b80defcd75`（原来源 `8ca13eb2696bd6b5a545837f4e7f332750be5adb`）。这只恢复原个人站，不会恢复 Sites 的私人权限，也不会清除坐标用量。已绑定的 `aiyuecheng.cn` 会随原 Pages 项目一起更新。旧部署未删除，Sites version 5 与 version 7 仍保留。
+关闭 AI：把配置中生产 `TRIAL_ENABLED` 设为 false，提交并重新部署，核验 ready=false 和持码请求被拒绝。撤销邀请码：在 Pages production secret `TRIAL_INVITE_HASHES` 中将五槽全部设为 null，然后重新部署；旧 Cookie 同时失效。换码使用新码 SHA-256 的首槽、其余 null，私下更新领取文件。管理可由负责人直接请 Codex 执行，无需提供明文密钥，也无公开管理接口。Wrangler secret 命令须在项目外临时目录执行以避开 Vinext 配置重定向。
 
-免费 Pages 地址和本次网关不新增订阅。账户页面实际显示 Workers 每日 100,000 请求额度；本实现所有页面、资源与 API 请求均执行 Function，受该账户共享额度限制，不能当成无限免费访问。达到平台额度或上游不可用时停止服务，不自动升级。模型仍按原供应商计费。[Pages Functions 费用](https://developers.cloudflare.com/pages/functions/pricing/)、[高级模式](https://developers.cloudflare.com/pages/functions/advanced-mode/)。
+恢复私人状态须同时处理两个平台：先令 Pages 的 TRIAL_ENABLED=false、SITE_PUBLIC_ENABLED=false 并部署，检查 Pages、已有绑定域名与部署别名均拒绝；其他历史部署别名仍可能服务其保存的公开版本，完整撤销外部浏览需要在 Cloudflare 对预览/旧部署设 Access 或删除相应部署，并保留本地源与版本恢复标识。再把 Sites 设置 owner-only，核验 Sites 原址和 zuobiao 子域名匿名拒绝。必要时在 owner-only 下恢复 version 5；它不读取 TRIAL_ENABLED，要持续禁用 AI 必须另行移除模型配置。重新部署旧代码不会自动恢复访问权限。当前没有执行生产私人回退演练。
 
-用量仍只在原 D1 保存槽位计数和必要频率时间戳，不新增原始对话日志。Pages 及 Sites 平台自身仍可能有请求日志。Pages 与 Sites 两个域名的浏览器数据不会自动互通；旧网址可导出，当前产品没有导入入口。本轮实际结果、边界与未验证项见 CONTROL.md 顶部。
+当前用量真源是新 D1；重新启用旧 Sites AI 前必须先关闭 Pages AI 并迁回最新计数，不允许让两份计数各自运行或回退数据库。仅恢复原个人站可以回滚上述保留的 Pages 部署，但这不撤销 Sites 的公开权限。Pages 原址浏览器记录保持原域，旧 Sites 域名的数据不会自动迁来；未复制或清空私人对话。
+
+免费 Pages 地址与 Free 方案不新增订阅；账户显示每日 100,000 Function/Worker 共享请求额度，本实现所有页面、静态和 API 都会调用 Function。D1 亦受免费读写与存储额度约束，数据库不可用时 AI 拒绝生成。模型仍按原供应商计费，不作金额估算，不自动升级。[Pages 费用](https://developers.cloudflare.com/pages/functions/pricing/)、[高级模式](https://developers.cloudflare.com/pages/functions/advanced-mode/)。具体发布回执、验证和直连未验证项见 CONTROL.md 顶部。
 
 ## 当前规则：累计次数上限取消
 
 负责人在第 04 轮后续明确取消每码 10 次和全站 50 次累计上限，改用一个共享邀请码。旧随机码全部撤销；当前码私下保存在 `/Users/lihe/.config/zuobiao-trial/invitations.json`（0600），不写入仓库、前端或网址。访客在页面填写当前码即可使用，无需 ChatGPT 注册。模型调用继续产生供应商接口费用；保留全部访客共享的 10 秒发送间隔、全站 2 秒间隔、请求 1MB、每条 12000 字、最多 12 条上下文与单次生成 6500 tokens 边界。
 
-关闭 AI：在 Sites 把 `TRIAL_ENABLED` 设为 false，然后部署当前已保存版本。撤销共享码：把 secret `TRIAL_INVITE_HASHES` 的五槽数组全部设为 null 并重新部署，所有持码者及旧 Cookie 随即失效。换码：第一个槽位改为新码 SHA-256，其余为 null；同样重新部署。退出试用只删除当前浏览器邀请码 Cookie，不删除私人对话。
+关闭 AI：在 Pages 配置把 `TRIAL_ENABLED` 设为 false，然后重新部署当前应用。撤销共享码：把 secret `TRIAL_INVITE_HASHES` 的五槽数组全部设为 null 并重新部署，所有持码者及旧 Cookie 随即失效。换码：第一个槽位改为新码 SHA-256，其余为 null；同样重新部署。退出试用只删除当前浏览器邀请码 Cookie，不删除私人对话。
 
 数据库追加 `0001` 迁移，只移除累计上界并完整复制原计数和时间戳。`first-50` 为历史行 ID，不再代表配额；`total` 与各槽位用量持续累计，失败仍计入。不得清零或自动补建缺失行，数据库异常时暂停生成。迁移期间先关闭旧版 AI，避免复制表时仍有新请求写入。下文 50/10 次、固定五份随机码的交付快照仅描述 version 6 历史，已由本节覆盖。
 
-恢复私人访问仍须先设平台 owner-only 并核验匿名拒绝，再考虑回退代码。保留当前版本及 `TRIAL_ENABLED=false` 可保持 AI 关闭。version 6 会恢复应用累计上限、且不支持当前短码；version 5 不读取试用开关，回退时必须另行禁用模型配置才能持续关闭 AI。不要回退数据库或恢复旧邀请码。准确版本和新发布回执见 CONTROL.md。
+恢复私人访问以本文开头的双平台关闭步骤为准，再考虑回退代码。保留当前版本及 `TRIAL_ENABLED=false` 可保持 AI 关闭。version 6 会恢复应用累计上限、且不支持当前短码；version 5 不读取试用开关，回退时必须另行禁用模型配置才能持续关闭 AI。不要回退数据库或恢复旧邀请码。准确版本和新发布回执见 CONTROL.md。
 
 自定义入口 **<https://zuobiao.aiyuecheng.cn> 已生效**，复用已有域名与现有 Sites，不新购托管。DNS 与 HTTPS 证书均 active，当前网络下匿名页面与邀请码接口已通过；负责人已反馈该新网址无 VPN 显示错误，原 Pages 地址能打开；因此以本文新增的 Pages 替换方案继续交付。新旧域名的 Cookie 和本机记录互相隔离，需重新填写邀请码，记录不会自动迁移；旧站可以导出备份，现有应用没有导入入口。关闭 AI 或恢复 owner-only 后必须分别核验新旧网址。撤下新入口只需移除本次 Sites 自定义域名绑定及三条 DNS 记录，不触碰原根域和 www。
 
@@ -32,7 +34,7 @@
 
 把 `.env.example` 复制为 `.env`，以 0600 权限保存。设置 `PHILOSOPHY_API_KEY`；其余配置按用户指定为小小 API、`gpt-5.6-sol`、Responses、`xhigh`。不要把密钥放在浏览器、源代码、提交或日志中。
 
-`npm run dev` 启动本地预览；当前版本的真实对话必须通过邀请码和 D1 频率检查，开发测试身份不授予调用资格。`npm run typecheck` 检查类型；`npm test` 运行关键业务边界测试。构建、打包和发布遵循已注册 Site 的流程。
+`npm run dev` 启动本地预览；当前版本的真实对话必须通过邀请码和 D1 频率检查，开发测试身份不授予调用资格。`npm run typecheck` 检查类型；`npm test` 运行关键业务边界测试。当前打包和发布按本文开头 Pages 流程；保留旧 Sites 元数据用于恢复。
 
 ## AI 接口
 
@@ -46,7 +48,7 @@
 
 ## 部署
 
-`.openai/hosting.json` 仅保留 Site 标识和逻辑能力声明。生产密钥通过 Sites secret 配置。第 04 轮按 CONTROL.md 开放产品页面，AI 继续受邀请码和持久频率检查保护。
+`.openai/hosting.json` 保留旧 Site 恢复标识；当前实际发布源为 `deploy/pages/`，生产密钥通过 Pages secret 配置。产品页面公开，AI 继续受邀请码和持久频率检查保护。
 
 源仓库独立位于本项目，不能把父目录中的 Writing 或其他材料提交到 Site。发布前检查 `.env` 被忽略，构建产物中不含密钥，并使用同一提交完成推送、打包、保存版本和部署。
 

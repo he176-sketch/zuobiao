@@ -26,9 +26,9 @@ try {
   await cp(new URL("../.wrangler/pages-dist/", import.meta.url), join(stage, "site"), { recursive: true });
   const result = spawnSync(process.execPath, [
     fileURLToPath(new URL("../node_modules/wrangler/bin/wrangler.js", import.meta.url)),
-    "pages", "deploy", "--project-name", config.name, "--branch", branch,
+    "pages", "deploy", "--no-bundle", "--project-name", config.name, "--branch", branch,
     "--commit-hash", sha, `--commit-dirty=${dirty}`,
-    "--commit-message", "Replace retired personal site with Zuobiao",
+    "--commit-message", "Run complete Zuobiao application on Pages",
   ], { cwd: stage, stdio: "inherit", timeout: 240_000,
     env: { ...process.env, CLOUDFLARE_ACCOUNT_ID: "506d95d56fdbdcde82de00c0f0599f31" },
   });

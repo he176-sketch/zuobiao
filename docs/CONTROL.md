@@ -1,6 +1,20 @@
 # 坐标｜04 免费网址与公开试用部署
 
-## 后续更新：直接替换原 Pages 地址
+## 当前修复：完整应用迁入原 Pages 项目
+
+2026-09-16，负责人提供无 VPN 手机截图，页面明确显示无法访问 `chatgpt.site`。此前 Pages 网关仍依赖 Sites，上述直连需求未通过，不能将本机代理验收视为成功。本次从干净 `86d945effd324ae155cf3caf32aed9bb953c6dff` 建立 `codex/pages-independent`，保持 `https://yuechengai.pages.dev/` 原地址，改为原应用、静态资源、两个 API 全部在负责人 Cloudflare Pages 内运行。
+
+应用本体沿用 `a56ac8ae025025f7a22b51aff800ac2f7eb48ff7` 的现有构建，38 个服务端模块加 2 个本地适配模块；浏览器资源未改。`deploy/pages/handler.mjs` 只分流到同部署的应用和 ASSETS，没有远端网站代理，上传运行时代码中 `chatgpt.site` 零命中。精确公开路由、来源校验、邀请码 Cookie、私密路径拒绝和全站关闭开关均保留。不更换原小小 API / gpt-5.6-sol / xhigh；现有密钥及邀请码哈希作为 Pages production secrets 写入，预览 AI 关闭且没有模型密钥。
+
+在负责人账户新建免费 D1 `zuobiao-trial`（`da7beafc-88aa-475a-821a-3e7ef43fa016`），绑定 DB。迁移前先把旧 Sites 的 TRIAL_ENABLED 设为 false，再部署原 version 7：`appgdep_6aaaa2f07f108191aca5905d2b95264d`，2026-09-16 14:08:59 UTC succeeded，环境 revision 7；匿名 GET 实查 ready=false。旧 Sites 仍为 public policy revision 2，仅保留浏览与恢复用途，已停止模型生成，不等同于恢复私人状态。
+
+冻结后将旧 D1 唯一用量行的 13 字段原样导入新 D1，控制台 SELECT 读回一致：total=3、used1=3、其他槽位 0，原时间戳保留。备份在仓库外 0600 文件 `/Users/lihe/.config/zuobiao-trial/sites-usage-before-pages.json`。没有复制私人对话，数据库仍只保存用量和频率时间戳。当前共享邀请码、取消累计上限和失败计数规则不变。
+
+独立预览 `https://be18cf0a.yuechengai.pages.dev/` 已实际显示坐标。首页引用的四个启动 JS/CSS 资源及两份许可文件均 200、哈希与现有构建一致；API ready=false，私密文档、环境与管理路径 404。定向测试 12 项和 lint 通过；整包 Miniflare + 本地 D1 的 43 项断言通过，包括模拟提供商失败仍扣 1、立即再发 429 不多扣、撤销 401、AI 关闭/缺 DB 503、全站关闭覆盖页面/资源/API。真实模型调用 0，意外模型出站 0。项目 production/preview 的 fail_open 均已实际改为 false。
+
+本次只使用 Free 方案和原免费子域名，无购买、升级或自动收费试用。Pages Function 每日额度与 D1 免费额度仍适用，所有入口请求都经过 Function；模型仍按原供应商计费。第 04 轮真实实测 3/3 已用完，本次不自动新增调用；新部署的真实回答及续聊、负责人无 VPN 手机实测仍须分别标注，不能用模拟替代。GitHub main/private 和原工作树问卷改稿保持。
+
+## 历史尝试：Pages 网关（负责人无 VPN 验收失败）
 
 2026-09-16，负责人明确要求把不再使用的个人站 `https://yuechengai.pages.dev/` 直接替换为坐标，不再调换入口域名。从干净文档提交 `76b19713d25db7cc29497df82d5eb130c04c14d5` 建立 `codex/pages-replacement`。复用负责人 Cloudflare 账户 `506d95d56fdbdcde82de00c0f0599f31` 下现有 Pages 项目 `yuechengai`，没有创建新站、购买套餐或改变 GitHub main/private。
 
