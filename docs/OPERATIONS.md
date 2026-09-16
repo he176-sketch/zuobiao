@@ -46,7 +46,7 @@
 
 `thinkingToolId` 可省略或为 null，非空时必须属于六个已知 ID。服务器按 ID 读取受控材料，不接受客户端提交工具正文。返回的 `materials.thinkingTool` 和 `materials.philosophySupplement` 均为可选，旧消息无需迁移。请求工具 ID 使用当前枚举，历史快照 ID 使用字符串，以支持将来工具下架后仍能恢复。
 
-`validateAnswer` 校验当前来源集合，并单独要求至少一个当前基座来源；工具不能替代价值依据。紧急分流忽略工具。登录跳转会临时保存问题与经白名单恢复的工具 ID，不写入个人原则。
+`validateAnswer` 校验当前来源集合，并单独要求至少一个当前基座来源；工具不能替代价值依据。紧急分流忽略工具。旧版登录跳转曾临时保存问题与工具 ID；第 04 轮改用邀请码，不再跳转，仅保留旧缓存的兼容读取。
 
 ## 首次体验补充（本地分支）
 
@@ -54,7 +54,7 @@
 
 单条消息上限 12000 字，与已有本机读取上限对齐，避免原问题加深入探索被静默截断；累计请求 1000000 字节、最多 12 条消息及其他输入检查不变。提供商连接中断独立提示并保留问题，不自动付费重试。
 
-第 01 轮复现实测：`node --experimental-strip-types scripts/verify-first-experience.mjs`，可用参数指定逗号分隔的用例 ID。该脚本只接受 localhost/127.0.0.1，并通过既有开发登录使用本地配置的真实服务；会产生真实 API 用量。第 01 轮结果和失败保留在 `docs/evidence/first-experience/`。此脚本默认会发起 6 次真实请求，不要为本轮验收再次运行整套。第 02 轮状态以 [CONTROL.md](CONTROL.md) 为准。
+仅作第 01 轮历史记录：`scripts/verify-first-experience.mjs` 在旧版通过本机开发登录执行实测，默认六个真实请求用例，结果保留在 `docs/evidence/first-experience/`。该脚本未适配邀请码，开发身份不能取得当前版本的调用资格；不要用于第 04 轮或续用旧授权。当前状态以 [CONTROL.md](CONTROL.md) 为准。
 
 ## 第 02 轮失败恢复
 
@@ -62,24 +62,27 @@
 
 ## 第 03 轮构造验证
 
-真实调用台账为 `docs/evidence/foundations-expansion/live-requests.json`，包含已发生的失败、人工复验和线上请求，总上限 14，不清零。`scripts/verify-foundations.mjs` 仅接收显式用例，调用前记账，默认只允许本机服务；没有自动重试。发布后不要再次运行本轮用例，实际已用数量与未验证项以验收材料为准。预留条目不代表请求成功。网页核查、离线测试及构建不调用模型。
+仅作第 03 轮历史记录：`docs/evidence/foundations-expansion/live-requests.json` 冻结保留最初 14 次台账；补验后累计为 15/16 次，完整记录与未验证项见该目录的 `ACCEPTANCE.md`，剩余授权不续用。`scripts/verify-foundations.mjs` 仍依赖旧版开发登录，未适配邀请码，不用于第 04 轮。预留条目不代表请求成功；网页核查、离线测试及构建不调用模型。
 
 
 ## 第 04 轮：公开试用的领取、撤销和恢复
 
 网址继续为 <https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site>。只通过现有 Sites 账户部署，不购买域名或新托管，不改变 GitHub main/private。
 
-负责人领取文件在 `/Users/lihe/.config/zuobiao-trial/invitations.json`，权限 0600；它在仓库之外，含五个固定 slot 的原码。只把某一个 code 私下发给对应体验者，不发送整份文件。第一个 slot 供本轮最多三次实测，其已用次数从同一十次中扣减。访问者在页面“有邀请码？开启对话试用”填写 code，再选基座与提问；不需要 ChatGPT 账户。Cookie 为 HttpOnly/Secure/SameSite=Strict，有效一天，可“退出试用”，退出不清除对话数据。
+负责人领取文件在 `/Users/lihe/.config/zuobiao-trial/invitations.json`，权限 0600；它在仓库之外，含五个固定 slot 的原码。只把某一个 code 私下发给对应体验者，不发送整份文件。交付时 slot 1 已用 3、剩 7，slot 2–4 各剩 10；slot 5 已用于线上撤销验证并永久停用，不补发。全站已用 3/50，当前四码还可用 37 次；这些是交付快照，后续以服务端为准。访问者在页面“有邀请码？开启对话试用”填写 code，再选基座与提问；不需要 ChatGPT 账户。Cookie 为 HttpOnly/Secure/SameSite=Strict，有效一天，可“退出试用”，退出不清除对话数据。
 
 没有新增管理后台。负责人可在当前已连接的 Sites 工具中管理：
 
 - 关闭 AI：把 `TRIAL_ENABLED` 改为 `false`，然后重新部署当前保存版本；部署成功后匿名 `GET /api/chat` 应为 ready=false，带旧码的 POST 应拒绝。需要立刻阻止新外部访问时，先恢复平台 owner-only。
 - 撤销一个邀请码：保持 `TRIAL_INVITE_HASHES` 五槽数组顺序，只将目标槽位改为 null（保留其他哈希）；作为 secret 保存并重新部署同一版本。用原码验证 `/api/trial` 和 `/api/chat` 被拒绝。不要删除数组元素、重排或复用槽位，不补发第六份，不改预算。
 - 查看用量：先通过 Sites `read_database_overview` 获取实际 `DB/trial_budget`，再读唯一预算行；total 是累计已预扣次数，used1..5 为各码次数，last1..5/last_global 为必要的频率时间戳。不要读写私人对话；此表没有对话、邮箱或 IP。
-- 恢复原私人站：先关闭 AI、部署生效；`update_site_access` 设 custom，空的非负责人邮箱/工作区群组/租户群组名单，owner 自动保留。核实只剩原 owner，匿名首页和 API 被平台拒绝。然后 `deploy_private_site_version` 部署 version 5：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a`。查部署成功，再核实权限。不要公开回退旧代码，不回滚/删除配额数据库。
+- 恢复私人访问：先关闭 AI、部署生效；`update_site_access` 设 custom，空的非负责人邮箱/工作区群组/租户群组名单，owner 自动保留。核实只剩原 owner，匿名首页和 API 被平台拒绝。要持续关闭 AI，建议保留 version 6、`TRIAL_ENABLED=false` 和 owner-only。若确需旧版，再用 `deploy_private_site_version` 部署 version 5：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a`，查部署成功并复核权限。旧版只恢复平台私人访问，不保留邀请码或试用限额，也不读取 `TRIAL_ENABLED`；负责人登录后可能再次调用模型。不要公开回退旧代码，不回滚/删除配额数据库。
 
 改变环境变量需要部署后才生效；旧实例中已经发出的请求可能继续完成。普通访客没有这些管理能力；邀请码也不能调用管理工具。以上均可直接请当前负责人账户里的 Codex 执行，不需要提供明文供应商密钥。
 
 本轮 `DB` 通过 Sites 自动绑定，唯一迁移创建受 CHECK 约束的预算行。迁移一旦应用不可改写；追加新迁移也不能用于重置本轮预算。不能在运行时自动补建缺失行。最多 12 条消息、每条 12000 字、最多 20 条原则、请求 1MB、单次生成 6500 tokens 均继续生效。额度服务异常时拒绝生成，用户输入保留，不自动付费重试。
 
 服务器不新增原始对话收集；模型请求按原服务商约定处理，store:false 不承诺服务商不留日志。平台仍有自己的托管日志和配额。静态构建只包含产品资源，不含 docs/evidence、私密领取文件或密钥。
+
+
+交付版本为 Sites version 6 / `45bd7c2bcc4ee95f9855233dce002a752575a192`，version ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_c23fa58779848191a3444c56d4b0a3f8`。当前 public / policy revision 2，TRIAL_ENABLED=true / 环境 revision 4；最终部署 `appgdep_6aaa77fa360c81918cb9ccff6312a402` 已成功。关闭 503、撤销 401、重新部署计数保持 3 均已线上验证，完整回执与未验证项见 CONTROL.md。修改开关或撤销时重新部署这个已保存版本，不需要重建或新建版本。不得为后续试用增加预算、重置计数、复用已撤销槽位或生成第六份码。
