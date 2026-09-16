@@ -1,12 +1,18 @@
 # 坐标｜04 免费网址与公开试用部署
 
-## 后续更新：取消累计上限与轮换邀请码（待发布）
+## 后续更新：取消累计上限与轮换邀请码（已发布 version 7）
 
 2026-09-16，负责人明确要求同时取消每码 10 次和全站 50 次累计上限，并指定新的共享邀请码。旧随机码全部轮换作废，新码只存服务端哈希和仓库外领取文件，不写入本文件。保留邀请码核验、共享码 10 秒和全站 2 秒频率限制、输入输出边界与关闭开关；模型服务和费用承担方式不变。
 
 追加 `0001` 迁移移除数据库上界，保留所有累计用量与时间戳、非负及总数求和约束；历史行 ID `first-50` 不再表示限额。发布前生产累计 3 次，均来自上一轮实测。受控 D1 测试 47 项通过，覆盖旧库迁移后第 51 次、单码第 11 次、持续 60 次、并发、重启、失败计数与缺失行拒绝；类型、lint 与构建通过。此次新增真实模型请求 0。
 
 自定义入口 `zuobiao.aiyuecheng.cn` 仍待 DNS 配置。负责人网页登录成功，但当前是另一账户，已请切换回原站所属账户；尚未修改 DNS 或旧个人站。国内无代理可达性未验证，新旧域名浏览器数据与 Cookie 不会自动迁移。下文 version 6 和 50/10 次均为历史记录，新状态以本节后续实际发布回执为准。
+
+实际应用提交 `a56ac8ae025025f7a22b51aff800ac2f7eb48ff7`，Sites version 7：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`。部署 `appgdep_6aaa8c4eb20481918bff5bc9a5e039f7` 于 2026-09-16 12:33:09 UTC succeeded，环境 revision 6、public policy revision 2。实际入口仍为 <https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site>。GitHub 仅推送工作分支，main 未改，原 worktree 问卷仍为 55 行新增、25 行删除。
+
+迁移前先以环境 revision 5 关闭 version 6（部署 `appgdep_6aaa8bdca6708191bf6a9beed32a02bc` 成功），匿名状态 ready=false、数据库所有字段保持原值；再发布新迁移和新版本。发布后数据库 13 个字段逐一与迁移前一致，total=3、used1=3，其他用量为 0。新码兑换 200，当前 cookie 状态 authenticated=true / remaining=null；无邀请码 401、旧五码兑换全为 401、旧 cookie 调用 401。新 cookie 配空 schema 返回 400，验证鉴权通过且不调用模型。真实请求数本次为 0，第 04 轮合计仍为 3。
+
+本地实际构建通过 HTTP 验证短码、跨源 403、无身份 401、超过 50 次、模拟供应商失败仍计数、连续发送 429、关闭 503。上线后的首页和资源与构建核对，私人文档、环境及管理路径仍拒绝公开。生产没有人为写入测试用量。此小改尚未重新执行桌面/移动浏览器交互及真实回答；沿用 version 6 的基础界面与对话验收，不能作为新域名验收。Cloudflare 登录窗口已交回负责人，等待切换到原站账户，未绕过登录。
 
 更新：2026-09-16。本轮从干净 `cbe287ef7ca9a7e7f809cd7c5b007df2151e9ee1` 建立 `codex/public-trial`，保留十二基座、原域名和现有小小 API / gpt-5.6-sol / xhigh。GitHub 仓库已实查为 private，main 仍为 `cf0d19ef544bef9af5a38e9aa408275143006978`；原 worktree 的问卷改稿仍为 55 行新增、25 行删除，未触碰。
 
@@ -32,13 +38,13 @@ D1 `DB.trial_budget` 的永久 `first-50` 记录以一条条件 UPDATE 同时预
 
 
 
-## 后续：国内访问入口（准备中，未验收）
+## 自定义入口配置记录（尚未完成）
 
 负责人反馈原 chatgpt.site 入口需要代理，并表示原个人站已不再需要。已实查负责人 Cloudflare 账户中的 `yuechengai` Pages 项目绑定 `yuechengai.pages.dev` 与 `aiyuecheng.cn`；前者是平台分配地址，后者是已有独立域名。本次沿用现有 Sites 应用，准备子域名 `zuobiao.aiyuecheng.cn`，不另购域名或迁移应用。
 
-2026-09-16 已在 Sites 创建域名绑定 `appgdom_6aaa858eda00819197c2d66d1725f7f6`，当前 pending，SSL initializing。待添加 DNS：`zuobiao` CNAME → `custom-domains.chatgpt.site.`，以及平台返回的两条 TXT 所有权验证记录。记录值通过 Sites 查询取得，不是邀请码或模型密钥。现有 Cloudflare CLI 仅有 Pages 权限，网页登录尚待负责人完成，因此尚未修改 DNS、切换入口或改变个人站内容。
+2026-09-16 已在 Sites 创建域名绑定 `appgdom_6aaa858eda00819197c2d66d1725f7f6`，当前 pending，SSL initializing。待添加 DNS：`zuobiao` CNAME → `custom-domains.chatgpt.site.`，以及平台返回的两条 TXT 所有权验证记录。记录值通过 Sites 查询取得，不是邀请码或模型密钥。现有 Cloudflare CLI 仅有 Pages 权限；网页登录已完成，但进入另一账户，尚待切换到原站账户。因此尚未修改 DNS、切换入口或改变个人站内容。
 
-此候选地址尚未生效，国内无代理可达性尚未验证。更换域名不会自动迁移旧 Cookie 或浏览器记录。负责人另要求取消轮次限制；已询问是仅单码 10 次还是连全站 50 次一起取消，范围待答，现有试用保护暂未变更。
+此候选地址尚未生效，国内无代理可达性尚未验证。更换域名不会自动迁移旧 Cookie 或浏览器记录。负责人已明确取消全部累计次数限制，执行结果见顶部 version 7 回执。
 
 ## 实际公开发布与访客验收
 

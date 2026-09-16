@@ -18,7 +18,7 @@
 
 把 `.env.example` 复制为 `.env`，以 0600 权限保存。设置 `PHILOSOPHY_API_KEY`；其余配置按用户指定为小小 API、`gpt-5.6-sol`、Responses、`xhigh`。不要把密钥放在浏览器、源代码、提交或日志中。
 
-`npm run dev` 启动本地预览；当前版本的真实对话必须通过邀请码和 D1 配额检查，开发测试身份不授予调用资格。`npm run typecheck` 检查类型；`npm test` 运行关键业务边界测试。构建、打包和发布遵循已注册 Site 的流程。
+`npm run dev` 启动本地预览；当前版本的真实对话必须通过邀请码和 D1 频率检查，开发测试身份不授予调用资格。`npm run typecheck` 检查类型；`npm test` 运行关键业务边界测试。构建、打包和发布遵循已注册 Site 的流程。
 
 ## AI 接口
 
@@ -32,13 +32,13 @@
 
 ## 部署
 
-`.openai/hosting.json` 仅保留 Site 标识和逻辑能力声明。生产密钥通过 Sites secret 配置。第 04 轮按 CONTROL.md 开放产品页面，AI 继续受邀请码和持久配额保护。
+`.openai/hosting.json` 仅保留 Site 标识和逻辑能力声明。生产密钥通过 Sites secret 配置。第 04 轮按 CONTROL.md 开放产品页面，AI 继续受邀请码和持久频率检查保护。
 
 源仓库独立位于本项目，不能把父目录中的 Writing 或其他材料提交到 Site。发布前检查 `.env` 被忽略，构建产物中不含密钥，并使用同一提交完成推送、打包、保存版本和部署。
 
 ## 明确限制
 
-- 第 04 轮已改为 D1 原子配额：全站 50 次、每码 10 次，不自动重置；次数不等于精确金额上限。
+- 当前已取消累计次数上限，D1 原子记录用量并限制频率；模型接口费用仍按供应商计费。
 - 同设备多标签页使用 Web Locks（可用时）与存储版本核对。其他页面修改或清除后，旧页暂停保存并要求刷新。多键写入失败会尝试回滚；清空后只留匿名协调标识，不保存原内容。
 - 目前没有跨设备同步。浏览器存储不可用时必须显示失败，允许导出当前内容，不声称保存成功。
 - 安全关键词是补充兜底，不能完整理解语言；正常在线对话仍需要模型结合上下文判断。持续维护误判、遗漏和高风险情境测试。
@@ -77,24 +77,24 @@
 仅作第 03 轮历史记录：`docs/evidence/foundations-expansion/live-requests.json` 冻结保留最初 14 次台账；补验后累计为 15/16 次，完整记录与未验证项见该目录的 `ACCEPTANCE.md`，剩余授权不续用。`scripts/verify-foundations.mjs` 仍依赖旧版开发登录，未适配邀请码，不用于第 04 轮。预留条目不代表请求成功；网页核查、离线测试及构建不调用模型。
 
 
-## 第 04 轮：公开试用的领取、撤销和恢复
+## 第 04 轮：version 6 历史交付与恢复标识
 
 网址继续为 <https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site>。只通过现有 Sites 账户部署，不购买域名或新托管，不改变 GitHub main/private。
 
-负责人领取文件在 `/Users/lihe/.config/zuobiao-trial/invitations.json`，权限 0600；它在仓库之外，含五个固定 slot 的原码。只把某一个 code 私下发给对应体验者，不发送整份文件。交付时 slot 1 已用 3、剩 7，slot 2–4 各剩 10；slot 5 已用于线上撤销验证并永久停用，不补发。全站已用 3/50，当前四码还可用 37 次；这些是交付快照，后续以服务端为准。访问者在页面“有邀请码？开启对话试用”填写 code，再选基座与提问；不需要 ChatGPT 账户。Cookie 为 HttpOnly/Secure/SameSite=Strict，有效一天，可“退出试用”，退出不清除对话数据。
+以下为 version 6 历史记录，当前领取、换码和撤销以本文开头为准。首次交付时 slot 1 已用 3、剩 7，slot 2–4 各剩 10，slot 5 已停用；这些原码现已全部作废，领取文件也已更新为共享码。访问者仍在页面填写邀请码，无需 ChatGPT 账户。Cookie 为 HttpOnly/Secure/SameSite=Strict，有效一天；“退出试用”不清除对话数据。
 
 没有新增管理后台。负责人可在当前已连接的 Sites 工具中管理：
 
 - 关闭 AI：把 `TRIAL_ENABLED` 改为 `false`，然后重新部署当前保存版本；部署成功后匿名 `GET /api/chat` 应为 ready=false，带旧码的 POST 应拒绝。需要立刻阻止新外部访问时，先恢复平台 owner-only。
-- 撤销一个邀请码：保持 `TRIAL_INVITE_HASHES` 五槽数组顺序，只将目标槽位改为 null（保留其他哈希）；作为 secret 保存并重新部署同一版本。用原码验证 `/api/trial` 和 `/api/chat` 被拒绝。不要删除数组元素、重排或复用槽位，不补发第六份，不改预算。
+- 撤销当前共享码：按本文开头将五槽全部设为 null 并重新部署当前版本，不重新部署旧 version 6。所有持码者同时失效。
 - 查看用量：先通过 Sites `read_database_overview` 获取实际 `DB/trial_budget`，再读唯一预算行；total 是累计已预扣次数，used1..5 为各码次数，last1..5/last_global 为必要的频率时间戳。不要读写私人对话；此表没有对话、邮箱或 IP。
 - 恢复私人访问：先关闭 AI、部署生效；`update_site_access` 设 custom，空的非负责人邮箱/工作区群组/租户群组名单，owner 自动保留。核实只剩原 owner，匿名首页和 API 被平台拒绝。要持续关闭 AI，建议保留 version 6、`TRIAL_ENABLED=false` 和 owner-only。若确需旧版，再用 `deploy_private_site_version` 部署 version 5：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a`，查部署成功并复核权限。旧版只恢复平台私人访问，不保留邀请码或试用限额，也不读取 `TRIAL_ENABLED`；负责人登录后可能再次调用模型。不要公开回退旧代码，不回滚/删除配额数据库。
 
 改变环境变量需要部署后才生效；旧实例中已经发出的请求可能继续完成。普通访客没有这些管理能力；邀请码也不能调用管理工具。以上均可直接请当前负责人账户里的 Codex 执行，不需要提供明文供应商密钥。
 
-本轮 `DB` 通过 Sites 自动绑定，唯一迁移创建受 CHECK 约束的预算行。迁移一旦应用不可改写；追加新迁移也不能用于重置本轮预算。不能在运行时自动补建缺失行。最多 12 条消息、每条 12000 字、最多 20 条原则、请求 1MB、单次生成 6500 tokens 均继续生效。额度服务异常时拒绝生成，用户输入保留，不自动付费重试。
+本轮 `DB` 通过 Sites 自动绑定，原迁移创建受 CHECK 约束的预算行；新 version 7 已追加迁移去掉上界，保留计数。不能改写已应用迁移、重置计数或自动补建缺失行。最多 12 条消息、每条 12000 字、最多 20 条原则、请求 1MB、单次生成 6500 tokens 均继续生效。用量记录服务异常时拒绝生成，用户输入保留，不自动付费重试。
 
 服务器不新增原始对话收集；模型请求按原服务商约定处理，store:false 不承诺服务商不留日志。平台仍有自己的托管日志和配额。静态构建只包含产品资源，不含 docs/evidence、私密领取文件或密钥。
 
 
-交付版本为 Sites version 6 / `45bd7c2bcc4ee95f9855233dce002a752575a192`，version ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_c23fa58779848191a3444c56d4b0a3f8`。当前 public / policy revision 2，TRIAL_ENABLED=true / 环境 revision 4；最终部署 `appgdep_6aaa77fa360c81918cb9ccff6312a402` 已成功。关闭 503、撤销 401、重新部署计数保持 3 均已线上验证，完整回执与未验证项见 CONTROL.md。修改开关或撤销时重新部署这个已保存版本，不需要重建或新建版本。不得为后续试用增加预算、重置计数、复用已撤销槽位或生成第六份码。
+原 version 6 / `45bd7c2bcc4ee95f9855233dce002a752575a192`，version ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_c23fa58779848191a3444c56d4b0a3f8`，仍可恢复，但会恢复应用累计上限且不接受短码。当前应使用 **version 7** / `a56ac8ae025025f7a22b51aff800ac2f7eb48ff7`，version ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`。实际部署 `appgdep_6aaa8c4eb20481918bff5bc9a5e039f7` succeeded，public policy revision 2、环境 revision 6。修改开关或撤销时重新部署这个当前版本；不需要重建应用，也不重置计数。完整验证与域名配置阻点见 CONTROL.md。
