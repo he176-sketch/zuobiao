@@ -1,6 +1,6 @@
 # 坐标｜03 哲学基座扩充至十二个：验收材料
 
-日期：2026-09-16。本文件独立记录范围、来源、实测、发布及局限。所有测试问题、原则和对话均为构造数据，没有真实客户或私人聊天。当前状态：已部署到原私人站 Sites version 5；内容版本 2026-09-16.03.1。14 次额度已用完，10 成功、4 上游失败。十二基座工程接入完成；七个新增基座取得真实回答，尼采两次连接中断，真实回答未验证。
+日期：2026-09-16。本文件独立记录范围、来源、实测、发布及局限。所有测试问题、原则和对话均为构造数据，没有真实客户或私人聊天。当前状态：已部署到原私人站 Sites version 5；内容版本 2026-09-16.03.1。主控保留 version 5，十二基座开发结束，登记为已交付。遗留补验新增 1 次成功：尼采同题首答已补齐；第 03 轮累计 15/16 次，成功 11、失败 4。剩余 1 次不使用，不自动续接；尼采续聊仍未验证。旧四次失败是应用错误响应，具体分类与未知部分见下文，不能一概称为已确认的上游故障。
 
 ## 范围与现状
 
@@ -13,6 +13,23 @@
 短入口保持最多三步，只读明确求助方向与愿意尝试的判断依据，不由情绪或自由文本推断学派。首屏候选为 2–3 个；其余通过“换一个角度”或浏览入口了解。第三步先显示四个相关依据，更多依据可展开。原 12 题与旧四类选项 ID/含义保留，新增思路按情境放入可展开区域；十二位均可在明确依据下成为候选。
 
 前后端枚举、校验、WebMCP 详情、原则、来源白名单和材料快照覆盖 12 个。每次只装入当前基座与可选工具，原四份 Philoscopia 补充不伪造扩为十二份。快照增加可选的归属、语境、位置、应用与边界字段，旧快照不回填。原等待、取消、超时、失败保留、互斥和安全分流复用。
+
+## 八个新增基座的实际证据覆盖
+
+此表只映射既有证据及本次尼采补验，没有重跑其他基座。B = [browser-state.json](browser-state.json) 的 cards、selected、shortRecommendation；T = [tests.txt](tests.txt) 中“十二条路径……”测试及 [测试定义](../../../tests/expanded-foundations.test.mjs)；L = [live-requests.json](live-requests.json) 中 sequence；O = [online-ui.json](online-ui.json) 的 browse、realAnswer；S15 = 本文件末节第 15 次补验原始记录。“首次回答”指无历史的新对话首答，包含人工复验成功，不代表第一次请求即成功。
+
+| 基座 | 浏览与直接选择 | 推荐 | 有效真实首次回答 | 真实续聊 | 私人站验证 |
+| --- | --- | --- | --- | --- | --- |
+| 王阳明 | 本地 UI 均通过 B | 两机制离线通过 T；真实推荐 UI 未验证 | L14，线上，.03.1；L1 失败 | 未验证 | 目录、选择、回答通过 O/L14 |
+| 纳瓦尔 | 本地 UI 均通过 B | 两机制离线通过 T；真实推荐 UI 未验证 | L12，本地，.03.1；L2 有归属偏差 | 未验证 | 目录通过 O；线上选择和回答未验证 |
+| 尼采 | 本地 UI 均通过 B；本次线上选择通过 S15 | 两机制离线通过 T；真实推荐 UI 未验证 | **S15，线上，.03.1**；L3/L10 失败 | **未验证，本次不追加调用** | 目录 O、选择和回答 S15 通过 |
+| 庄子 | 本地 UI 均通过 B | 两机制离线通过 T；真实推荐 UI 未验证 | L4，本地，.03 | 未验证 | 目录通过 O；线上选择和回答未验证 |
+| 伊壁鸠鲁 | 本地 UI 均通过 B | 两机制离线通过 T；真实推荐 UI 未验证 | L13，本地，.03.1；L5 后精修分类材料 | 未验证 | 目录通过 O；线上选择和回答未验证 |
+| 亚里士多德 | 本地 UI 均通过 B | 两机制离线通过 T；真实推荐 UI 未验证 | L11，本地，.03.1；L6 失败 | 未验证 | 目录通过 O；线上选择和回答未验证 |
+| 罗翔 | 本地 UI 均通过 B | 两机制离线通过 T；本地短入口显示通过 B | L7，本地，.03 | 未验证 | 目录通过 O；线上选择和回答未验证 |
+| 苏格拉底 | 本地 UI 均通过 B | 两机制离线通过 T；本地短入口显示通过 B | L8，本地，.03 | **L9 本地通过，.03** | 目录通过 O；线上选择和回答未验证 |
+
+八位的线上推荐流程均未验证。离线测试逐 ID 检查短入口明确意愿与十二题推荐能够首选相应基座，不能替代真实 UI 或服务端生成。L9 确实携带前一问答并收到新续答；浏览器回放四条消息只证明恢复/展示，不另计续聊。L10—13 是首答复验，也不是续聊。
 
 ## 内容范围与逐项证据
 
@@ -147,7 +164,7 @@
 
 ## 真实请求与正文复核
 
-用户确认第 03 轮此前已用 0 次，上限 14 次；按调用前记账，失败与重试不清零。原始请求、完整回答及材料快照见 live-requests.json。非生成服务的网页阅读、测试、构建不计入这项产品调用额度。
+首次扩库授权起点为 0，原交付阶段上限 14；原始 14 条请求、完整回答及材料快照保留在 live-requests.json。遗留补验获新增最多 2 次授权，累计上限 16。本次第 15 条在本文件末节调用前记账，保留完整实际输入、响应和快照；原 JSON 不改写、不清零。非生成服务的网页阅读、测试、构建不计入这项产品调用额度。
 
 A：我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。
 
@@ -160,26 +177,41 @@ D：别人说我失败，我又觉得他们的标准不对。我到底应该相�
 王阳明、纳瓦尔、尼采用 A；庄子 A、伊壁鸠鲁 C、亚里士多德 B。罗翔、苏格拉底用 D；另验证苏格拉底明确拒答后的续聊。只以实际成功输出判断，不用预写应用示例代替真实回答；question 留空不构成正文通过证据。
 
 
-### 已发生请求（不清零）
+### 原交付阶段 14 次请求（冻结保留，不清零）
 
-完整输入、服务端原始结果、耗时与当时材料快照见 [live-requests.json](live-requests.json)。14 次已发生请求：10 成功、4 失败。所有失败保留；第 10—13 次是明确选定的一次人工复验，不是自动重试。同类错误未连续两次发生。第 14 次在私人站实际选择王阳明后提交 A，HTTP 200，29,687 ms；不进行第 15 次调用。
+完整输入、服务端原始结果、耗时与当时材料快照见 [live-requests.json](live-requests.json)。原交付阶段 14 次：10 成功、4 失败。所有失败保留；第 10—13 次是明确选定的一次人工复验，不是自动重试。同类错误未连续两次发生。第 14 次在私人站实际选择王阳明后提交 A，HTTP 200，29,687 ms。当时停止于 14 次；本次新增授权的第 15 条另见末节补验台账。
 
 | 序号 | 基座 / 用例 | 结果 | 正文判断 |
 | --- | --- | --- | --- |
-| 1 | 王阳明 A | 502 / 超时或格式失效 | 首次没有有效正文；第 14 次线上通过 |
+| 1 | 王阳明 A | 应用 502 / 超时或中止类 | 首次没有有效正文；第 14 次线上通过 |
 | 2 | 纳瓦尔 A | 200 | 有实质判断，但一句把产品推导写得像访谈结论；保留原记录，修订提示词 |
-| 3 | 尼采 A | 502 / 连接中断 | 未验证 |
+| 3 | 尼采 A | 应用 502 / 连接类异常 | 当次无有效正文，根因未知 |
 | 4 | 庄子 A | 200 | 有界通过：宋荣子仍有所未达，场景改变用途，检查现实条件 |
 | 5 | 伊壁鸠鲁 C | 200 | 思想应用成立，但材料分类表述需精修；保留原记录 |
-| 6 | 亚里士多德 B | 502 / 超时或格式失效 | 没有有效正文 |
+| 6 | 亚里士多德 B | 应用 502 / 超时或中止类 | 没有有效正文 |
 | 7 | 罗翔 D | 200 | 有界通过，见下方正文评议 |
 | 8 | 苏格拉底 D | 200 | 有界通过，见下方正文评议 |
 | 9 | 苏格拉底拒绝继续答题的续聊 | 200 | 有界通过：回答正文仍给判断、未知项与检验步骤，无循环提问 |
-| 10 | 尼采 A 人工复验 | 502 / 连接中断 | 两次均无正文，停止该基座调用，保留未验证 |
+| 10 | 尼采 A 人工复验 | 应用 502 / 连接类异常 | 当时两次均无正文；本次另获授权后以第 15 条补齐首答 |
 | 11 | 亚里士多德 B 人工复验 | 200 | 有界通过：习惯形成、行动动机、实践智慧，承认现实压力与资源约束 |
 | 12 | 纳瓦尔 A 归属修订复验 | 200 | 有界通过：资产与地位、时间自由为原论述；三栏和两周行动明确为产品推导 |
 | 13 | 伊壁鸠鲁 C 分类修订复验 | 200 | 有界通过：欲望与后果、安宁，保留现实经济需要；生活化三类不冒充逐字分类译文 |
 | 14 | 线上王阳明 A | 200 / 29,687 ms | 有界通过：知行、自欺与现实限制；实际界面选择、发送、呈现及来源快照通过 |
+
+### 四次旧失败：能确认的环节与未知部分
+
+原报告中的“上游失败”“连接中断”统一校正为下面的证据边界。四次均是本地验收脚本收到 `/api/chat` 的 JSON 错误，HTTP 502 是**坐标应用状态**，不是可核实的上游 HTTP 状态。请求均通过应用前置验证，进入上游请求及回答处理的 try 区域；不能进一步断定具体失败步骤。
+
+| 序号 / case | UTC 开始时间 / 耗时 | 应用响应 | 可确认分类 | 未知部分 |
+| --- | --- | --- | --- | --- |
+| 1 / wang-yangming | 06:43:32.577 / 90,050 ms | 502；INVALID_OR_TIMEOUT；“回答花的时间有些长” | 对应异常 name 含 timeout 或 abort；与服务端 90 秒期限高度一致 | 原始 name/cause、是否已收到上游响应头、上游是否继续处理 |
+| 3 / nietzsche | 06:45:20.768 / 77,281 ms | 502；PROVIDER_CONNECTION_ERROR | 对应异常 message 含 network connection lost 或 fetch failed；连接类 | 实际是哪种消息；发生于连接、等待还是读取响应体；节点和根因 |
+| 6 / aristotle | 06:47:18.306 / 90,103 ms | 502；INVALID_OR_TIMEOUT；“回答花的时间有些长” | 与 #1 相同，支持超时/中止类；不能仅因通用码归为应用内容校验失败 | 与 #1 相同 |
+| 10 / nietzsche-recheck | 06:50:43.490 / 3,162 ms | 502；PROVIDER_CONNECTION_ERROR | 与 #3 相同，连接类 | 与 #3 相同；短耗时不能证明明确拒绝或人物限制 |
+
+日期均为 2026-09-16。定位依据是 [验收脚本](../../../scripts/verify-foundations.mjs) 保存应用 httpStatus 的逻辑、[route.ts](../../../app/api/chat/route.ts) 的两个 catch 分支及独立 PROVIDER_ERROR 分支、[request-limits.ts](../../../lib/request-limits.ts) 的 90 秒超时信号。对应映射与部署提交 abbcf76 一致。
+
+上游明确非成功 HTTP 会走 PROVIDER_ERROR，但这四条均未记录该码；这不是上游明确拒绝的证据。普通解析、结构、来源校验异常会显示另一条内容检查提示；#1/#6 的已存提示支持超时/中止分支。没有保留上游 request ID、原始异常完整 name/message/cause、上游 HTTP、响应头或错误正文；限定检索现有记录和本地日志未找到补证。可追踪标识仅为本地 sequence、case 和时间戳，不能当作上游请求 ID。无法确认更底层根因，也不能推断尼采内容被限制。
 
 ### 罗翔与苏格拉底同题实际区别
 
@@ -197,15 +229,27 @@ D：别人说我失败，我又觉得他们的标准不对。我到底应该相�
 
 王阳明第 14 次线上实际回答：检查“不想那样生活”是真实选择，还是暂时遮住了仍想改进的部分；用事实和愿意承担代价的行动检验。知行讨论及《大学问》的诚意、自欺确实参与判断，现实健康、资源与机会限制不能被道德化，主观感受也不等于良知。此条验证诚意与知行，未充分展开一体之仁。与纳瓦尔相比，前者重点是诚实自省与行动落实，后者是所羡慕资源能否增加自主及其生活代价。
 
-尼采两次均没有有效输出，不能声称完成三方真实对照。材料上的预期方向是价值来源审查与主动自我塑造；这不是实际回答结论。
+尼采第 15 次线上实际回答已经补齐。它先检验“同龄人领先，所以我失败”的尺度，再说明拒绝别人的生活之后还须主动选择想发展什么、愿承担何种代价；《道德谱系》序言§6 和《快乐的科学》§290/§335 支持这些论证。它没有因标准来自社会比较就判定标准无价值，也没有把用户诊断为怨恨者。第一论§10 没有在本条实际展开，不能声称全部选材都已验证。
+
+| 实际回答 | 判断依据 | 相近建议背后的实际区别 |
+| --- | --- | --- |
+| 王阳明 L14 | 诚意、自欺、知行关系 | 检查“不想那样生活”是否诚实、是否遮住仍想改进的部分，并在行动中落实 |
+| 纳瓦尔 L12 | 财富与地位区分、时间及选择自由 | 羡慕的资源是否增加保障和自主，是否值得支付生活代价 |
+| 尼采 S15 | 既有价值的价值、自我塑造 | 排名尺度本身是否值得采用，拒绝后能否形成积极的能力和生活方向 |
+
+三条都采用“羡慕什么／不愿付什么代价／一个小行动”的编排，也都拒绝由局部差距裁决整个人生；这是共同的产品方法，不能当作独特哲学差异。三栏还是三项、这周/七天/两周、行动例子的更换主要是措辞与安排差异。本次有依据的区别在解释和评价理由，不在行动形式。王阳明与尼采都谈诚实、自我发展与实践，其重叠不能人为抹掉。
+
+可比条件：同一 A 原文、零个人原则、无额外工具、无历史上下文、材料版本均 2026-09-16.03.1。纳瓦尔 L12 的 thinkingToolId 省略且快照无工具；王阳明 L14 与尼采 S15 明确 null。差异：纳瓦尔来自本地真实服务请求，另两条来自私人站；profileRevision 分别为 2、3、4，采样时间也不同。继续使用既有配置，未改模型、供应商或计费；旧记录未保存逐条模型运行回执，不宣称严格同条件或可复现的控制实验。只评议这三份实际文本，不推断真人理解、效果、偏好或长期忠实度。
 
 ## 工程与界面验证
 
-现有及新增共 39 项测试通过，类型与 lint 通过；生产构建通过。构建仍有 vinext 静态路由分类提示。样式检查仅发现旧有两条侧边线与 width 动画警告，无扩展重构。
+沿用原交付证据，现有及新增共 39 项测试通过，类型与 lint 通过；生产构建通过。构建仍有 vinext 静态路由分类提示。样式检查仅发现旧有两条侧边线与 width 动画警告，无扩展重构。
 
 逐个选择测试使用仅验收页面的 Storage 前缀。刷新恢复另在已确认没有个人数据的 localhost 上暂存构造记录，结束后精确恢复原协调标识并核对指纹。线上不写入负责人已有个人原则或历史对话。详情见 [browser-state.json](browser-state.json)。实点十二张卡片并逐一选择成功；明确评价关注显示苏格拉底、罗翔两个候选。回放本轮真实苏格拉底问答及续聊，刷新后四条消息仍在；通过界面新增构造原则并切换罗翔，旧材料版本 2026-09-16.03 和当时空原则不被回填。导出 JSON 与存储问答完整相同。结束后本机指纹与开始完全一致。移动 390×844 无横向溢出且来源可读；正文质量只引用真实调用台账，不把回放当新增请求。
 
 ## 发布与恢复
+
+本次补验只读核实 version 5 与完整来源 abbcf76a4b53d8c818bb8be8a0606fd3e1aaae45；当前验收基线 2470edd3764c8139a230b5ac866260f85daddc74，工作区接手时干净。Sites 仍 version 5、owner 1 人、外部/群组 0、策略 revision 1。无代码/配置修改、部署或权限变更，不改 GitHub main。既有工程检查与匿名访问证据复用，本次未重跑。
 
 发布前再次核实 current version 4，Sites 源 main 为 d58df1859a28c0aef133432a8737a30b70f3e0c5，且为本轮祖先；GitHub main 仍 cf0d19ef544bef9af5a38e9aa408275143006978。实际发布见 [release.json](release.json)：Sites version 5，来源提交 `abbcf76a4b53d8c818bb8be8a0606fd3e1aaae45`，版本 ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a`，部署 ID `appgdep_6aaa3fee673c8191ae8e8afb4b0b9601`，终态 succeeded。环境 revision 1，未修改模型、供应商或计费。部署后证据提交仅更新文档，不冒充已部署应用来源。原站仅 owner 1 人，外部用户、编辑与群组 0，策略 revision 1；未扩大权限。恢复版本完整 ID：appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_d5eaa8bbff7c81918d69a63e0cbf8f02。恢复时核实 owner-only，再 deploy_private_site_version 到该版本，get_deployment_status 至终态，检查匿名拒绝与负责人可访问。
 
@@ -215,6 +259,260 @@ D：别人说我失败，我又觉得他们的标准不对。我到底应该相�
 
 ## 局限
 
-尼采没有真实回答；完整王阳明/纳瓦尔/尼采三方输出对照未完成。现有六种工具与新增八基座的组合通过离线来源及快照测试，未逐一做真实模型组合调用。未实测每个基座的所有主题与持续多轮忠实度；不将一次通过泛化为稳定效果。
+尼采同题首答及三方文本对照已补齐，但尼采真实续聊仍未验证；本次首条满足最小验收，不使用剩余一次授权。现有六种工具与新增八基座的组合通过离线来源及快照测试，未逐一做真实模型组合调用。未实测每个基座的所有主题与持续多轮忠实度；不将一次通过泛化为稳定效果。
 
 构造测试不等于真人长期理解、接受与使用效果；实体手机、Safari、第二个已登录但未授权账号未实测。白名单只验证来源属于当前材料，不自动证明每句话被来源支持；本轮另读真实正文作有界评议。原四基座实测引用既有 first-experience / pilot-ready 证据，未重复调用。
+
+
+## 第03轮遗留补验台账
+
+本节承接既有14次，不是新一轮。记录在实际发送前写入，失败与重试计入累计数；第二次是否使用由首条结果决定。原始输入和完整服务端结果如下，不含密钥、登录标识或私人对话。
+
+<!-- round03-supplement-ledger:start -->
+```json
+{
+  "round": 3,
+  "cumulativeLimit": 16,
+  "previousCount": 14,
+  "previousSucceeded": 10,
+  "previousFailed": 4,
+  "originalLedgerSha256": "37712b612ad91e2f2b7c3852da69fed5accf83a7c5c5bfd2a481d18e08404ada",
+  "authorization": "本次新增最多2次，累计16；任一次失败停止；原14条JSON台账保留不改。仅在现有ACCEPTANCE.md追加补验原始记录。",
+  "siteVersion": 5,
+  "deployedCommit": "abbcf76a4b53d8c818bb8be8a0606fd3e1aaae45",
+  "records": [
+    {
+      "sequence": 15,
+      "case": "online-nietzsche-supplement",
+      "constructed": true,
+      "environment": "owner-private-online",
+      "request": {
+        "baseId": "nietzsche",
+        "thinkingToolId": null,
+        "profileRevision": 4,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "state": "succeeded",
+      "startedAt": "2026-09-16T08:27:44.542Z",
+      "httpStatus": 200,
+      "responseHeaders": {
+        "cf-ray": "a3be7e7fbbb15feb-SIN",
+        "content-type": "application/json"
+      },
+      "result": {
+        "answer": {
+          "understanding": "你现在的冲突并不等于虚伪或失败：一方面，你会被同龄人的收入、职位、能力或认可触动；另一方面，你并不愿接受他们那种生活的全部内容与代价。前一种感受说明外部排名仍在影响你，却不能单独证明那套排名就是你认可的标准。你真正羡慕的也许只是其中一部分，而不是他们整套人生。至于差距如何形成，还可能涉及家庭资源、行业机会、健康和运气，现有信息不足以归因于你的能力或人格。",
+          "perspective": "《道德谱系》追问既有价值本身是否有益于生命发展，而不只是默认传统评价。依据这个观点，我们可以检验“同龄人领先，所以我失败”采用了什么尺度。《快乐的科学》进一步把自我塑造理解为对自身强弱的审视、组织和持续练习。依据这个观点，拒绝别人的生活只是起点；你还需要正面说明自己想发展什么、愿承担什么代价。这里也有边界：不能因为某种成功标准来自社会比较，就断定它毫无价值；收入、安全感和专业能力仍可能是现实需要。",
+          "nextStep": "选一个最触动你的同龄人，用十五分钟写三栏：我具体羡慕什么、我不愿承受什么、我仍愿为哪种成长付出代价。不要写“他比我成功”这类总评，改写成可核对的事实，例如“收入更高，但长期加班；我想提高收入，却不接受持续牺牲健康”。然后只选一个属于你的指标，在未来七天安排一次可完成的行动。代价是你可能暂时失去统一排名带来的确定感，但会得到一个能用行动检验的方向。",
+          "question": "",
+          "sourceIds": [
+            "nietzsche-genealogy",
+            "nietzsche-joyful"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "nietzsche",
+        "profileRevision": 4,
+        "materials": {
+          "version": "2026-09-16.03.1",
+          "name": "尼采",
+          "scope": "采用《快乐的科学》§290、§335和《道德谱系》序言§6、第一论§10，辅以 SEP。此次不采用《查拉图斯特拉如是说》，不声称代表尼采全部思想。",
+          "principles": [
+            {
+              "title": "评价标准也需要被评价",
+              "claim": "《道德谱系》追问既有道德价值的形成及其对生命发展的影响。",
+              "sourceIds": [
+                "nietzsche-genealogy"
+              ],
+              "sections": [
+                "序言§6"
+              ],
+              "attribution": "尼采文本，Horace B. Samuel 英译",
+              "context": "价值批判不只寻找历史起源，也考察价值的价值。",
+              "application": "产品推导：不因流行或传统就接受一种成功标准。",
+              "boundary": "不能从起源有问题直接推出所有规范无效。"
+            },
+            {
+              "title": "自我塑造需要练习与现实知识",
+              "claim": "《快乐的科学》谈审视、组织自身的强弱，并考察良心判断怎样形成。",
+              "sourceIds": [
+                "nietzsche-joyful"
+              ],
+              "sections": [
+                "§290",
+                "§335"
+              ],
+              "attribution": "尼采文本，Thomas Common 英译",
+              "context": "不是一句“忠于自己”就完成自我创造。",
+              "application": "产品推导：说明想发展什么、愿付什么代价，并用持续行动检验。",
+              "boundary": "不是任性或否认环境限制。"
+            },
+            {
+              "title": "检查是否只靠反对别人定义自己",
+              "claim": "《道德谱系》分析以外部敌人为起点的反应性评价。",
+              "sourceIds": [
+                "nietzsche-genealogy"
+              ],
+              "sections": [
+                "第一论§10"
+              ],
+              "attribution": "尼采关于怨恨的谱系分析",
+              "context": "分析有其批判对象，不能按情绪给用户定性。",
+              "application": "产品推导：把否定别人和正面选择自己的方向分开。",
+              "boundary": "愤怒或反对不公不等于怨恨，更不意味着批评无效。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "保留真实张力",
+              "text": "尼采对平等、怜悯和传统道德的批判有重大争议；其正面伦理与价值创造也有不同解释，不能简化为普适励志。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "自我超越的产品边界",
+              "text": "不以财富、压倒他人衡量卓越，不为伤害辩护，不要求受害者否认不公。这是现代产品约束，不能伪称尼采原本已提出。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "nietzsche-joyful",
+              "url": "https://www.gutenberg.org/files/52124/52124-h/52124-h.htm",
+              "title": "The Joyful Wisdom（快乐的科学）",
+              "author": "Friedrich Nietzsche；Thomas Common 英译",
+              "publisher": "Project Gutenberg；T. N. Foulis 1910",
+              "sections": [
+                "§290",
+                "§335"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "nietzsche-genealogy",
+              "url": "https://www.gutenberg.org/files/52319/52319-h/52319-h.htm",
+              "title": "The Genealogy of Morals（道德谱系）",
+              "author": "Friedrich Nietzsche；Horace B. Samuel 英译",
+              "publisher": "Project Gutenberg；T. N. Foulis 1913",
+              "sections": [
+                "序言§6",
+                "第一论§10"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "sep-nietzsche",
+              "url": "https://plato.stanford.edu/entries/nietzsche/",
+              "title": "Friedrich Nietzsche",
+              "author": "R. Lanier Anderson",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "§2",
+                "§3.1",
+                "§3.2.4",
+                "§4"
+              ],
+              "type": "academic-reference",
+              "verified": "2026-09-16：已读解释与争议，2026-06-25 修订；与原作及编者导言区分。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 34527,
+      "completedAt": "2026-09-16T08:28:19.069Z"
+    }
+  ],
+  "preflight": {
+    "health": {
+      "ready": true,
+      "authenticated": true,
+      "storage": "device-only",
+      "sourcesVersion": "2026-09-16.03.1"
+    },
+    "storageBeforeSha256": "7fa672115768533e15b51ab130cc19e0dda03aa64bf43aa41c7ce99678c76972",
+    "personalPrinciples": 0,
+    "conversationMessages": 0,
+    "actualSelection": {
+      "baseId": "nietzsche",
+      "revision": 4,
+      "principles": 0,
+      "messages": 0,
+      "isolated": true
+    }
+  },
+  "actualPosted": 1,
+  "validation": {
+    "baseId": "nietzsche",
+    "renderedAndSent": "matched",
+    "answerSchema": "passed",
+    "materialsDeepEqualCurrentSelectedBasis": true,
+    "materialsVersion": "2026-09-16.03.1",
+    "materialsSha256": "ff376b5b869eba1b594af1dec9ff1906eea2499e12555446bb211433400fc538",
+    "citedSourceIds": [
+      "nietzsche-genealogy",
+      "nietzsche-joyful"
+    ],
+    "snapshotSourceIds": [
+      "nietzsche-joyful",
+      "nietzsche-genealogy",
+      "sep-nietzsche"
+    ],
+    "thinkingTool": null,
+    "principles": 0,
+    "historyMessages": 0,
+    "additionalRequestsUsed": 1,
+    "cumulativeUsed": 15,
+    "cumulativeSuccess": 11,
+    "cumulativeFailed": 4,
+    "unusedAuthorizedRequests": 1,
+    "secondRequestDecision": "首条已满足最小验收；不为补齐续聊覆盖而额外调用，尼采续聊仍未验证。"
+  },
+  "uiVerification": {
+    "messageCount": 2,
+    "sourcePane": "这次回答的依据保留回答当时的思想与原则，之后的修订不会改变这里。尼采 · 原则修订 4哲学材料用于理解和判断；对当前处境的解释属于AI 结合问题作出的推导。本次参考来源The Joyful Wisdom（快乐的科学）Friedrich Nietzsche；Thomas Common 英译 · Project Gutenberg；T. N. Foulis 1910§290；§335The Genealogy of Morals（道德谱系）Friedrich Nietzsche；Horace B. Samuel 英译 · Project Gutenberg；T. N. Foulis 1913序言§6；第一论§10当时的哲学材料 · 2026-09-16.03.1采用《快乐的科学》§290、§335和《道德谱系》序言§6、第一论§10，辅以 SEP。此次不采用《查拉图斯特拉如是说》，不声称代表尼采全部思想。评价标准也需要被评价《道德谱系》追问既有道德价值的形成及其对生命发展的影响。尼采文本，Horace B. Samuel 英译 · 序言§6价值批判不只寻找历史起源，也考察价值的价值。产品推导：不因流行或传统就接受一种成功标准。不能从起源有问题直接推出所有规范无效。自我塑造需要练习与现实知识《快乐的科学》谈审视、组织自身的强弱，并考察良心判断怎样形成。尼采文本，Thomas Common 英译 · §290；§335不是一句“忠于自己”就完成自我创造。产品推导：说明想发展什么、愿付什么代价，并用持续行动检验。不是任性或否认环境限制。检查是否只靠反对别人定义自己《道德谱系》分析以外部敌人为起点的反应性评价。尼采关于怨恨的谱系分析 · 第一论§10分析有其批判对象，不能按情绪给用户定性。产品推导：把否定别人和正面选择自己的方向分开。愤怒或反对不公不等于怨恨，更不意味着批评无效。保留真实张力尼采对平等、怜悯和传统道德的批判有重大争议；其正面伦理与价值创造也有不同解释，不能简化为普适励志。自我超越的产品边界不以财富、压倒他人衡量卓越，不为伤害辩护，不要求受害者否认不公。这是现代产品约束，不能伪称尼采原本已提出。当时选择的思考工具未选择额外工具当时的个人原则当时尚未加入个人原则。关闭",
+    "actualPosts": 1
+  },
+  "cleanup": {
+    "storageBeforeSha256": "7fa672115768533e15b51ab130cc19e0dda03aa64bf43aa41c7ce99678c76972",
+    "storageAfterSha256": "7fa672115768533e15b51ab130cc19e0dda03aa64bf43aa41c7ce99678c76972",
+    "unchanged": true,
+    "remainingTestKeys": 0,
+    "actualPosts": 1
+  },
+  "documentChecks": {
+    "changedFiles": [
+      "docs/CONTROL.md",
+      "docs/evidence/foundations-expansion/ACCEPTANCE.md"
+    ],
+    "original14RecordLedgerUnchanged": true,
+    "configuredSecretScan": "passed; secret values not retained",
+    "credentialAndAuthenticationMaterialScan": "passed",
+    "forbiddenNameEscapedScan": "passed",
+    "privateConversationReview": "constructed input only; no personal principles or history sent",
+    "relativeFileLinks": "passed",
+    "diffWhitespace": "passed",
+    "codeOrConfigurationChanged": false,
+    "newDeployment": false,
+    "fullTestSuiteRerun": false
+  },
+  "review": {
+    "result": "本条有界通过",
+    "grounds": "价值标准审查与主动自我塑造实际参与判断；没有按情绪诊断怨恨、羞辱或无限反问；原论述与产品行动分开。",
+    "limits": "第一论§10未在本条展开；续聊、长期稳定性和真人效果未验证。",
+    "comparison": "与王阳明的诚意/知行和纳瓦尔的财富/自主不同的是判断依据；三栏记录、小行动、时间安排属于共同产品格式，不能当作独特思想差异。"
+  }
+}
+```
+<!-- round03-supplement-ledger:end -->
