@@ -6,12 +6,12 @@
 
 把 `.env.example` 复制为 `.env`，以 0600 权限保存。设置 `PHILOSOPHY_API_KEY`；其余配置按用户指定为小小 API、`gpt-5.6-sol`、Responses、`xhigh`。不要把密钥放在浏览器、源代码、提交或日志中。
 
-`npm run dev` 启动本地预览；首次对话点击页面的“登录并继续”，本地会使用 starter 的回环地址测试身份。`npm run typecheck` 检查类型；`npm test` 运行关键业务边界测试。构建、打包和发布遵循已注册 Site 的流程。
+`npm run dev` 启动本地预览；当前版本的真实对话必须通过邀请码和 D1 配额检查，开发测试身份不授予调用资格。`npm run typecheck` 检查类型；`npm test` 运行关键业务边界测试。构建、打包和发布遵循已注册 Site 的流程。
 
 ## AI 接口
 
 - `GET /api/chat` 仅返回是否已配置、存储模式和内容版本，不返回密钥。
-- `POST /api/chat` 要求平台验证过的登录身份，并检查来源、请求格式、大小、角色、明确选定或为 null 的基座、可选 thinkingToolId 和原则数量。请求以流式读取累计限制为 1,000,000 字节，覆盖严格 schema 允许的中文原则与多轮历史。
+- `POST /api/chat` 要求服务端验证的有效试用邀请码，并检查来源、请求格式、大小、角色、明确选定或为 null 的基座、可选 thinkingToolId 和原则数量。请求以流式读取累计限制为 1,000,000 字节，覆盖严格 schema 允许的中文原则与多轮历史。
 - 使用服务端 `PHILOSOPHY_API_BASE_URL + /responses`，规则作为 developer 消息传入（实测该代理的独立 instructions 与 JSON 模式组合会返回 502），`store: false`，多轮上下文由本次请求显式携带。
 - 本版实际验证的路径为 `https://www.xiaoxiaoapi.com/responses`。不要擅自追加 `/v1` 或更换用户指定的模型。
 - 客户端停止等待会中止 fetch；客户端最多等待 100 秒（包含响应正文读取），服务器把请求取消与 90 秒超时信号传给提供商；Workers 开启 `enable_request_signal`。提供商收到取消后是否立即停止计算，取决于其实现。
@@ -20,13 +20,13 @@
 
 ## 部署
 
-`.openai/hosting.json` 仅保留 Site 标识和逻辑能力声明。生产密钥通过 Sites secret 配置。初版保持 owner-private，不扩大访问范围。
+`.openai/hosting.json` 仅保留 Site 标识和逻辑能力声明。生产密钥通过 Sites secret 配置。第 04 轮按 CONTROL.md 开放产品页面，AI 继续受邀请码和持久配额保护。
 
 源仓库独立位于本项目，不能把父目录中的 Writing 或其他材料提交到 Site。发布前检查 `.env` 被忽略，构建产物中不含密钥，并使用同一提交完成推送、打包、保存版本和部署。
 
 ## 明确限制
 
-- 内存请求节流只减少单个实例上的短时重复请求，不是分布式配额或计费上限。
+- 第 04 轮已改为 D1 原子配额：全站 50 次、每码 10 次，不自动重置；次数不等于精确金额上限。
 - 同设备多标签页使用 Web Locks（可用时）与存储版本核对。其他页面修改或清除后，旧页暂停保存并要求刷新。多键写入失败会尝试回滚；清空后只留匿名协调标识，不保存原内容。
 - 目前没有跨设备同步。浏览器存储不可用时必须显示失败，允许导出当前内容，不声称保存成功。
 - 安全关键词是补充兜底，不能完整理解语言；正常在线对话仍需要模型结合上下文判断。持续维护误判、遗漏和高风险情境测试。
@@ -63,3 +63,23 @@
 ## 第 03 轮构造验证
 
 真实调用台账为 `docs/evidence/foundations-expansion/live-requests.json`，包含已发生的失败、人工复验和线上请求，总上限 14，不清零。`scripts/verify-foundations.mjs` 仅接收显式用例，调用前记账，默认只允许本机服务；没有自动重试。发布后不要再次运行本轮用例，实际已用数量与未验证项以验收材料为准。预留条目不代表请求成功。网页核查、离线测试及构建不调用模型。
+
+
+## 第 04 轮：公开试用的领取、撤销和恢复
+
+网址继续为 <https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site>。只通过现有 Sites 账户部署，不购买域名或新托管，不改变 GitHub main/private。
+
+负责人领取文件在 `/Users/lihe/.config/zuobiao-trial/invitations.json`，权限 0600；它在仓库之外，含五个固定 slot 的原码。只把某一个 code 私下发给对应体验者，不发送整份文件。第一个 slot 供本轮最多三次实测，其已用次数从同一十次中扣减。访问者在页面“有邀请码？开启对话试用”填写 code，再选基座与提问；不需要 ChatGPT 账户。Cookie 为 HttpOnly/Secure/SameSite=Strict，有效一天，可“退出试用”，退出不清除对话数据。
+
+没有新增管理后台。负责人可在当前已连接的 Sites 工具中管理：
+
+- 关闭 AI：把 `TRIAL_ENABLED` 改为 `false`，然后重新部署当前保存版本；部署成功后匿名 `GET /api/chat` 应为 ready=false，带旧码的 POST 应拒绝。需要立刻阻止新外部访问时，先恢复平台 owner-only。
+- 撤销一个邀请码：保持 `TRIAL_INVITE_HASHES` 五槽数组顺序，只将目标槽位改为 null（保留其他哈希）；作为 secret 保存并重新部署同一版本。用原码验证 `/api/trial` 和 `/api/chat` 被拒绝。不要删除数组元素、重排或复用槽位，不补发第六份，不改预算。
+- 查看用量：先通过 Sites `read_database_overview` 获取实际 `DB/trial_budget`，再读唯一预算行；total 是累计已预扣次数，used1..5 为各码次数，last1..5/last_global 为必要的频率时间戳。不要读写私人对话；此表没有对话、邮箱或 IP。
+- 恢复原私人站：先关闭 AI、部署生效；`update_site_access` 设 custom，空的非负责人邮箱/工作区群组/租户群组名单，owner 自动保留。核实只剩原 owner，匿名首页和 API 被平台拒绝。然后 `deploy_private_site_version` 部署 version 5：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a`。查部署成功，再核实权限。不要公开回退旧代码，不回滚/删除配额数据库。
+
+改变环境变量需要部署后才生效；旧实例中已经发出的请求可能继续完成。普通访客没有这些管理能力；邀请码也不能调用管理工具。以上均可直接请当前负责人账户里的 Codex 执行，不需要提供明文供应商密钥。
+
+本轮 `DB` 通过 Sites 自动绑定，唯一迁移创建受 CHECK 约束的预算行。迁移一旦应用不可改写；追加新迁移也不能用于重置本轮预算。不能在运行时自动补建缺失行。最多 12 条消息、每条 12000 字、最多 20 条原则、请求 1MB、单次生成 6500 tokens 均继续生效。额度服务异常时拒绝生成，用户输入保留，不自动付费重试。
+
+服务器不新增原始对话收集；模型请求按原服务商约定处理，store:false 不承诺服务商不留日志。平台仍有自己的托管日志和配额。静态构建只包含产品资源，不含 docs/evidence、私密领取文件或密钥。
