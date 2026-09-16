@@ -1,0 +1,26 @@
+{
+  "scope": "命令行匿名网络探测；Cloudflare 1010 客户端过滤，不当作应用身份控制证据。以 anonymous-browser.json 的 401 为验收。",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "anonymous": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/chat",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "anonymous": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/chat",
+      "status": 403,
+      "contentType": "text/plain; charset=UTF-8",
+      "anonymous": true
+    }
+  ]
+}

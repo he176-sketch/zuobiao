@@ -1434,7 +1434,8 @@
       "environment": "owner-private-online",
       "request": {
         "baseId": "wang-yangming",
-        "profileRevision": 2,
+        "thinkingToolId": null,
+        "profileRevision": 3,
         "principles": [],
         "messages": [
           {
@@ -1443,8 +1444,133 @@
           }
         ]
       },
-      "startedAt": "2026-09-16T07:03:03.123Z",
-      "state": "reserved-for-one-online-request"
+      "startedAt": "2026-09-16T07:08:17.898Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "同龄人的进展让你感到失败，但你又不认可他们所选择的整套生活，这并不矛盾。你可能羡慕其中某些结果，如收入、能力、认可或选择权，却不愿承担相应的节奏、关系代价或生活重心。比较带来的难受是真实的，但“别人发展得更好”还不足以推出“我的生活失败”；目前也不知道你们的资源、机会与负担是否相当。",
+          "perspective": "《传习录》的知行讨论重视道理是否落实在具体行动中，而《大学问》把诚意与检查自欺联系起来。依据这些观点，我们可以同时检查两种可能：一是你确实选择了不同的生活，二是“不想那样生活”也许暂时遮住了你仍想改进的部分。判断标准不是哪句话更体面，而是哪种解释更符合事实，并能形成你愿意承担代价的行动。主观感受不能自动等同于良知，现实中的健康、资源与机会限制也不能被道德化。",
+          "nextStep": "挑一个最近触发比较的具体对象，只写三项：我真正羡慕他的什么；我明确不愿交换什么；在不复制其生活的前提下，我能推进哪一步。比如羡慕职业自主权，却不愿长期加班，那么这周可了解一个转岗方向、整理作品或联系一位业内人士。做完再看：行动后羡慕是否变得更具体，还是仍只是笼统地否定自己。",
+          "question": "",
+          "sourceIds": [
+            "wang-instructions",
+            "wang-great-learning",
+            "sep-wang"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "wang-yangming",
+        "profileRevision": 3,
+        "materials": {
+          "version": "2026-09-16.03.1",
+          "name": "王阳明",
+          "scope": "选取《传习录》卷上徐爱所录知行讨论、《大学问》的致良知、诚意与一体之仁，参照 SEP 的解释与批评。不覆盖全部心学；门人引言、记录与后世解释不等于本人原话。",
+          "principles": [
+            {
+              "title": "让理解在行动中落实",
+              "claim": "知行讨论反对只会复述道理，也反对不经省察地行动。",
+              "sourceIds": [
+                "wang-instructions"
+              ],
+              "sections": [
+                "卷一徐爱问知行合一，始于“爱因未会先生……”"
+              ],
+              "attribution": "王守仁论述，经徐爱记录",
+              "context": "讨论知与行的关系，不是现代行为治疗。",
+              "application": "产品推导：把认可的原则落实为一步，并检查行动阻碍。",
+              "boundary": "没有做到不能直接推定品德差。"
+            },
+            {
+              "title": "诚意包含对自欺的检查",
+              "claim": "《大学问》把致知联系于充分实现良知，在具体事情中为善去恶。",
+              "sourceIds": [
+                "wang-great-learning"
+              ],
+              "sections": [
+                "《大学问》末组格物致知问答"
+              ],
+              "attribution": "王守仁论述，经钱德洪记录",
+              "context": "良知是该思想的伦理前提，不是任何即时感受。",
+              "application": "产品推导：分清维护原则与为眼前得失找理由。",
+              "boundary": "直觉需受事实检验；不以思想解释疾病、能力或资源不足。"
+            },
+            {
+              "title": "修养也要照顾具体的人",
+              "claim": "《大学问》从一体之仁展开，连接明德与亲民。",
+              "sourceIds": [
+                "wang-great-learning"
+              ],
+              "sections": [
+                "开篇大人之学、明德与亲民两组问答"
+              ],
+              "attribution": "古代文本中的伦理论述",
+              "context": "开篇以见到生命受损时的反应说明仁。",
+              "application": "产品推导：检查成功标准对关系及他人处境的影响。",
+              "boundary": "不把古代关系秩序直接当成现代服从义务。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "伦理前提与争议",
+              "text": "良知不是已证明的普遍心理机制；SEP 讨论主观意见冒充良知的风险。心即理不能推成想象改变外部现实。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "不能道德化现实困难",
+              "text": "知行落差可能涉及习惯、利益冲突、健康、资源与胁迫；产品不凭没做到责备人格。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "wang-instructions",
+              "url": "https://zh.wikisource.org/zh-hant/王陽明集/卷01",
+              "title": "王阳明集·卷一·传习录上",
+              "author": "王守仁论述；徐爱等门人记录",
+              "publisher": "维基文库古文转录",
+              "sections": [
+                "徐爱知行合一问答"
+              ],
+              "type": "primary-text-transcription",
+              "verified": "2026-09-16：已读对应问答；未做古籍底本校勘，开头“门人徐爱书”是门人引言。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "wang-great-learning",
+              "url": "https://zh.wikisource.org/zh-hant/王陽明集/卷26",
+              "title": "王阳明集·卷二十六·大学问",
+              "author": "王守仁论述；钱德洪记录",
+              "publisher": "维基文库古文转录",
+              "sections": [
+                "大人之学",
+                "明德与亲民",
+                "格物致知问答"
+              ],
+              "type": "primary-text-transcription",
+              "verified": "2026-09-16：已读问答；结尾“德洪曰”是记录者说明，不归于王阳明。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "sep-wang",
+              "url": "https://plato.stanford.edu/entries/wang-yangming/",
+              "title": "Wang Yangming",
+              "author": "Bryan Van Norden",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "§§3–6"
+              ],
+              "type": "academic-reference",
+              "verified": "2026-09-16：已读相关解释、论证及批评，2024-09-17 修订。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 29687,
+      "completedAt": "2026-09-16T07:08:47.585Z"
     }
   ]
 }

@@ -1,14 +1,18 @@
 # 坐标｜03 哲学基座扩充至十二个
 
-更新：2026-09-16。本机内容、39 项测试、类型、lint 与构建通过；准备私人发布。现有私人站仍为 version 4。原四个加王阳明、纳瓦尔、尼采、庄子、伊壁鸠鲁、亚里士多德、罗翔与苏格拉底，共十二个。
+更新：2026-09-16。已将原私人站更新为 **Sites version 5**，内容版本 `2026-09-16.03.1`。保留原四个，新增王阳明、纳瓦尔、尼采、庄子、伊壁鸠鲁、亚里士多德、罗翔、苏格拉底，共十二个。浏览、直接选择、短入口与深入推荐、对话请求、工具、原则和快照均接入。新增七位取得真实回答；尼采两次上游连接中断，实际回答和完整三方对照仍未验证。
 
-本轮分支 `codex/foundations-twelve` 从干净基线 `897c8795661e1d52383a43b1333d7b538022f0f0` 建立。沿用原 checkout 与项目；原灵感库 worktree 未修改。模型、服务商、计费、鉴权与名单不变。
+本轮分支 `codex/foundations-twelve` 从干净基线 `897c8795661e1d52383a43b1333d7b538022f0f0` 增量开发。实际部署来源 `abbcf76a4b53d8c818bb8be8a0606fd3e1aaae45`；提交到 Sites 源 main，GitHub main 仍 `cf0d19ef544bef9af5a38e9aa408275143006978`。本轮验收证据的最终提交见本文件 Git 历史，不能当作应用部署来源。原灵感库 worktree 的问卷改稿仍为 55 行新增、25 行删除，未触碰。
 
-真实请求总上限 14 次，用户明确确认此前第 03 轮为 0 次；失败、超时与人工重试均计入。逐次日志见 [live-requests.json](evidence/foundations-expansion/live-requests.json)。本机已发生 13 次：9 成功、4 失败；第 14 次仅预留，计划线上王阳明 A。尼采两次连接中断，真实回答未验证。没有自动重试；相同错误连续两次即停。
+本轮真实请求 **14/14**，包含 4 次上游失败、人工复验及线上检查，成功 10 次，未自动重试。用户确认的此前用量为 0，不重新清零。台账保留所有原始回答和失败；额度已耗尽，停止调用。王阳明线上 A 成功；罗翔、苏格拉底同题 D 及苏格拉底拒绝继续答题的续聊通过有界正文检查。来源、取舍及未验证项见 [十二基座扩库验收](evidence/foundations-expansion/ACCEPTANCE.md)。
 
-本轮验收材料：[十二基座扩库验收](evidence/foundations-expansion/ACCEPTANCE.md)。沿用原主控记录；下方第 02 轮内容仅作历史记录，其中 version 3 回滚说明已由本轮实时核验的 version 4 恢复目标取代。
+39 项测试、类型、lint、构建与密钥/禁用名称扫描通过。实际界面逐一选择十二位；切换、刷新、来源与导出保留旧快照和个人原则。线上实际目录十二个；负责人正常认证可访问，匿名浏览器首页、API GET/POST 均 401。权限仍 owner 1 人、外部用户和群组 0；模型、供应商、计费、环境 revision 1 未更改。测试数据移除，本机与线上原数据指纹一致。
 
-恢复目标：Sites version 4，来源 `d58df1859a28c0aef133432a8737a30b70f3e0c5`；完整版本 ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_d5eaa8bbff7c81918d69a63e0cbf8f02`。需先核实仍 owner-only，再私人部署该归档并查询终态，无需强推或清除用户数据。
+体验：[坐标私人站](https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site)。版本 ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a`；部署 `appgdep_6aaa3fee673c8191ae8e8afb4b0b9601`，终态 succeeded，见 [发布回执](evidence/foundations-expansion/release.json)。
+
+发布前实时核实的恢复目标：**Sites version 4**，来源 `d58df1859a28c0aef133432a8737a30b70f3e0c5`，版本 ID `appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_d5eaa8bbff7c81918d69a63e0cbf8f02`。恢复时先核实仍 owner-only，再私人部署该归档、查询至终态，并复核认证访问与匿名拒绝；不必强推或清除用户数据。下方第 02 轮仅为历史记录，其 version 3 恢复说明不再作为当前目标。
+
+任务到此交付并停止，不增加下一批人物。真人长期效果、实体手机、Safari、另一个已登录但未授权账号、尼采真实正文及其三方对照仍未验证。
 
 ---
 

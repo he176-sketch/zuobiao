@@ -1,0 +1,29 @@
+[
+  {
+    "method": "GET",
+    "path": "/",
+    "status": 401,
+    "type": "basic",
+    "contentType": "text/html; charset=utf-8",
+    "bodySample": "<!DOCTYPE html><html lang=\"zh-CN\" dir=\"ltr\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><link rel=\"preload\" as=\"image\" href=\"/_",
+    "credentials": "omit"
+  },
+  {
+    "method": "GET",
+    "path": "/api/chat",
+    "status": 401,
+    "type": "basic",
+    "contentType": "text/html; charset=utf-8",
+    "bodySample": "<!DOCTYPE html><html lang=\"zh-CN\" dir=\"ltr\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><link rel=\"preload\" as=\"image\" href=\"/_",
+    "credentials": "omit"
+  },
+  {
+    "method": "POST",
+    "path": "/api/chat",
+    "status": 401,
+    "type": "basic",
+    "contentType": "text/html; charset=utf-8",
+    "bodySample": "<!DOCTYPE html><html lang=\"zh-CN\" dir=\"ltr\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><link rel=\"preload\" as=\"image\" href=\"/_",
+    "credentials": "omit"
+  }
+]

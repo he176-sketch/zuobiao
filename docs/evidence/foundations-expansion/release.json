@@ -1,0 +1,67 @@
+{
+  "saved": {
+    "id": "appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a",
+    "project_id": "appgprj_6aa4e53b21e08191a1782e3621dd7995",
+    "version_number": 5,
+    "source": {
+      "commit_sha": "abbcf76a4b53d8c818bb8be8a0606fd3e1aaae45"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000136881f8aa9baee5c6f511cc",
+      "content_hash": "sha256:c34529962b03d3bb929b335146a96a3a81e795b421e29032554e8b69c9a3b29d",
+      "size_bytes": 2457600,
+      "file_count": 70
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6aaa3fee673c8191ae8e8afb4b0b9601",
+    "project_id": "appgprj_6aa4e53b21e08191a1782e3621dd7995",
+    "title": "坐标 · 找到自己的生活哲学",
+    "version_id": "appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_12f344389c148191adb3d947a9719d7a",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://zuobiao-life-philosophy.leeyuecheng2000.chatgpt.site",
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6aa4e53b21e08191a1782e3621dd7995",
+    "failure_message": null,
+    "env_set_revision": 1,
+    "updated_at": "2026-09-16T07:06:48.091516+00:00"
+  },
+  "rollback": {
+    "version": 4,
+    "id": "appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_d5eaa8bbff7c81918d69a63e0cbf8f02",
+    "commit": "d58df1859a28c0aef133432a8737a30b70f3e0c5"
+  },
+  "access": {
+    "ownerOnly": true,
+    "revision": 1,
+    "owners": 1,
+    "external": 0,
+    "groups": 0,
+    "envRevision": 1
+  },
+  "githubMain": "cf0d19ef544bef9af5a38e9aa408275143006978",
+  "postDeploymentAccessVerified": {
+    "version": 5,
+    "policyRevision": 1,
+    "owner": 1,
+    "external": 0,
+    "groups": 0,
+    "browserAnonymousStatuses": [
+      401,
+      401,
+      401
+    ]
+  },
+  "realRequests": {
+    "limit": 14,
+    "used": 14,
+    "succeeded": 10,
+    "failed": 4,
+    "onlineCase": "online-wang",
+    "onlineStatus": 200
+  }
+}
