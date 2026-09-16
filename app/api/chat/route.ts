@@ -1,3 +1,4 @@
+import content from "@/lib/foundations.json";
 import { readRequestBody,responseSignal } from "@/lib/request-limits";
 import { env } from "cloudflare:workers";
 import { getChatGPTUser } from "@/app/chatgpt-auth";
@@ -7,7 +8,7 @@ import { buildGuide,foundations,guideMaterials } from "@/lib/guide";
 const response=(data:unknown,status=200)=>Response.json(data,{status,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});
 const limits=new Map<string,{at:number;count:number}>();
 function config(){const e=env as unknown as Record<string,string|undefined>;return {key:e.PHILOSOPHY_API_KEY||e.OPENAI_API_KEY,base:e.PHILOSOPHY_API_BASE_URL||"https://api.openai.com/v1",model:e.PHILOSOPHY_MODEL,reasoning:e.PHILOSOPHY_REASONING_EFFORT||"xhigh"};}
-export async function GET(){const c=config();const user=await getChatGPTUser();return response({ready:!!(c.key&&c.model),authenticated:!!user,storage:"device-only",sourcesVersion:"2026-09-12"});}
+export async function GET(){const c=config();const user=await getChatGPTUser();return response({ready:!!(c.key&&c.model),authenticated:!!user,storage:"device-only",sourcesVersion:content.version});}
 export async function POST(request:Request){
  const origin=request.headers.get("origin");
  if(origin&&origin!==new URL(request.url).origin)return response({error:"请求来源不一致，请重新打开页面。"},403);

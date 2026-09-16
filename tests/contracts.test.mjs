@@ -36,6 +36,6 @@ test("API 输入拒绝伪造系统角色、未知基座和过量内容",()=>{
 });
 test("每个基座中的原则都能指向实际收录的来源",()=>{
  const content=JSON.parse(readFileSync(new URL("../lib/foundations.json",import.meta.url),"utf8"));
- assert.equal(content.bases.length,4);const ids=new Set();
+ assert.equal(content.bases.length,12);const ids=new Set();
  for(const b of content.bases){assert.ok(!ids.has(b.id));ids.add(b.id);const sources=new Set(b.sources.map(s=>s.id));for(const p of b.principles){assert.ok(p.sourceIds.length);for(const id of p.sourceIds)assert.ok(sources.has(id),id);}for(const s of b.sources)assert.equal(new URL(s.url).protocol,"https:");}
 });

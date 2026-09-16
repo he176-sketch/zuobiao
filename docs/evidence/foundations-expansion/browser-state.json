@@ -1,0 +1,230 @@
+{
+  "before": {
+    "count": 1,
+    "sha256": "a878e62b027a302869cad22efa075d8b04c5e8f788d60568954e9b4589b73723"
+  },
+  "injected": {
+    "identifier": "1"
+  },
+  "cards": {
+    "isolated": true,
+    "names": [
+      "斯多葛",
+      "加缪",
+      "经验与修订",
+      "仁与责任",
+      "王阳明",
+      "纳瓦尔",
+      "尼采",
+      "庄子",
+      "伊壁鸠鲁",
+      "亚里士多德",
+      "罗翔",
+      "苏格拉底"
+    ],
+    "subtitles": [
+      "把心力放回行动",
+      "清醒地继续生活",
+      "让生活参与回答",
+      "在关系中修身",
+      "良知与知行合一",
+      "自由、财富与幸福",
+      "价值重估与自我超越",
+      "逍遥与松动成见",
+      "适度欲望与安宁",
+      "品格与美好生活",
+      "谦卑与自我省察",
+      "审视生活与有依据的判断"
+    ],
+    "overflow": false,
+    "posts": 0
+  },
+  "selected": [
+    {
+      "name": "斯多葛",
+      "id": "stoic",
+      "revision": 2,
+      "posts": 0
+    },
+    {
+      "name": "加缪",
+      "id": "camus",
+      "revision": 3,
+      "posts": 0
+    },
+    {
+      "name": "经验与修订",
+      "id": "pragmatic",
+      "revision": 4,
+      "posts": 0
+    },
+    {
+      "name": "仁与责任",
+      "id": "confucian",
+      "revision": 5,
+      "posts": 0
+    },
+    {
+      "name": "王阳明",
+      "id": "wang-yangming",
+      "revision": 6,
+      "posts": 0
+    },
+    {
+      "name": "纳瓦尔",
+      "id": "naval",
+      "revision": 7,
+      "posts": 0
+    },
+    {
+      "name": "尼采",
+      "id": "nietzsche",
+      "revision": 8,
+      "posts": 0
+    },
+    {
+      "name": "庄子",
+      "id": "zhuangzi",
+      "revision": 9,
+      "posts": 0
+    },
+    {
+      "name": "伊壁鸠鲁",
+      "id": "epicurus",
+      "revision": 10,
+      "posts": 0
+    },
+    {
+      "name": "亚里士多德",
+      "id": "aristotle",
+      "revision": 11,
+      "posts": 0
+    },
+    {
+      "name": "罗翔",
+      "id": "luo-xiang",
+      "revision": 12,
+      "posts": 0
+    },
+    {
+      "name": "苏格拉底",
+      "id": "socrates",
+      "revision": 13,
+      "posts": 0
+    }
+  ],
+  "replayedRealConversation": {
+    "scope": "localhost initially contained only coordination stamp; temporary constructed records restored after QA",
+    "count": 4,
+    "posts": 0,
+    "stored": [
+      {
+        "role": "user",
+        "version": "2026-09-16.03"
+      },
+      {
+        "role": "assistant",
+        "version": "2026-09-16.03"
+      },
+      {
+        "role": "user",
+        "version": "2026-09-16.03"
+      },
+      {
+        "role": "assistant",
+        "version": "2026-09-16.03"
+      }
+    ]
+  },
+  "oldSnapshot": {
+    "text": "这次回答的依据保留回答当时的思想与原则，之后的修订不会改变这里。苏格拉底 · 原则修订 2哲学材料用于理解和判断；对当前处境的解释属于AI 结合问题作出的推导。本次参考来源Apology（申辩篇）Plato；Benjamin Jowett 英译 · The Internet Classics Archive, MIT政治家、诗人与工匠；智慧、真理与灵魂；判刑建议：审视生活Crito（克里托篇）Plato；Benjamin Jowett 英译 · The Internet Classics Archive, MIT意见与训练者类比；不义不可报复；人格化法律论证当时的哲学材料 · 2026-09-16.03限定柏拉图《申辩篇》《克里托篇》，参照 SEP 的 Socratic problem。苏格拉底没有留下自己的著作；柏拉图的记述不是逐字实录，不把其全部对话观点混入。当前交互属于产品设计，不声称完整复刻历史对话方式。局部专长不等于全知《申辩篇》考察政治家、诗人和工匠，区分真正知道的事与自以为知道的事。柏拉图记述，经 Benjamin Jowett 英译 · 考察政治家、诗人与工匠的段落用于解释德尔斐神谕及指控来源的辩护。产品推导：看判断者在当前事项上掌握什么、能给什么理由。既不全盘否定专家，也不因自己承认无知就断定自己更正确。审视服务于生活与行动《申辩篇》重智慧、真理与灵魂改善，反对只追逐财富和名声；检查信念关乎行动正当性。柏拉图文本呈现，非苏格拉底著作 · 劝告雅典人重智慧、真理与灵魂；判刑建议中的审视生活论述带有哲学使命与宗教背景。产品推导：结果和排名不是生活唯一尺度，还检查诚实、公正与理由。这是价值前提，不是科学定律；拒绝自省不意味着生命不值得。凭经检查的理由判断《克里托篇》比较多数意见与相关知者的意见，要求遵循较好的理由，并以不行不义、不以不义报复作为约束。柏拉图《克里托篇》的论证 · 意见与训练者类比；善好生活；不得以不义报复讨论是否越狱，后续有法律拟人化的说服或服从论证。产品推导：区分事实与成功标准，接受有理由的批评，不凭人数或情绪判断。道德领域如何辨认知者有争议，古代服从论证不能直接成为现代无条件服从。文本与解释的限度历史苏格拉底与作者笔下形象难以彻底分离；宗教使命、法律服从与道德知识存在解释争议。帮助不能以逼问为前提先用已有信息解释并给有边界的判断。用户拒答时用条件句与例子继续，不能循环追问，也不能用审视生活的强表述羞辱用户或鼓励危险牺牲。当时选择的思考工具未选择额外工具当时的个人原则当时尚未加入个人原则。关闭",
+    "profile": "socrates"
+  },
+  "switch": {
+    "profile": {
+      "schemaVersion": 1,
+      "baseId": "luo-xiang",
+      "revision": 4,
+      "principles": [
+        {
+          "text": "构造验收：承认具体错误，也拒绝用收入定义整个人。",
+          "reason": "检查刷新与切换后是否仍由本人确认保存。",
+          "boundary": "仅用于本次验收，不是历史客户记录。",
+          "id": "8e6504f9-e6de-4617-b7a5-e1ebe54cb131",
+          "origin": "socrates",
+          "version": 1,
+          "updatedAt": "2026-09-16T07:00:06.413Z"
+        }
+      ],
+      "history": [
+        {
+          "revision": 3,
+          "at": "2026-09-16T07:00:06.413Z",
+          "detail": "加入原则：构造验收：承认具体错误，也拒绝用收入定义整个人。"
+        },
+        {
+          "revision": 4,
+          "at": "2026-09-16T07:03:02.868Z",
+          "detail": "选择基座：罗翔"
+        }
+      ]
+    },
+    "snapshots": [
+      {
+        "baseId": "socrates",
+        "version": "2026-09-16.03",
+        "principles": 0
+      },
+      {
+        "baseId": "socrates",
+        "version": "2026-09-16.03",
+        "principles": 0
+      },
+      {
+        "baseId": "socrates",
+        "version": "2026-09-16.03",
+        "principles": 0
+      },
+      {
+        "baseId": "socrates",
+        "version": "2026-09-16.03",
+        "principles": 0
+      }
+    ],
+    "displayedMessages": 4
+  },
+  "export": {
+    "principles": 1,
+    "base": "luo-xiang",
+    "revision": 4,
+    "messageCount": 4,
+    "snapshotVersions": [
+      "2026-09-16.03",
+      "2026-09-16.03",
+      "2026-09-16.03",
+      "2026-09-16.03"
+    ],
+    "oldPrincipleCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "fullConversationEqualsStored": true
+  },
+  "cleanup": {
+    "restoredExactly": true,
+    "count": 1,
+    "sha256": "a878e62b027a302869cad22efa075d8b04c5e8f788d60568954e9b4589b73723",
+    "testKeysRemoved": true
+  },
+  "shortRecommendation": {
+    "names": [
+      "苏格拉底",
+      "罗翔"
+    ],
+    "original": "别人说我失败，我又觉得他们的标准不对。我到底应该相信谁？请给出判断，不要只反问。",
+    "overflow": false,
+    "method": "实际短入口：输入问题、选择评价有冲突、直接看看角度；浏览器输出已观察，未提交模型请求"
+  }
+}

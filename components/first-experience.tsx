@@ -19,6 +19,8 @@ export default function FirstExperience({ intake, onChange, onStart, onDeep, onI
  const update = (change: Partial<Intake>) => onChange({ ...intake, ...change });
  const titles = ['就从眼前这件事开始。', '这次，你最想得到什么帮助？', '有没有愿意先试试的判断依据？', '用你的问题，对照看看这些角度。'];
  const candidates = firstCandidates(intake);
+ const primaryBasis = [...new Set<string>([...(HELP_OPTIONS.find(h=>h.id===intake.help)?.bases||[]),...intake.basis,"stoic","camus","pragmatic","confucian"])].slice(0,4);
+ const renderBasis=([id,label]:[string,string])=><button key={id} aria-pressed={intake.basis.includes(id as FoundationId)} onClick={()=>update({basis:intake.basis.includes(id as FoundationId)?intake.basis.filter(b=>b!==id):[...intake.basis,id as FoundationId]})}>{label}</button>;
  return <section className="first-experience" aria-label="轻量开始">
   <div className="quiz-topline"><span>{step < 3 ? `第 ${step + 1} 步 / 最多 3 步` : '由你决定是否试用'}</span><button className="text-link" disabled={disabled} onClick={() => onStart(null)}>不答题，先聊</button></div>
   <h1 ref={heading} tabIndex={-1}>{titles[step]}</h1>
@@ -29,7 +31,7 @@ export default function FirstExperience({ intake, onChange, onStart, onDeep, onI
    <p className="discovery-note">这些只说明你此刻的处境和反应，不用来判断你属于哪个学派。</p>
   </>}
   {step === 1 && <fieldset className="first-options"><legend>只选此刻想聊的，之后可以变</legend>{HELP_OPTIONS.map(h => <button key={h.id} aria-pressed={intake.help === h.id} onClick={() => update({ help: intake.help === h.id ? '' : h.id })}>{h.label}</button>)}<button aria-pressed={!intake.help} onClick={() => update({ help: '' })}>都不像，或我现在说不清。</button></fieldset>}
-  {step === 2 && <><p className="lead">可以多选，也可以全部跳过。愿意探索，不等于已经认同；彼此冲突时，也不替你排先后。</p><fieldset className="first-options"><legend>这一次，我愿意尝试</legend>{Object.entries(BASIS_OPTIONS).map(([id, label]) => <button key={id} aria-pressed={intake.basis.includes(id as FoundationId)} onClick={() => update({ basis: intake.basis.includes(id as FoundationId) ? intake.basis.filter(b => b !== id) : [...intake.basis, id as FoundationId] })}>{label}</button>)}</fieldset></>}
+  {step === 2 && <><p className="lead">可以多选，也可以全部跳过。愿意探索，不等于已经认同；彼此冲突时，也不替你排先后。</p><fieldset className="first-options"><legend>这一次，我愿意尝试</legend>{Object.entries(BASIS_OPTIONS).filter(([id])=>primaryBasis.includes(id)).map(renderBasis)}<details className="more-bases"><summary>看看更多判断依据{intake.basis.some(id=>!primaryBasis.includes(id))?"（含已选）":""}</summary>{Object.entries(BASIS_OPTIONS).filter(([id])=>!primaryBasis.includes(id)).map(renderBasis)}</details></fieldset></>}
   {step < 3 && <><label htmlFor="first-note">自由补充（可留空）</label><Textarea id="first-note" maxLength={600} value={intake.note} onChange={e => update({ note: e.target.value })}/><div className="quiz-navigation"><Button variant="ghost" disabled={step === 0} onClick={() => setStep(step - 1)}>返回修改</Button><button className="text-link" onClick={() => { if (step === 1) update({ help: '' }); if (step === 2) update({ basis: [] }); advance(step + 1); }}>跳过这一步</button><Button onClick={() => advance(step + 1)}>{step === 2 ? '看看可探索的角度' : '继续'}</Button></div>{step === 1 && intake.help && <button className="text-link" onClick={() => advance(3)}>已有想聊的，直接看看角度</button>}</>}
   {step === 3 && <>
    <p className="lead">{candidates.every(c => !c.evidence) ? '信息还不足以推荐。下面是两种标明性质的体验入口，你可以拒绝或换一个。' : '这是根据本次明确表达提供的探索候选，没有人格结论或匹配分数。'}</p>

@@ -1,7 +1,9 @@
 import { z } from 'zod';
+import content from './foundations.json' with {type:'json'};
+import expanded from './expanded-discovery.json' with {type:'json'};
 
-export const DISCOVERY_VERSION = '2026-09-15.exploration';
-export const FOUNDATION_IDS = ['stoic', 'camus', 'pragmatic', 'confucian'] as const;
+export const DISCOVERY_VERSION = '2026-09-16.03';
+export const FOUNDATION_IDS = ["stoic","camus","pragmatic","confucian","wang-yangming","naval","nietzsche","zhuangzi","epicurus","aristotle","luo-xiang","socrates"] as const;
 export type FoundationId = typeof FOUNDATION_IDS[number];
 type Option = { id: string; label: string; foundation?: FoundationId };
 type Question = { id: string; topic: string; title: string; options: Option[] };
@@ -26,15 +28,17 @@ export const DISCOVERY_QUESTIONS: Question[] = scenes.map(([id, topic, title, ..
  id = `explore-${id}`;
  const options: Option[] = labels.map((label, i) => ({ id: `${id}-${i}`, label: `我愿意试着这样想：${label}`, foundation: FOUNDATION_IDS[i] }));
  const offset = index % options.length;
- return { id, topic, title, options: [...options.slice(offset), ...options.slice(0, offset), {id:`${id}-tired`,label:'我很疲惫，想先躲一会儿。'}, {id:`${id}-angry`,label:'我不服，也嫉妒，暂时不想讲道理。'}, {id:`${id}-unsure`,label:'我很矛盾，说不清，或者都不像。'}] };
+ const additional:Option[]=Object.entries(expanded).map(([foundation,choices])=>({id:`${id}-${foundation}`,label:`我愿意试着这样想：${choices[index]}`,foundation:foundation as FoundationId}));
+ return { id, topic, title, options: [...options.slice(offset), ...options.slice(0, offset), ...additional, {id:`${id}-tired`,label:'我很疲惫，想先躲一会儿。'}, {id:`${id}-angry`,label:'我不服，也嫉妒，暂时不想讲道理。'}, {id:`${id}-unsure`,label:'我很矛盾，说不清，或者都不像。'}] };
 });
 
-export const FOUNDATION_INTROS: Record<FoundationId, { core: string; direction: string; tradeoff: string; sourceIds: string[] }> = {
+export const FOUNDATION_INTROS = {
  stoic: { core: '把好的生活放在自己的判断、品格与行动上，分清哪些事情取决于自己。', direction: '遇到困惑时，先检验对事情的判断，再决定自己能够负责的下一步。', tradeoff: '需要练习接受结果无法完全控制；接受这一点，也可以继续改变不合理的环境。', sourceIds: ['epictetus-handbook', 'sep-epictetus'] },
  camus: { core: '人在寻找意义，世界却未必给出最终答案；仍可以保持清醒，在生活、反抗与共同尊严中投入。', direction: '允许问题暂时没有结论，同时辨认仍愿意投入的生活，以及需要与他人共同改变的处境。', tradeoff: '它不会提供一个保证万事都有意义的总答案，也不要求你独自硬撑。', sourceIds: ['sep-camus', 'iep-camus'] },
  pragmatic: { core: '把判断当作可以接受经验检验的想法，在行动、结果与反思中不断修订。', direction: '把大困惑拆成具体问题，用承担得起的尝试，逐步形成更可靠的判断。', tradeoff: '需要投入实践并愿意改主意；眼前有效不自动等于合乎价值或长期有益。', sourceIds: ['james-pragmatism', 'dewey-how-we-think', 'sep-pragmatism'] },
  confucian: { core: '在与人的关系中学习仁、诚信与合宜，借助日常实践成为自己认可的人。', direction: '先看具体处境、关系与责任，再协调自己的需要，选择有体谅也有分寸的行动。', tradeoff: '不同关系的责任可能冲突，需要斟酌；重视关系不等于无条件服从。', sourceIds: ['analects-legge', 'sep-confucius'] },
-};
+} as Record<FoundationId, {core:string;direction:string;tradeoff:string;sourceIds:string[]}>;
+for(const base of content.bases.slice(4)) FOUNDATION_INTROS[base.id as FoundationId]={core:base.principles[0].claim,direction:base.tagline,tradeoff:base.boundaries.map(b=>b.text).join(' '),sourceIds:base.sources.map(s=>s.id)};
 
 export const DiscoveryAnswersSchema = z.record(z.string(), z.string().nullable());
 export type DiscoveryAnswers = z.infer<typeof DiscoveryAnswersSchema>;
@@ -57,7 +61,7 @@ export function recommendFoundations(raw: unknown) {
  const matches: Recommendation[] = sorted.filter(entry => entry.score > 0).slice(0, 3);
  // A contrasting option is explicitly distinguished from a match; no evidence is invented.
  if (matches.length === 1) {
-  const contrast: Record<FoundationId, FoundationId> = { stoic: 'pragmatic', pragmatic: 'stoic', camus: 'confucian', confucian: 'camus' };
+  const contrast: Record<FoundationId, FoundationId> = { stoic:'pragmatic',pragmatic:'stoic',camus:'confucian',confucian:'camus','wang-yangming':'aristotle',aristotle:'wang-yangming',naval:'epicurus',epicurus:'naval',nietzsche:'zhuangzi',zhuangzi:'nietzsche','luo-xiang':'socrates',socrates:'luo-xiang' };
   matches.push({ ...entries.find(entry => entry.id === contrast[matches[0].id])!, kind: 'contrast' });
  }
  const cutoff=matches.filter(item=>item.kind==="match").at(-1)?.score;

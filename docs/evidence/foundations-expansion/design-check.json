@@ -1,0 +1,32 @@
+[
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/lihe/Documents/ChatGPT/坐标/zuobiao/app/globals.css",
+    "line": 10,
+    "snippet": "border-left:2px solid #a5b8c9"
+  },
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "/Users/lihe/Documents/ChatGPT/坐标/zuobiao/app/globals.css",
+    "line": 18,
+    "snippet": "border-left:2px solid var(--annotation)"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "/Users/lihe/Documents/ChatGPT/坐标/zuobiao/app/globals.css",
+    "line": 15,
+    "snippet": "transition: width"
+  }
+]

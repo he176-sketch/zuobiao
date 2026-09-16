@@ -38,9 +38,9 @@ test('新旧快照可恢复，下一次选择不改变当时的方法与署名',
 test('内容来源固定且可复核，所有思想定位都有实际条目与本基座来源',()=>{
  const manifest=JSON.parse(readFileSync(new URL('../vendor/knowledge-manifest.json',import.meta.url)));
  for(const item of manifest){const bytes=readFileSync(new URL('../'+item.path,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),item.sha256,item.path);assert.match(item.url,/\/[a-f0-9]{40}\//);}
- assert.deepEqual(thinkingTools.map(t=>t.id),[...THINKING_TOOL_IDS]);assert.equal(new Set(philosophyLenses.map(l=>l.baseId)).size,BASE_IDS.length);
+ assert.deepEqual(thinkingTools.map(t=>t.id),[...THINKING_TOOL_IDS]);assert.deepEqual(philosophyLenses.map(l=>l.baseId).sort(),['camus','confucian','pragmatic','stoic']);
  for(const baseId of BASE_IDS){
-  const material=MaterialSnapshotSchema.parse(knowledgeMaterials(baseId));const lens=material.philosophySupplement;const original=JSON.parse(readFileSync(new URL('../vendor/philoscopia/'+lens.provenance.path,import.meta.url)));
+  const material=MaterialSnapshotSchema.parse(knowledgeMaterials(baseId));const lens=material.philosophySupplement;for(const tool of thinkingTools)MaterialSnapshotSchema.parse(knowledgeMaterials(baseId,tool.id));if(!lens)continue;const original=JSON.parse(readFileSync(new URL('../vendor/philoscopia/'+lens.provenance.path,import.meta.url)));
   for(const p of lens.positions){const entry=original.entries[p.entryIndex];assert.equal(entry.axisId,p.axisId);assert.equal(entry.status,'POSITIONED');assert.ok(p.upstreamReferences.length);assert.deepEqual(p.upstreamReferences,entry.justification.references);for(const id of p.sourceIds)assert.ok(material.sources.some(s=>s.id===id));}
   for(const tool of thinkingTools)MaterialSnapshotSchema.parse(knowledgeMaterials(baseId,tool.id));
  }

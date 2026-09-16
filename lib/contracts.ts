@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const BASE_IDS = ["stoic", "camus", "pragmatic", "confucian"] as const;
+export const BASE_IDS = ["stoic","camus","pragmatic","confucian","wang-yangming","naval","nietzsche","zhuangzi","epicurus","aristotle","luo-xiang","socrates"] as const;
 export const BaseIdSchema = z.enum(BASE_IDS);
 export const THINKING_TOOL_IDS = ["opportunity-cost","sunk-cost","reversible-choice","second-order-effects","evidence-updating","small-experiment"] as const;
 export const ThinkingToolIdSchema = z.enum(THINKING_TOOL_IDS);
@@ -11,13 +11,13 @@ export const ProfileSchema = z.object({schemaVersion:z.literal(1),baseId:BaseIdS
 export type Profile = z.infer<typeof ProfileSchema>;
 export type Principle = z.infer<typeof PrincipleSchema>;
 export type Proposal = z.infer<typeof ProposalSchema>;
-export const SourceSnapshotSchema=z.object({id:z.string(),url:z.string().url().refine(v=>v.startsWith("https://")),title:z.string(),author:z.string(),publisher:z.string(),sections:z.array(z.string())});
+export const SourceSnapshotSchema=z.object({id:z.string(),url:z.string().url().refine(v=>v.startsWith("https://")),title:z.string(),author:z.string(),publisher:z.string(),sections:z.array(z.string()),type:z.string().optional(),verified:z.string().optional(),contentUse:z.string().optional()});
 const ProvenanceSchema=z.object({author:z.string(),repository:z.string().url(),commit:z.string(),path:z.string(),license:z.string(),licenseUrl:z.string().url(),changes:z.string(),section:z.string().optional()});
 export const ThinkingToolSnapshotSchema=z.object({id:z.string(),version:z.string(),name:z.string(),purpose:z.string(),core:z.string(),steps:z.array(z.string()),boundary:z.string(),question:z.string(),kind:z.string(),sourceIds:z.array(z.string()),sources:z.array(SourceSnapshotSchema),provenance:ProvenanceSchema});
 export const PhilosophySupplementSchema=z.object({baseId:z.string(),version:z.string(),note:z.string(),positions:z.array(z.object({entryIndex:z.number().int(),axisId:z.string(),title:z.string(),claim:z.string(),tradeoff:z.string(),sourceIds:z.array(z.string()),epistemicStatus:z.string(),upstreamReferences:z.array(z.object({en:z.string(),fr:z.string().optional()}))})),provenance:ProvenanceSchema});
 export type PhilosophySupplement=z.infer<typeof PhilosophySupplementSchema>;
 export type ThinkingToolSnapshot=z.infer<typeof ThinkingToolSnapshotSchema>;
-export const MaterialSnapshotSchema=z.object({version:z.string(),name:z.string(),scope:z.string(),principles:z.array(z.object({title:z.string(),claim:z.string(),sourceIds:z.array(z.string())})),sources:z.array(SourceSnapshotSchema),philosophySupplement:PhilosophySupplementSchema.optional(),thinkingTool:ThinkingToolSnapshotSchema.optional()});
+export const MaterialSnapshotSchema=z.object({version:z.string(),name:z.string(),scope:z.string(),principles:z.array(z.object({title:z.string(),claim:z.string(),sourceIds:z.array(z.string()),sections:z.array(z.string()).optional(),attribution:z.string().optional(),context:z.string().optional(),application:z.string().optional(),boundary:z.string().optional()})),boundaries:z.array(z.object({title:z.string(),text:z.string(),type:z.string()})).optional(),sources:z.array(SourceSnapshotSchema),philosophySupplement:PhilosophySupplementSchema.optional(),thinkingTool:ThinkingToolSnapshotSchema.optional()});
 export type SourceSnapshot=z.infer<typeof SourceSnapshotSchema>;
 export type MaterialSnapshot=z.infer<typeof MaterialSnapshotSchema>;
 export const emptyProfile=():Profile=>({schemaVersion:1,baseId:null,revision:1,principles:[],history:[]});

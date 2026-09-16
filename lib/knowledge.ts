@@ -9,5 +9,5 @@ export function knowledgeMaterials(baseId:string,thinkingToolId?:string|null){
  if(!base)throw new Error("UNKNOWN_FOUNDATION");
  const thinkingTool=thinkingToolId?thinkingTools.find(t=>t.id===thinkingToolId):undefined;
  if(thinkingToolId&&!thinkingTool)throw new Error("UNKNOWN_THINKING_TOOL");
- return structuredClone({version:"2026-09-12.1",name:base.shortName,scope:base.historicalScope,principles:base.principles,sources:[...base.sources,...(thinkingTool?.sources||[])],philosophySupplement:philosophyLenses.find(p=>p.baseId===baseId),...(thinkingTool?{thinkingTool}:{})});
+ return structuredClone({version:content.version,name:base.shortName,scope:base.historicalScope,principles:base.principles,boundaries:base.boundaries,sources:[...base.sources,...(thinkingTool?.sources||[])],philosophySupplement:philosophyLenses.find(p=>p.baseId===baseId),...(thinkingTool?{thinkingTool}:{})});
 }

@@ -1,0 +1,1450 @@
+{
+  "round": 3,
+  "limit": 14,
+  "previousRequests": 0,
+  "previousCountConfirmedByUser": "2026-09-16: 此前未执行，已用 0 次",
+  "requests": [
+    {
+      "sequence": 1,
+      "case": "wang-yangming",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "wang-yangming",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:43:32.577Z",
+      "state": "failed",
+      "httpStatus": 502,
+      "result": {
+        "error": "回答花的时间有些长，问题已保留，可以重试。",
+        "code": "INVALID_OR_TIMEOUT"
+      },
+      "elapsedMs": 90050,
+      "completedAt": "2026-09-16T06:45:02.631Z"
+    },
+    {
+      "sequence": 2,
+      "case": "naval",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "naval",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:45:02.633Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "你难受的地方，未必是“真的想成为他们”，而是社会常用的收入、职位、房产或影响力排名，让你在不认同终点的同时，仍觉得自己输了。失败感是真实的，但它本身不能证明你的选择失败。现在还不知道你的基本保障、职业进展和现实责任，所以也不能仅用“不比较”来断定现状没有问题。",
+          "perspective": "纳瓦尔在财富访谈中区分财富、金钱与地位竞争，并把财富的意义更多联系到时间和选择自由。依据这个观点，我们可以把判断拆开：同龄人排名靠前，只说明他们在某些公开指标上领先；若你并不愿承担他们生活里的时间占用、压力或关系代价，那些指标就不能单独裁定你的人生。不过，自主也需要物质基础，因此仍应核查收入、储蓄、健康和责任是否可持续。幸福访谈还提醒，比较会不断制造新的欲望目标，但这不等于要放弃进取。",
+          "nextStep": "选一个最让你刺痛的同龄人，只做一次四栏记录：我羡慕他的什么；我不愿承受什么代价；我真正需要达到的生活底线；未来三个月能增加自主的一项行动。行动可以是提高一项可出售的能力、争取更可控的工作安排，或补足应急储蓄。三个月后用“保障是否更稳、时间是否更自主”复盘，而不是只看是否追平对方。",
+          "question": "",
+          "sourceIds": [
+            "naval-rich",
+            "naval-happiness"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "naval",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03",
+          "name": "纳瓦尔",
+          "scope": "采用 Naval 本人站有关财富、specific knowledge 与幸福的公开访谈。属于纳瓦尔公开生活思想启发，不是完整哲学体系，不模仿本人，不暗示授权或合作。编者索引用于寻源，不替代本人材料。",
+          "principles": [
+            {
+              "title": "让财富服务自主",
+              "claim": "纳瓦尔区分资产、金钱与地位竞争，并把财富的用途联系到时间与选择自由。",
+              "sourceIds": [
+                "naval-rich"
+              ],
+              "sections": [
+                "Seek Wealth, Not Money or Status；Wealth buys your freedom"
+              ],
+              "attribution": "Naval 本人访谈论述",
+              "context": "科技创业和投资经验背景。",
+              "application": "产品推导：评估收入方案增加多少自主、占去多少当下生活。",
+              "boundary": "不能保证每个人都能复制其路径。"
+            },
+            {
+              "title": "发展需要实践的独特能力",
+              "claim": "他将 specific knowledge 联系于真实好奇心、经历和复杂情境中的判断，也承认学校和训练有作用。",
+              "sourceIds": [
+                "naval-knowledge"
+              ],
+              "sections": [
+                "Specific knowledge can’t be trained",
+                "Specific knowledge is found by pursuing your curiosity"
+              ],
+              "attribution": "Naval 回答，Nivi 提问",
+              "context": "不是每个兴趣都会形成有需求的能力。",
+              "application": "产品推导：小范围实践，观察能否为他人提供价值。",
+              "boundary": "不承诺财富，不把低收入归因于个人不努力。"
+            },
+            {
+              "title": "别把幸福全部推迟到以后",
+              "claim": "他讨论欲望实现未必带来持续幸福，也承认物质条件能够减少部分不幸。",
+              "sourceIds": [
+                "naval-happiness"
+              ],
+              "sections": [
+                "Happiness Without Material Comfort Is Playing on Hard Mode",
+                "Desire Is a Contract You Make to Be Unhappy"
+              ],
+              "attribution": "本人思想与经验，不是临床或实证定律",
+              "context": "幸福访谈中的反思，非对贫困的解释。",
+              "application": "产品推导：区分保障生活、具体追求与不断比较。",
+              "boundary": "不要求放弃进取或基本保障。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "经验有范围",
+              "text": "财富论带有特定行业与时代背景；产品不输出投资推荐、收益保证或幸福承诺。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "欲望并非全部问题",
+              "text": "真实贫困、健康与责任需要资源，不能只用减少欲望解决。未核查的遗传比例、群体归因和健康建议不纳入。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "naval-rich",
+              "url": "https://nav.al/rich",
+              "title": "How to Get Rich（完整访谈）",
+              "author": "Naval Ravikant；Babak Nivi 提问",
+              "publisher": "Naval 本人网站",
+              "sections": [
+                "Seek Wealth, Not Money or Status"
+              ],
+              "type": "author-interview",
+              "verified": "2026-09-16：已沿 wealth 索引读到 rich 正文，2019-12-28；wealth 本身不是完整正文。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "naval-knowledge",
+              "url": "https://nav.al/specific-knowledge",
+              "title": "Arm Yourself With Specific Knowledge",
+              "author": "Naval Ravikant；Babak Nivi 提问",
+              "publisher": "Naval 本人网站",
+              "sections": [
+                "独特知识与真实好奇心"
+              ],
+              "type": "author-interview",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "naval-happiness",
+              "url": "https://nav.al/happiness",
+              "title": "Happiness",
+              "author": "Naval Ravikant",
+              "publisher": "Naval 本人网站",
+              "sections": [
+                "物质保障与幸福",
+                "欲望的代价"
+              ],
+              "type": "author-interview",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 18132,
+      "completedAt": "2026-09-16T06:45:20.765Z"
+    },
+    {
+      "sequence": 3,
+      "case": "nietzsche",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "nietzsche",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:45:20.768Z",
+      "state": "failed",
+      "httpStatus": 502,
+      "result": {
+        "error": "AI 服务连接中断，问题已保留，请重试。",
+        "code": "PROVIDER_CONNECTION_ERROR"
+      },
+      "elapsedMs": 77281,
+      "completedAt": "2026-09-16T06:46:38.051Z"
+    },
+    {
+      "sequence": 4,
+      "case": "zhuangzi",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "zhuangzi",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:46:38.054Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "你难受的地方并不矛盾：你看见了他们在收入、职位、作品或稳定性等某些指标上领先，于是产生失败感；同时，你并不认可他们为这些结果付出的生活方式。前者是比较带来的情绪，后者是你对生活代价的判断。现在能确定的只是“他们在部分指标上走得更远”，还不能据此判定你的整个生活失败。不过，不想过他们的生活，也不能自动证明你目前的道路适合自己，还要看经济压力、健康、关系和成长是否可持续。",
+          "perspective": "《逍遥游》的宋荣子段写一个人不轻易被世人的赞誉和非议牵动，但文本随即说他仍有所未达，因此“不随评价走”并非最终答案。篇末大瓠与大树的寓言则通过改变用途和处境，松动了单一的“有用”标准。依据这些观点，我们可以把同龄人的发展看作一种尺度上的成绩，而不是生活的总裁决；再检查你真正拒绝的是他们的目标，还是实现目标所需的代价。这种松动不等于否认现实差距，也不保证每次落后都另有隐藏价值。",
+          "nextStep": "先做一次具体拆分：写下你羡慕他们的三项结果，再分别标出你愿意和不愿意承担的代价。然后选一项“想要结果、但不接受原有活法”的目标，设计一个四周内可检验的小安排，例如稳定投递、完成一个作品或增加固定储蓄。四周后只比较行动与结果，不给整个人生下结论。",
+          "question": "",
+          "sourceIds": [
+            "zhuangzi-wandering"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "zhuangzi",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03",
+          "name": "庄子",
+          "scope": "限定《庄子》内篇《逍遥游》《齐物论》的所列段落。内篇作者归属仍有讨论；寓言人物发言标为文本中的论述，不当作庄周逐字发言。SEP 的解释也不是学界唯一结论。",
+          "principles": [
+            {
+              "title": "名声不穷尽生活的尺度",
+              "claim": "《逍遥游》宋荣子段写其不随举世赞誉非议而动，并随即指出他仍有所未达。",
+              "sourceIds": [
+                "zhuangzi-wandering"
+              ],
+              "sections": [
+                "宋荣子段"
+              ],
+              "attribution": "传世《庄子》古文",
+              "context": "原文并未把不在乎评价当作最终答案。",
+              "application": "产品推导：某项排名不能直接裁定整个生活。",
+              "boundary": "不能据此断定所有反馈无关紧要。"
+            },
+            {
+              "title": "有用的定义可能过窄",
+              "claim": "大瓠与大树寓言改变用途和场景，也呈现不被取用所保全的空间。",
+              "sourceIds": [
+                "zhuangzi-wandering"
+              ],
+              "sections": [
+                "篇末大瓠、大树两则惠子寓言"
+              ],
+              "attribution": "古代寓言文本",
+              "context": "不同生活可能并不都进入同一功利评价。",
+              "application": "产品推导：尝试改变评价场景，检查是否还有适合自己的安排。",
+              "boundary": "不保证每次失败都有隐藏收益。"
+            },
+            {
+              "title": "成见和辩论胜利都需要反省",
+              "claim": "《齐物论》的成心、彼此是非及辩论裁判讨论，使单一立场的自足性受到质疑。",
+              "sourceIds": [
+                "zhuangzi-equality"
+              ],
+              "sections": [
+                "成心与彼此是非段",
+                "长梧子答瞿鹊子末段"
+              ],
+              "attribution": "文本中的论述与寓言",
+              "context": "怀疑主义、相对主义等解释有分歧。",
+              "application": "产品推导：不因自己赢了争论就宣布标准正确。",
+              "boundary": "视角不同不推出所有道路同样正确，更不能抹去事实。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "开放不等于逃避",
+              "text": "不能自动建议辞职、断联或放弃照护、合同等现实责任；环境伤害不能只说成视角问题。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "没有万能的最终尺度",
+              "text": "此路径能松动僵硬分类，却不提供包办全部选择的算法；仍需事实检验和实际取舍。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "zhuangzi-wandering",
+              "url": "https://zh.wikisource.org/wiki/莊子/逍遙遊",
+              "title": "庄子·逍遥游",
+              "author": "传统归于庄周；传世文本",
+              "publisher": "维基文库古文转录",
+              "sections": [
+                "宋荣子段",
+                "大瓠与大树寓言"
+              ],
+              "type": "primary-text-transcription",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "zhuangzi-equality",
+              "url": "https://zh.wikisource.org/zh-hant/莊子/齊物論",
+              "title": "庄子·齐物论",
+              "author": "传统归于庄周；传世文本",
+              "publisher": "维基文库古文转录",
+              "sections": [
+                "成心与彼此是非",
+                "长梧子辩论裁判段"
+              ],
+              "type": "primary-text-transcription",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "sep-zhuangzi",
+              "url": "https://plato.stanford.edu/entries/zhuangzi/",
+              "title": "Zhuangzi",
+              "author": "Chad Hansen",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "§2",
+                "§3",
+                "§4.5",
+                "§4.7"
+              ],
+              "type": "academic-reference",
+              "verified": "2026-09-16：已读文本形成及解释争议，2024-03-24 修订。Ctext 打开失败，不列为成功核查来源。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 20296,
+      "completedAt": "2026-09-16T06:46:58.350Z"
+    },
+    {
+      "sequence": 5,
+      "case": "epicurus",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "epicurus",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我既想多挣钱，又不想为了挣钱牺牲现在的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:46:58.354Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "你面对的不是简单的“要钱还是要生活”，而是两种正当需要在争夺有限的时间：收入能带来保障和选择权，当下生活也包含睡眠、健康、关系与可支配时间。现在还不知道你是否有债务、赡养责任或基本保障缺口，因此不能直接断言该少挣或该拼一段时间；现实压力不同，合理边界也会不同。",
+          "perspective": "《致美诺伊克斯书》区分必要需要、具体而有限的享受，以及难有止境的欲望；《主要教说》第5、8条则强调，不能只看眼前快乐或辛苦，而要比较完整后果。依据这些观点，我们可以把“多挣钱”拆开：若为了住房、医疗、家庭责任和应急储备，它更接近必要保障；若主要为了不输给别人，目标可能不断后移。同时，少挣钱本身并不保证安宁。判断前提应是：新增收入带来的长期安全，是否值得它对睡眠、健康、关系和自由时间造成的实际损耗。",
+          "nextStep": "先做一个四周可撤回的实验：写下“最低收入线”“希望达到的收入线”和三条不可长期突破的生活底线，例如每周休息时间、睡眠下限、陪伴安排。然后只尝试一种增收方式，如谈薪、换更高单价的工作或限定时数的副业，并每周记录新增收入、额外工时、睡眠和烦躁程度。四周后按实际结果决定继续、调整或停止，不必一次决定未来几年。",
+          "question": "",
+          "sourceIds": [
+            "epicurus-letter",
+            "epicurus-doctrines"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "epicurus",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03",
+          "name": "伊壁鸠鲁",
+          "scope": "采用《致美诺伊克斯书》的欲望、快乐选择、自足与审慎，以及《主要教说》第5、8、15、26—29条；不覆盖全部自然哲学和伦理体系。",
+          "principles": [
+            {
+              "title": "分辨欲望的性质",
+              "claim": "文本区分必要需要、非必要的自然欲望及难有止境的欲望。",
+              "sourceIds": [
+                "epicurus-letter",
+                "epicurus-doctrines"
+              ],
+              "sections": [
+                "书信欲望分类段",
+                "教说15、26、29"
+              ],
+              "attribution": "Epicurus，经 Robert Drew Hicks 英译",
+              "context": "欲望区分服务于较少痛苦和扰乱的生活。",
+              "application": "产品推导：挣钱先区分保障、具体享受和无休止比较。",
+              "boundary": "真实贫困不能靠改变想法解决。"
+            },
+            {
+              "title": "看完整后果再选择快乐",
+              "claim": "并非每种快乐都值得选，也并非每种辛苦都该逃避，审慎要比较后续代价。",
+              "sourceIds": [
+                "epicurus-letter",
+                "epicurus-doctrines"
+              ],
+              "sections": [
+                "书信快乐与痛苦选择段",
+                "教说5、8"
+              ],
+              "attribution": "古代伦理论述",
+              "context": "不是最大化即时刺激。",
+              "application": "产品推导：比较收入、睡眠、时间与持续不安。",
+              "boundary": "少挣钱不保证更幸福。"
+            },
+            {
+              "title": "自足与友谊支持安稳生活",
+              "claim": "自足减少对奢侈的依赖，不要求永远贫困；友谊也关乎安稳。",
+              "sourceIds": [
+                "epicurus-letter",
+                "epicurus-doctrines"
+              ],
+              "sections": [
+                "书信自足段",
+                "教说27—28"
+              ],
+              "attribution": "古代伦理论述",
+              "context": "简朴、自足与社会关系并非彼此排斥。",
+              "application": "产品推导：减少炫耀性支出，同时保障需要和关系。",
+              "boundary": "不以退出社会为统一答案。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "不是纵欲或强制清贫",
+              "text": "审慎可能放弃部分刺激、名望和增长，也要确认真实需要与长期责任。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "古代身心论的限度",
+              "text": "不把古代关于疼痛的强论断用作医疗结论，也不淡化疾病和资源困难。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "epicurus-letter",
+              "url": "https://classics.mit.edu/Epicurus/menoec.html",
+              "title": "Letter to Menoeceus（致美诺伊克斯书）",
+              "author": "Epicurus；Robert Drew Hicks 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "欲望分类",
+                "快乐选择",
+                "自足与审慎"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "epicurus-doctrines",
+              "url": "https://classics.mit.edu/Epicurus/princdoc.html",
+              "title": "Principal Doctrines（主要教说）",
+              "author": "Epicurus；Robert Drew Hicks 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "5",
+                "8",
+                "15",
+                "26—29"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 19949,
+      "completedAt": "2026-09-16T06:47:18.304Z"
+    },
+    {
+      "sequence": 6,
+      "case": "aristotle",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "aristotle",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我认同一些原则，却总在实际选择中违背它们。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:47:18.306Z",
+      "state": "failed",
+      "httpStatus": 502,
+      "result": {
+        "error": "回答花的时间有些长，问题已保留，可以重试。",
+        "code": "INVALID_OR_TIMEOUT"
+      },
+      "elapsedMs": 90103,
+      "completedAt": "2026-09-16T06:48:48.410Z"
+    },
+    {
+      "sequence": 7,
+      "case": "luo-xiang",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "luo-xiang",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "别人说我失败，我又觉得他们的标准不对。我到底应该相信谁？请给出判断，不要只反问。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:48:48.413Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "我的判断是：不要在“相信他们”与“只相信自己”之间二选一。若对方只是用收入、职位、婚恋或名望，就断定你整个人“失败”，这个结论依据不足，你不必接受；但你觉得其标准不对，也不能自动证明所有批评都错。更可靠的裁判应是：可核实的事实、你确实承担过的承诺，以及你经过思考愿意接受的生活代价。",
+          "perspective": "罗翔在署名文章中反省过自己曾把批评解释成嫉妒，后来转向检查自身和职业责任；这支持我们不要仅因批评刺耳就排除它。他在编辑整理的对谈中也把认识有限与保持开放联系起来。依据这些观点，我们可以既审查外界标准，也审查自己的辩护。这里的前提是谦卑不等于服从：具体反馈值得核验，羞辱性的整体判决则不必接纳。",
+          "nextStep": "把对方的话改写成一个可验证的具体命题，例如“我没有兑现某项承诺”或“目前收入不足以承担某项开支”。再分别写下证据、对方采用的标准、你认可的责任。能证实且属于你责任的，选一件一周内可修正的事；只有价值偏好、无法举证或把局部扩大成整个人失败的部分，明确退回。这样做的代价是你可能要承认某些不足，但不必把不足升级为自我否定。",
+          "question": "",
+          "sourceIds": [
+            "luo-truth",
+            "luo-fandeng"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "luo-xiang",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03",
+          "name": "罗翔",
+          "scope": "罗翔公开思想启发：采用署名文章、看理想文字访谈及樊登读书对谈精华版中的有限论述。不是独立学派，不冒充本人、不模仿声线经历、不暗示授权合作；对他所引用思想家的解释须另作归属。",
+          "principles": [
+            {
+              "title": "认识有限仍可以作出判断",
+              "claim": "罗翔把阅读联系于承认无知；讨论幸福时，他表达自己的判断，也承认不能完整把握，保持开放而不强求他人。",
+              "sourceIds": [
+                "luo-fandeng"
+              ],
+              "sections": [
+                "开场：阅读的意义",
+                "04 如何理解幸福"
+              ],
+              "attribution": "罗翔在编辑整理对谈中的自述",
+              "context": "讨论阅读与幸福理解，不是所有争议的统一裁判。",
+              "application": "产品推导：分别检验外界标准和自己的辩护。",
+              "boundary": "谦卑不是服从，也不意味着所有标准同样可靠。"
+            },
+            {
+              "title": "接受批评并检查自我辩护",
+              "claim": "署名文章反省曾将批评视为嫉妒，转向诚实面对自身与职业；他解释穆勒支持意见交锋的理由，同时明确对其部分主张有保留。",
+              "sourceIds": [
+                "luo-truth"
+              ],
+              "sections": [
+                "对学术志业的反思及对穆勒的保留"
+              ],
+              "attribution": "自省是罗翔自述；意见自由论证是他对穆勒的解释",
+              "context": "个人阅读与职业反省，不是对用户动机的诊断。",
+              "application": "产品推导：保留具体事实反馈，不因不舒服就排除批评。",
+              "boundary": "不凭未达理想断言用户虚伪或道德低劣。"
+            },
+            {
+              "title": "承认误解，也保留交流与批判",
+              "claim": "看理想访谈中，他谈自己和他人都可能被误解；权威对知识传承有作用，也可能出错。",
+              "sourceIds": [
+                "luo-vistopia"
+              ],
+              "sections": [
+                "01 关于误解与交流",
+                "02 关于权威"
+              ],
+              "attribution": "罗翔受访论述",
+              "context": "不将访谈中的命运说用于解释用户遭遇的事实原因。",
+              "application": "产品推导：优先具体反馈，沟通纠偏，必要时拒绝羞辱互动。",
+              "boundary": "理解有限不等于退出交流或放弃边界。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "谦卑与边界并存",
+              "text": "不要求无条件顺从、自我贬低或忍受伤害；现实不公与资源不足需要单独核查。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "不提供本人个案法律意见",
+              "text": "不以张三段子、声线、个人经历制造身份感。这里是产品哲学对话，不是罗翔本人法律服务；引用他人思想必须明确归属。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "luo-truth",
+              "url": "https://m.thepaper.cn/newsDetail_forward_18117164",
+              "title": "只有真理才能让人拥有真正的自由（署名文章授权转载）",
+              "author": "罗翔",
+              "publisher": "中国政法大学公共决策研究中心官方澎湃号，2022-05-16",
+              "sections": [
+                "职业反思",
+                "学术志业反思与对穆勒的保留"
+              ],
+              "type": "author-essay-authorized-republication",
+              "verified": "2026-09-16：已读完整转载正文；页首标明源自罗翔说刑法、原专栏及作者授权。该转载授权不是本产品授权。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "luo-vistopia",
+              "url": "https://www.thepaper.cn/newsDetail_forward_20028714",
+              "title": "我不是一个勇敢的人，所以我向往勇敢（文字访谈）",
+              "author": "罗翔受访；看理想；采写林蓝",
+              "publisher": "看理想／澎湃号，2022-09-24",
+              "sections": [
+                "01 命运与本分",
+                "02 勇敢与教育"
+              ],
+              "type": "published-interview",
+              "verified": "2026-09-16：已读四节完整已发布问答及署名；不声称未剪辑录音。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "luo-fandeng",
+              "url": "https://www.thepaper.cn/newsDetail_forward_29022445",
+              "title": "樊登对谈罗翔：这几本书，指引我找到人生答案（精华版）",
+              "author": "樊登、罗翔；帆书编辑整理",
+              "publisher": "帆书官方澎湃号，2024-10-17",
+              "sections": [
+                "开场",
+                "04 如何理解幸福"
+              ],
+              "type": "edited-interview",
+              "verified": "2026-09-16：已读发布页面；页面自称精华版，不能标为完整访谈。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 26276,
+      "completedAt": "2026-09-16T06:49:14.691Z"
+    },
+    {
+      "sequence": 8,
+      "case": "socrates",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "socrates",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "别人说我失败，我又觉得他们的标准不对。我到底应该相信谁？请给出判断，不要只反问。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:49:14.692Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "目前可以明确判断：你不该仅凭“别人都这么说”相信他们，也不该仅凭自己不服就认定他们错。应当相信在这件具体事情上更符合事实、标准更合理、推论更完整的一方。如果你确实没有达到事先约定的目标，可以说这一次或这一项目失败了；但从一次结果推到“你这个人是失败者”，理由明显不足。",
+          "perspective": "《克里托篇》主张区分多数人的意见与相关知者的意见，并依照经得起检查的较好理由行动。依据这个观点，我们可以把对方的评价拆成三层：发生了什么、用什么标准衡量、这个标准能否推出对你的整体否定。《申辩篇》也提醒我们，某方面的地位或专长不等于对你整个人生拥有判断权。这里采用的价值前提是：事实需要诚实承认，但名声、排名和单次输赢不是评价生活的唯一尺度。代价是你既要接受有根据的批评，也要承受拒绝流行标准时可能出现的不理解。",
+          "nextStep": "把最刺痛你的那句评价写下来，分成“事实、标准、结论”三栏。事实只写可核验内容，例如结果、期限和约定；标准检查是否事先明确、是否与目标相关、是否对双方一致；结论则检查有没有从局部失利跳到整体人格。如果事实成立，就承认并决定补救；如果标准不相关或结论越界，就具体反驳其理由，而不是证明自己绝不失败。",
+          "question": "",
+          "sourceIds": [
+            "plato-crito",
+            "plato-apology"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "socrates",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03",
+          "name": "苏格拉底",
+          "scope": "限定柏拉图《申辩篇》《克里托篇》，参照 SEP 的 Socratic problem。苏格拉底没有留下自己的著作；柏拉图的记述不是逐字实录，不把其全部对话观点混入。当前交互属于产品设计，不声称完整复刻历史对话方式。",
+          "principles": [
+            {
+              "title": "局部专长不等于全知",
+              "claim": "《申辩篇》考察政治家、诗人和工匠，区分真正知道的事与自以为知道的事。",
+              "sourceIds": [
+                "plato-apology"
+              ],
+              "sections": [
+                "考察政治家、诗人与工匠的段落"
+              ],
+              "attribution": "柏拉图记述，经 Benjamin Jowett 英译",
+              "context": "用于解释德尔斐神谕及指控来源的辩护。",
+              "application": "产品推导：看判断者在当前事项上掌握什么、能给什么理由。",
+              "boundary": "既不全盘否定专家，也不因自己承认无知就断定自己更正确。"
+            },
+            {
+              "title": "审视服务于生活与行动",
+              "claim": "《申辩篇》重智慧、真理与灵魂改善，反对只追逐财富和名声；检查信念关乎行动正当性。",
+              "sourceIds": [
+                "plato-apology"
+              ],
+              "sections": [
+                "劝告雅典人重智慧、真理与灵魂",
+                "判刑建议中的审视生活"
+              ],
+              "attribution": "柏拉图文本呈现，非苏格拉底著作",
+              "context": "论述带有哲学使命与宗教背景。",
+              "application": "产品推导：结果和排名不是生活唯一尺度，还检查诚实、公正与理由。",
+              "boundary": "这是价值前提，不是科学定律；拒绝自省不意味着生命不值得。"
+            },
+            {
+              "title": "凭经检查的理由判断",
+              "claim": "《克里托篇》比较多数意见与相关知者的意见，要求遵循较好的理由，并以不行不义、不以不义报复作为约束。",
+              "sourceIds": [
+                "plato-crito"
+              ],
+              "sections": [
+                "意见与训练者类比",
+                "善好生活",
+                "不得以不义报复"
+              ],
+              "attribution": "柏拉图《克里托篇》的论证",
+              "context": "讨论是否越狱，后续有法律拟人化的说服或服从论证。",
+              "application": "产品推导：区分事实与成功标准，接受有理由的批评，不凭人数或情绪判断。",
+              "boundary": "道德领域如何辨认知者有争议，古代服从论证不能直接成为现代无条件服从。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "文本与解释的限度",
+              "text": "历史苏格拉底与作者笔下形象难以彻底分离；宗教使命、法律服从与道德知识存在解释争议。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "帮助不能以逼问为前提",
+              "text": "先用已有信息解释并给有边界的判断。用户拒答时用条件句与例子继续，不能循环追问，也不能用审视生活的强表述羞辱用户或鼓励危险牺牲。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "plato-apology",
+              "url": "https://classics.mit.edu/Plato/apology.html",
+              "title": "Apology（申辩篇）",
+              "author": "Plato；Benjamin Jowett 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "政治家、诗人与工匠",
+                "智慧、真理与灵魂",
+                "判刑建议：审视生活"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "plato-crito",
+              "url": "https://classics.mit.edu/Plato/crito.html",
+              "title": "Crito（克里托篇）",
+              "author": "Plato；Benjamin Jowett 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "意见与训练者类比",
+                "不义不可报复",
+                "人格化法律论证"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "sep-socrates",
+              "url": "https://plato.stanford.edu/entries/socrates/",
+              "title": "Socrates",
+              "author": "Debra Nails",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "导言",
+                "2 The Socratic problem",
+                "2.2 Contemporary interpretative strategies"
+              ],
+              "type": "academic-reference",
+              "verified": "2026-09-16：已读文本问题及解释策略，2022-05-26 实质修订。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 16713,
+      "completedAt": "2026-09-16T06:49:31.405Z"
+    },
+    {
+      "sequence": 9,
+      "case": "socrates-followup",
+      "constructed": true,
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "socrates",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "别人说我失败，我又觉得他们的标准不对。我到底应该相信谁？请给出判断，不要只反问。"
+          },
+          {
+            "role": "assistant",
+            "content": "目前可以明确判断：你不该仅凭“别人都这么说”相信他们，也不该仅凭自己不服就认定他们错。应当相信在这件具体事情上更符合事实、标准更合理、推论更完整的一方。如果你确实没有达到事先约定的目标，可以说这一次或这一项目失败了；但从一次结果推到“你这个人是失败者”，理由明显不足。\n\n《克里托篇》主张区分多数人的意见与相关知者的意见，并依照经得起检查的较好理由行动。依据这个观点，我们可以把对方的评价拆成三层：发生了什么、用什么标准衡量、这个标准能否推出对你的整体否定。《申辩篇》也提醒我们，某方面的地位或专长不等于对你整个人生拥有判断权。这里采用的价值前提是：事实需要诚实承认，但名声、排名和单次输赢不是评价生活的唯一尺度。代价是你既要接受有根据的批评，也要承受拒绝流行标准时可能出现的不理解。\n\n把最刺痛你的那句评价写下来，分成“事实、标准、结论”三栏。事实只写可核验内容，例如结果、期限和约定；标准检查是否事先明确、是否与目标相关、是否对双方一致；结论则检查有没有从局部失利跳到整体人格。如果事实成立，就承认并决定补救；如果标准不相关或结论越界，就具体反驳其理由，而不是证明自己绝不失败。"
+          },
+          {
+            "role": "user",
+            "content": "不想再答问题，希望获得直接解释。请继续说明原问题中，我现在能判断什么、缺少什么，以及下一步怎样检验。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:49:31.408Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "你现在能判断三点。第一，别人数量多、身份高或语气肯定，都不能单独证明评价正确。第二，你觉得标准不对，也只能说明标准需要检验，不能自动证明自己成功。第三，如果你未达到事先明确且与你承担的任务相关的目标，可以承认“这件事没有做成”；但由此断定“你这个人是失败者”，是从局部结果跳到整体人格，现有信息不足以支持。",
+          "perspective": "《克里托篇》的论证要求比较意见背后的理由，并重视对相关事项真正了解的人，而不是只服从多数。《申辩篇》则区分局部专长与对其他事情的自以为知。依据这些观点，我们可以把评价拆成事实、标准和结论，而不必在“全信别人”和“只信自己”之间二选一。这里的价值前提是诚实承认事实，同时不把名声、排名或一次输赢当作人生的唯一尺度。代价是：合理的批评即使刺痛也要接纳；不合理的标准即使流行，也可能需要承担拒绝它带来的压力。",
+          "nextStep": "做一次可检验的三栏核对。事实栏只写结果、期限、约定和证据；标准栏检查它是否事先明确、与目标相关、对同类人一致；结论栏检查事实最多能推出多大范围。若事实不清，先补记录；若事实成立而标准合理，就承认具体失利并制定一次补救行动；若标准未经约定、与目标无关或只针对你，就暂不接受；若结论扩大到人格或整个人生，就要求具体证据。再找一位了解此事且不直接卷入冲突的人，按同一三栏复核。两次核对结果一致的部分，可作为你目前最有根据的判断。",
+          "question": "",
+          "sourceIds": [
+            "plato-crito",
+            "plato-apology"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "socrates",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03",
+          "name": "苏格拉底",
+          "scope": "限定柏拉图《申辩篇》《克里托篇》，参照 SEP 的 Socratic problem。苏格拉底没有留下自己的著作；柏拉图的记述不是逐字实录，不把其全部对话观点混入。当前交互属于产品设计，不声称完整复刻历史对话方式。",
+          "principles": [
+            {
+              "title": "局部专长不等于全知",
+              "claim": "《申辩篇》考察政治家、诗人和工匠，区分真正知道的事与自以为知道的事。",
+              "sourceIds": [
+                "plato-apology"
+              ],
+              "sections": [
+                "考察政治家、诗人与工匠的段落"
+              ],
+              "attribution": "柏拉图记述，经 Benjamin Jowett 英译",
+              "context": "用于解释德尔斐神谕及指控来源的辩护。",
+              "application": "产品推导：看判断者在当前事项上掌握什么、能给什么理由。",
+              "boundary": "既不全盘否定专家，也不因自己承认无知就断定自己更正确。"
+            },
+            {
+              "title": "审视服务于生活与行动",
+              "claim": "《申辩篇》重智慧、真理与灵魂改善，反对只追逐财富和名声；检查信念关乎行动正当性。",
+              "sourceIds": [
+                "plato-apology"
+              ],
+              "sections": [
+                "劝告雅典人重智慧、真理与灵魂",
+                "判刑建议中的审视生活"
+              ],
+              "attribution": "柏拉图文本呈现，非苏格拉底著作",
+              "context": "论述带有哲学使命与宗教背景。",
+              "application": "产品推导：结果和排名不是生活唯一尺度，还检查诚实、公正与理由。",
+              "boundary": "这是价值前提，不是科学定律；拒绝自省不意味着生命不值得。"
+            },
+            {
+              "title": "凭经检查的理由判断",
+              "claim": "《克里托篇》比较多数意见与相关知者的意见，要求遵循较好的理由，并以不行不义、不以不义报复作为约束。",
+              "sourceIds": [
+                "plato-crito"
+              ],
+              "sections": [
+                "意见与训练者类比",
+                "善好生活",
+                "不得以不义报复"
+              ],
+              "attribution": "柏拉图《克里托篇》的论证",
+              "context": "讨论是否越狱，后续有法律拟人化的说服或服从论证。",
+              "application": "产品推导：区分事实与成功标准，接受有理由的批评，不凭人数或情绪判断。",
+              "boundary": "道德领域如何辨认知者有争议，古代服从论证不能直接成为现代无条件服从。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "文本与解释的限度",
+              "text": "历史苏格拉底与作者笔下形象难以彻底分离；宗教使命、法律服从与道德知识存在解释争议。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "帮助不能以逼问为前提",
+              "text": "先用已有信息解释并给有边界的判断。用户拒答时用条件句与例子继续，不能循环追问，也不能用审视生活的强表述羞辱用户或鼓励危险牺牲。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "plato-apology",
+              "url": "https://classics.mit.edu/Plato/apology.html",
+              "title": "Apology（申辩篇）",
+              "author": "Plato；Benjamin Jowett 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "政治家、诗人与工匠",
+                "智慧、真理与灵魂",
+                "判刑建议：审视生活"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "plato-crito",
+              "url": "https://classics.mit.edu/Plato/crito.html",
+              "title": "Crito（克里托篇）",
+              "author": "Plato；Benjamin Jowett 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "意见与训练者类比",
+                "不义不可报复",
+                "人格化法律论证"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "sep-socrates",
+              "url": "https://plato.stanford.edu/entries/socrates/",
+              "title": "Socrates",
+              "author": "Debra Nails",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "导言",
+                "2 The Socratic problem",
+                "2.2 Contemporary interpretative strategies"
+              ],
+              "type": "academic-reference",
+              "verified": "2026-09-16：已读文本问题及解释策略，2022-05-26 实质修订。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 24206,
+      "completedAt": "2026-09-16T06:49:55.616Z"
+    },
+    {
+      "sequence": 10,
+      "case": "nietzsche-recheck",
+      "constructed": true,
+      "manualRecheckReason": "首次上游失败且其后已有成功，人工选定一次重试",
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "nietzsche",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:50:43.490Z",
+      "state": "failed",
+      "httpStatus": 502,
+      "result": {
+        "error": "AI 服务连接中断，问题已保留，请重试。",
+        "code": "PROVIDER_CONNECTION_ERROR"
+      },
+      "elapsedMs": 3162,
+      "completedAt": "2026-09-16T06:50:46.653Z"
+    },
+    {
+      "sequence": 11,
+      "case": "aristotle-recheck",
+      "constructed": true,
+      "manualRecheckReason": "首次上游失败且其后已有成功，人工选定一次重试",
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "aristotle",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我认同一些原则，却总在实际选择中违背它们。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:50:46.656Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "这不必立刻被判定为“虚伪”或“意志薄弱”。你已经看见原则与行动的落差，但造成落差的事实还不清楚：可能是即时利益压过长期目标，也可能是疲惫、金钱压力、人际权力差异或原则本身过于笼统。判断责任之前，需要分清哪些是你的选择，哪些是现实条件造成的限制。",
+          "perspective": "《尼各马可伦理学》第二卷把品格理解为在反复行动中逐渐形成的稳定倾向：知道或赞同善，并不自动等于已经能够稳定地如此行动。第六卷又指出，恰当行动需要实践智慧，把值得追求的目的、具体事实和适合当事人的尺度结合起来。依据这些观点，我们可以把这类违背看作需要检查和练习的具体选择，而不是一次性给整个人定性；同时，品格练习也不能消除资源不足或他人施压。",
+          "nextStep": "先只复盘最近一次违背：写下当时认可的原则、实际行动、触发条件，以及那个行动当下替你解决了什么。然后设计一个小一级的替代动作。例如原则是“诚实”，但直接坦白会带来现实风险，下一次可以先做到不主动编造，并争取时间核实。连续观察三次：若替代动作可行，就重复练习；若始终做不到，检查环境支持是否不足，或原则是否需要变得更具体，而不是继续笼统自责。",
+          "question": "最近最让你介意的是违背了哪一条原则？",
+          "sourceIds": [
+            "aristotle-book2",
+            "aristotle-book6"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "aristotle",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03.1",
+          "name": "亚里士多德",
+          "scope": "选取《尼各马可伦理学》I.3、I.5、I.7—8，II.1—2、II.4、II.6，VI.5、VI.7—8、VI.12—13。聚焦幸福、品格、习惯与实践智慧，不声称涵盖全部幸福论。",
+          "principles": [
+            {
+              "title": "美好生活关乎长期怎样行动",
+              "claim": "幸福不能只由一时感受或他人授予的荣誉确定，也要考察人的活动及外部条件。",
+              "sourceIds": [
+                "aristotle-book1"
+              ],
+              "sections": [
+                "I.5、I.7—8"
+              ],
+              "attribution": "Aristotle，经 W. D. Ross 英译",
+              "context": "德性活动及一生尺度下的善好生活。",
+              "application": "产品推导：比较外界评价与实际活动，承认资源影响机会。",
+              "boundary": "品格好不保证万事顺利。"
+            },
+            {
+              "title": "品格需要反复行动",
+              "claim": "只赞同原则不足以形成品格，实践中的选择与练习也重要。",
+              "sourceIds": [
+                "aristotle-book2"
+              ],
+              "sections": [
+                "II.1—2、II.4"
+              ],
+              "attribution": "古代伦理论述",
+              "context": "行动者的动机和稳定选择不可省略。",
+              "application": "产品推导：选一次具体练习并检查动机和条件。",
+              "boundary": "不是打卡清单，也不把困难全归于懒惰。"
+            },
+            {
+              "title": "实践智慧考虑目的与情境",
+              "claim": "恰当行动要结合值得追求的目的、具体事实与尺度，不能把聪明手段等同于实践智慧。",
+              "sourceIds": [
+                "aristotle-book2",
+                "aristotle-book6"
+              ],
+              "sections": [
+                "II.6",
+                "VI.5、VI.7—8、VI.12—13"
+              ],
+              "attribution": "古代伦理论述",
+              "context": "适合具体人的尺度不同于算术中点。",
+              "application": "产品推导：按整体生活、责任与资源判断挣钱安排。",
+              "boundary": "不是凡事取中间，也不为错误行为寻找适量版本。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "时代前提需要辨明",
+              "text": "不把原文中出身、外貌等历史评价转成用户价值排序；伦理判断不是精确算法。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "练习与条件都重要",
+              "text": "养成品格需要时间，也依赖现实资源；不能只要求即时舒服或效率。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "aristotle-book1",
+              "url": "https://classics.mit.edu/Aristotle/nicomachaen.1.i.html",
+              "title": "Nicomachean Ethics · Book I",
+              "author": "Aristotle；W. D. Ross 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "3",
+                "5",
+                "7—8"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "aristotle-book2",
+              "url": "https://classics.mit.edu/Aristotle/nicomachaen.2.ii.html",
+              "title": "Nicomachean Ethics · Book II",
+              "author": "Aristotle；W. D. Ross 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "1—2",
+                "4",
+                "6"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "aristotle-book6",
+              "url": "https://classics.mit.edu/Aristotle/nicomachaen.6.vi.html",
+              "title": "Nicomachean Ethics · Book VI",
+              "author": "Aristotle；W. D. Ross 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "5",
+                "7—8",
+                "12—13"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 21039,
+      "completedAt": "2026-09-16T06:51:07.695Z"
+    },
+    {
+      "sequence": 12,
+      "case": "naval-attribution-recheck",
+      "constructed": true,
+      "manualRecheckReason": "修正产品推导归属后一次人工复验",
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "naval",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:51:07.697Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "你难受的未必是“他们拥有的整套生活”，而可能是其中某一部分：收入、能力被认可、进展速度，或选择余地。既不想复制他们的人生，又因比较而觉得失败，并不矛盾；比较提供了一个醒目的尺度，却没有证明那就是你认可的成功。现有信息也不足以判断你是否真的落后，因为还不知道你的基本保障、责任负担和实际目标。",
+          "perspective": "纳瓦尔把财富的价值联系到时间与选择自由，并区分财富积累与地位竞争。依据这个观点，如果你并不想承担同龄人那种生活的时间占用和代价，他们的排名就不能单独裁定你的成败。但这也不意味着把失落都归为“虚荣”：物质条件确实能减少部分不幸。结合这些观点，可以把比较拆开，辨认你真正羡慕的资源，同时拒绝并不想要的生活套餐。代价是你可能放弃某些外部认可，也仍需认真处理收入和现实责任。",
+          "nextStep": "选一个最近让你最刺痛的同龄人，只写三栏：我羡慕的具体部分、获得它需要付出的代价、我是否愿意付。然后从愿意付代价的部分里，挑一个两周内可验证的小行动，例如约一次行业交流、完成一个可展示作品，或核算提高收入所需的技能与工时。两周后只检查：它是否增加了能力、保障或自主，而不是你是否追上了谁。",
+          "question": "",
+          "sourceIds": [
+            "naval-rich",
+            "naval-happiness"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "naval",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03.1",
+          "name": "纳瓦尔",
+          "scope": "采用 Naval 本人站有关财富、specific knowledge 与幸福的公开访谈。属于纳瓦尔公开生活思想启发，不是完整哲学体系，不模仿本人，不暗示授权或合作。编者索引用于寻源，不替代本人材料。",
+          "principles": [
+            {
+              "title": "让财富服务自主",
+              "claim": "纳瓦尔区分资产、金钱与地位竞争，并把财富的用途联系到时间与选择自由。",
+              "sourceIds": [
+                "naval-rich"
+              ],
+              "sections": [
+                "Seek Wealth, Not Money or Status；Wealth buys your freedom"
+              ],
+              "attribution": "Naval 本人访谈论述",
+              "context": "科技创业和投资经验背景。",
+              "application": "产品推导：评估收入方案增加多少自主、占去多少当下生活。",
+              "boundary": "不能保证每个人都能复制其路径。"
+            },
+            {
+              "title": "发展需要实践的独特能力",
+              "claim": "他将 specific knowledge 联系于真实好奇心、经历和复杂情境中的判断，也承认学校和训练有作用。",
+              "sourceIds": [
+                "naval-knowledge"
+              ],
+              "sections": [
+                "Specific knowledge can’t be trained",
+                "Specific knowledge is found by pursuing your curiosity"
+              ],
+              "attribution": "Naval 回答，Nivi 提问",
+              "context": "不是每个兴趣都会形成有需求的能力。",
+              "application": "产品推导：小范围实践，观察能否为他人提供价值。",
+              "boundary": "不承诺财富，不把低收入归因于个人不努力。"
+            },
+            {
+              "title": "别把幸福全部推迟到以后",
+              "claim": "他讨论欲望实现未必带来持续幸福，也承认物质条件能够减少部分不幸。",
+              "sourceIds": [
+                "naval-happiness"
+              ],
+              "sections": [
+                "Happiness Without Material Comfort Is Playing on Hard Mode",
+                "Desire Is a Contract You Make to Be Unhappy"
+              ],
+              "attribution": "本人思想与经验，不是临床或实证定律",
+              "context": "幸福访谈中的反思，非对贫困的解释。",
+              "application": "产品推导：区分保障生活、具体追求与不断比较。",
+              "boundary": "不要求放弃进取或基本保障。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "经验有范围",
+              "text": "财富论带有特定行业与时代背景；产品不输出投资推荐、收益保证或幸福承诺。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "欲望并非全部问题",
+              "text": "真实贫困、健康与责任需要资源，不能只用减少欲望解决。未核查的遗传比例、群体归因和健康建议不纳入。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "naval-rich",
+              "url": "https://nav.al/rich",
+              "title": "How to Get Rich（完整访谈）",
+              "author": "Naval Ravikant；Babak Nivi 提问",
+              "publisher": "Naval 本人网站",
+              "sections": [
+                "Seek Wealth, Not Money or Status"
+              ],
+              "type": "author-interview",
+              "verified": "2026-09-16：已沿 wealth 索引读到 rich 正文，2019-12-28；wealth 本身不是完整正文。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "naval-knowledge",
+              "url": "https://nav.al/specific-knowledge",
+              "title": "Arm Yourself With Specific Knowledge",
+              "author": "Naval Ravikant；Babak Nivi 提问",
+              "publisher": "Naval 本人网站",
+              "sections": [
+                "独特知识与真实好奇心"
+              ],
+              "type": "author-interview",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "naval-happiness",
+              "url": "https://nav.al/happiness",
+              "title": "Happiness",
+              "author": "Naval Ravikant",
+              "publisher": "Naval 本人网站",
+              "sections": [
+                "物质保障与幸福",
+                "欲望的代价"
+              ],
+              "type": "author-interview",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 17996,
+      "completedAt": "2026-09-16T06:51:25.694Z"
+    },
+    {
+      "sequence": 13,
+      "case": "epicurus-taxonomy-recheck",
+      "constructed": true,
+      "manualRecheckReason": "欲望分类精修后一次人工复验",
+      "environment": "local-app-real-provider",
+      "request": {
+        "baseId": "epicurus",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我既想多挣钱，又不想为了挣钱牺牲现在的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T06:51:25.697Z",
+      "state": "succeeded",
+      "httpStatus": 200,
+      "result": {
+        "answer": {
+          "understanding": "你面对的不是“上进还是躺平”的简单选择，而是两种真实利益在竞争：更多收入可以增加保障和选择权，时间、睡眠、健康与关系则构成正在发生的生活。现有信息还不足以判断该偏向哪边，因为要看你的基本开支、储蓄、负债、工作强度和身体状况；经济缺口真实存在时，不能只靠降低欲望解决。",
+          "perspective": "伊壁鸠鲁区分必要需要、具体享受和可能被比较不断推高的欲望，并主张不能只看眼前快乐或辛苦，而要比较完整后果。依据这个观点，我们可以把“多挣钱”拆开：用于生活保障、应急储备和明确目标的钱，通常有助于安稳；如果增收主要用于追赶他人的标准，却持续损害睡眠、关系和自主时间，它的代价可能超过收益。反过来，保护当下也不等于拒绝成长，少挣钱本身并不保证安宁。",
+          "nextStep": "先做一次四周的小实验：写下你的“保障线”和“够用线”，再给不可长期牺牲的生活设三条底线，例如每周休息时长、睡眠下限和陪伴时间。只尝试不突破底线的增收方式，并记录实际增加的收入、耗时、疲惫和情绪占用。四周后按净收益判断是否继续，而不是先要求自己永久选边。",
+          "question": "",
+          "sourceIds": [
+            "epicurus-letter",
+            "epicurus-doctrines"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "epicurus",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-16.03.1",
+          "name": "伊壁鸠鲁",
+          "scope": "采用《致美诺伊克斯书》的欲望、快乐选择、自足与审慎，以及《主要教说》第5、8、15、26—29条；不覆盖全部自然哲学和伦理体系。",
+          "principles": [
+            {
+              "title": "分辨欲望的性质",
+              "claim": "文本区分自然且必要、自然但非必要，以及源自无根据意见的欲望；最后一类容易没有止境。",
+              "sourceIds": [
+                "epicurus-letter",
+                "epicurus-doctrines"
+              ],
+              "sections": [
+                "书信欲望分类段",
+                "教说15、26、29"
+              ],
+              "attribution": "Epicurus，经 Robert Drew Hicks 英译",
+              "context": "欲望区分服务于较少痛苦和扰乱的生活。",
+              "application": "产品推导：挣钱先区分保障、具体享受和无休止比较。",
+              "boundary": "真实贫困不能靠改变想法解决。"
+            },
+            {
+              "title": "看完整后果再选择快乐",
+              "claim": "并非每种快乐都值得选，也并非每种辛苦都该逃避，审慎要比较后续代价。",
+              "sourceIds": [
+                "epicurus-letter",
+                "epicurus-doctrines"
+              ],
+              "sections": [
+                "书信快乐与痛苦选择段",
+                "教说5、8"
+              ],
+              "attribution": "古代伦理论述",
+              "context": "不是最大化即时刺激。",
+              "application": "产品推导：比较收入、睡眠、时间与持续不安。",
+              "boundary": "少挣钱不保证更幸福。"
+            },
+            {
+              "title": "自足与友谊支持安稳生活",
+              "claim": "自足减少对奢侈的依赖，不要求永远贫困；友谊也关乎安稳。",
+              "sourceIds": [
+                "epicurus-letter",
+                "epicurus-doctrines"
+              ],
+              "sections": [
+                "书信自足段",
+                "教说27—28"
+              ],
+              "attribution": "古代伦理论述",
+              "context": "简朴、自足与社会关系并非彼此排斥。",
+              "application": "产品推导：减少炫耀性支出，同时保障需要和关系。",
+              "boundary": "不以退出社会为统一答案。"
+            }
+          ],
+          "boundaries": [
+            {
+              "title": "不是纵欲或强制清贫",
+              "text": "审慎可能放弃部分刺激、名望和增长，也要确认真实需要与长期责任。",
+              "type": "interpretation-and-product-boundary"
+            },
+            {
+              "title": "古代身心论的限度",
+              "text": "不把古代关于疼痛的强论断用作医疗结论，也不淡化疾病和资源困难。",
+              "type": "interpretation-and-product-boundary"
+            }
+          ],
+          "sources": [
+            {
+              "id": "epicurus-letter",
+              "url": "https://classics.mit.edu/Epicurus/menoec.html",
+              "title": "Letter to Menoeceus（致美诺伊克斯书）",
+              "author": "Epicurus；Robert Drew Hicks 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "欲望分类",
+                "快乐选择",
+                "自足与审慎"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            },
+            {
+              "id": "epicurus-doctrines",
+              "url": "https://classics.mit.edu/Epicurus/princdoc.html",
+              "title": "Principal Doctrines（主要教说）",
+              "author": "Epicurus；Robert Drew Hicks 英译",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "5",
+                "8",
+                "15",
+                "26—29"
+              ],
+              "type": "primary-text-translation",
+              "verified": "2026-09-16：已实际打开所用正文和上下文；中文为原创转述。",
+              "contentUse": "仅保存有限原创中文转述、位置与链接，不导入全文、现代译著或编者前言；产品应用另行标明。"
+            }
+          ]
+        }
+      },
+      "elapsedMs": 14932,
+      "completedAt": "2026-09-16T06:51:40.630Z"
+    },
+    {
+      "sequence": 14,
+      "case": "online-wang",
+      "constructed": true,
+      "environment": "owner-private-online",
+      "request": {
+        "baseId": "wang-yangming",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我看见同龄人发展得更好，会觉得失败，但又不想过他们那样的生活。"
+          }
+        ]
+      },
+      "startedAt": "2026-09-16T07:03:03.123Z",
+      "state": "reserved-for-one-online-request"
+    }
+  ]
+}
