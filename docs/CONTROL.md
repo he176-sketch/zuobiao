@@ -12,6 +12,10 @@
 
 独立预览 `https://be18cf0a.yuechengai.pages.dev/` 已实际显示坐标。首页引用的四个启动 JS/CSS 资源及两份许可文件均 200、哈希与现有构建一致；API ready=false，私密文档、环境与管理路径 404。定向测试 12 项和 lint 通过；整包 Miniflare + 本地 D1 的 43 项断言通过，包括模拟提供商失败仍扣 1、立即再发 429 不多扣、撤销 401、AI 关闭/缺 DB 503、全站关闭覆盖页面/资源/API。真实模型调用 0，意外模型出站 0。项目 production/preview 的 fail_open 均已实际改为 false。
 
+正式部署 `4da9870d-b82e-42f0-b67f-32f0be39b2f3` 于 2026-09-16 14:13:47 UTC 成功，production canonical 已切换，来源 `b7d23e350fbe014d96578d6c57011394afab7aef`、commit_dirty=false。项目 API 读回 production 的 DB 正确、两个 secrets 存在、TRIAL_ENABLED=true，preview=false，两个环境 fail_open=false。正式域名普通无凭据 HTTP 检查：首页可见，状态 ready=true/authenticated=false；无邀请码和无效码 401、有效码兑换 200、Cookie 安全属性正确、持码状态 authenticated=true/remaining=null、持码空 schema 400、跨源 403、环境/文档/管理/Worker 源路径 404、退出 200。没有真实模型请求；新 D1 再读 total=3、used1=3、时间戳未变。
+
+正式 Pages 浏览器检查：十二个基座目录可见，斯多葛详情与来源打开正常，选定后刷新仍保留；UI 填码成功，刷新仍 authenticated=true。1440×1000 桌面和 390×844 移动模拟截图已视觉核对，无水平溢出；页面资源及 API 请求来源只有 `https://yuechengai.pages.dev`。本次浏览器没有负责人 Sites 登录头或 bypass，直接 HTTP 检查从无 Cookie 开始；Ego 页面沿用浏览器配置，不冒称全新无痕环境。未创建真实对话，结束退出邀请码并仅移除本次构造的斯多葛 profile，保留原匿名协调标识。没有重测真实来源快照或续聊，应用代码和数据功能沿用既有验收。已请负责人关闭 VPN 用新标签页实测原地址，截至记录时尚未收到结果。
+
 本次只使用 Free 方案和原免费子域名，无购买、升级或自动收费试用。Pages Function 每日额度与 D1 免费额度仍适用，所有入口请求都经过 Function；模型仍按原供应商计费。第 04 轮真实实测 3/3 已用完，本次不自动新增调用；新部署的真实回答及续聊、负责人无 VPN 手机实测仍须分别标注，不能用模拟替代。GitHub main/private 和原工作树问卷改稿保持。
 
 ## 历史尝试：Pages 网关（负责人无 VPN 验收失败）

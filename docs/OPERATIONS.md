@@ -2,7 +2,7 @@
 
 ## 当前部署：原 Pages 地址独立运行
 
-分享入口 **https://yuechengai.pages.dev/**，复用负责人现有 `yuechengai` Pages 项目。原应用的完整 Worker、静态资源、邀请码与对话接口直接在 Cloudflare 运行，不再转发 Sites。原个人站部署 `f3f59fc4-9470-48cc-abd5-27b80defcd75` 保留；Sites version 5 / 7 保留，旧 version 7 当前 AI 已关闭。2026-09-16 的 Pages 网关尝试因负责人无 VPN 验收失败已被替换，不能回退网关并声称直连修复。
+分享入口 **https://yuechengai.pages.dev/**，复用负责人现有 `yuechengai` Pages 项目。当前生产部署 `4da9870d-b82e-42f0-b67f-32f0be39b2f3`，来源 `b7d23e350fbe014d96578d6c57011394afab7aef`。原应用的完整 Worker、静态资源、邀请码与对话接口直接在 Cloudflare 运行，不再转发 Sites。原个人站部署 `f3f59fc4-9470-48cc-abd5-27b80defcd75` 保留；Sites version 5 / 7 保留，旧 version 7 当前 AI 已关闭。2026-09-16 的 Pages 网关尝试因负责人无 VPN 验收失败已被替换，不能回退网关并声称直连修复。
 
 生产设置在 `deploy/pages/wrangler.json`：现有模型、`TRIAL_ENABLED`、`SITE_PUBLIC_ENABLED` 和 D1 绑定。DB 为负责人账户里的 `zuobiao-trial` / `da7beafc-88aa-475a-821a-3e7ef43fa016`；13 字段原用量完整迁入，没有清零。密钥 `PHILOSOPHY_API_KEY` 和 `TRIAL_INVITE_HASHES` 只存 Pages production secrets，不写入配置或构建。预览 TRIAL_ENABLED=false 且不提供模型密钥。平台 production 与 preview 均保持 fail_open=false，超出 Function 额度时拒绝服务。
 
