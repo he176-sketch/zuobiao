@@ -7,7 +7,7 @@ import FirstExperience from "@/components/first-experience";
 import { emptyIntake, openingMessage, requestsDirectHelp, type Intake } from "@/lib/first-experience";
 import FoundationDiscovery from "@/components/foundation-discovery";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, BookOpen, Check, Compass, Download, ExternalLink, FilePenLine, LoaderCircle, Lightbulb, MessageCircle, NotebookPen, Plus, RotateCcw, ShieldCheck, Trash2 } from "lucide-react";
+import { ArrowUp, ArrowUpRight, BookOpen, Check, Compass, Download, ExternalLink, FilePenLine, Laptop, LoaderCircle, Lightbulb, MessageCircle, Moon, NotebookPen, Plus, RotateCcw, ShieldCheck, Sun, Trash2, UserRound, WifiOff } from "lucide-react";
 import { Tabs,TabsContent,TabsList,TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,7 +19,7 @@ import { Toaster,toast } from "sonner";
 import { z } from "zod";
 import content from "@/lib/foundations.json";
 import { requestChat, ChatRequestError } from "@/lib/chat-request";
-import { DeviceStore,PROFILE_KEY,CONVERSATION_KEY,CONSENT_KEY,DEVICE_KEYS,STALE_DEVICE_ERROR } from "@/lib/device-store";
+import { DeviceStore,PROFILE_KEY,CONVERSATION_KEY,CONSENT_KEY,DRAFT_KEY,DEVICE_KEYS,STALE_DEVICE_ERROR } from "@/lib/device-store";
 import { BaseIdSchema,AnswerSchema,ProfileSchema,ProposalSchema,MaterialSnapshotSchema,emptyProfile,updateProfile,answerText,needsUrgentSupport,supportAnswer,type Answer,type Message,type Principle,type Profile,type Proposal,type SourceSnapshot } from "@/lib/contracts";
 
 const bases=content.bases;
@@ -28,9 +28,11 @@ const initialExamples=["认真准备的项目没选上，我觉得努力没有�
 const compareViews:Record<string,string>={stoic:"先检查把收入差距等同于个人失败的判断，再区分可以改进的行动与无法保证的结果。用自己认可的行动和品格标准衡量努力。",camus:"允许比较引出的意义问题暂时没有终极答案，辨认你仍愿意投入的生活。也检查比较背后是否有真实的不公平，需要与他人一起改变。",pragmatic:"把“过得更好”具体化：收入、时间、自主还是关系？提出一个可以检验的假设，用承担得起的尝试检查，修订原来的标准。",confucian:"同时考虑你希望成为怎样的人，以及对具体关系负有什么责任。外在收益之外，检查自己的行动是否体现诚信、体谅与合宜。"};
 type Pending={kind:"clear"|"new"|"switch"|"delete";id?:string};
 type Editor={id?:string;draft:Proposal;origin:string};
+type ThemeMode="system"|"light"|"dark";
 
 export default function ZuobiaoApp(){
  const [tab,setTab]=useState("talk");
+ const [mineView,setMineView]=useState<"principles"|"tools">("principles");
  const [exploreMode,setExploreMode]=useState<"entry"|"quiz"|"browse"|"quick">("quick");
  const [intake,setIntake]=useState<Intake>(emptyIntake);
  const [profile,setProfile]=useState<Profile>(emptyProfile);
@@ -58,9 +60,14 @@ export default function ZuobiaoApp(){
  const [pending,setPending]=useState<Pending|null>(null);
  const [comparison,setComparison]=useState(false);
  const [topic,setTopic]=useState("全部");
+ const [online,setOnline]=useState(true);
+ const [standalone,setStandalone]=useState(false);
+ const [theme,setTheme]=useState<ThemeMode>("system");
  const submittingRef=useRef(false);
  const abortRef=useRef<AbortController|null>(null);
  const endRef=useRef<HTMLDivElement>(null);
+ const atBottomRef=useRef(true);
+ const autoScrollRef=useRef(false);
  const inputRef=useRef<HTMLTextAreaElement>(null);
  const active=bases.find(b=>b.id===profile.baseId);
  const selectedTool=thinkingTools.find(t=>t.id===thinkingToolId);
@@ -71,18 +78,21 @@ export default function ZuobiaoApp(){
 
  /* eslint-disable react-hooks/set-state-in-effect -- Device storage is unavailable during SSR. This one-time hydration intentionally updates the client after the matching initial render. */
  useEffect(()=>{
-  const onHash=()=>{const h=location.hash.slice(1);if(["talk","explore","tools","principles"].includes(h))setTab(h);};onHash();window.addEventListener("hashchange",onHash);
+  const onHash=()=>{const h=location.hash.slice(1);if(h==="talk"||h==="explore")setTab(h);else if(h==="tools"||h==="principles"||h==="mine"){setMineView(h==="tools"?"tools":"principles");setTab("mine");}};onHash();window.addEventListener("hashchange",onHash);
   try{
    deviceRef.current=new DeviceStore(localStorage,async run=>navigator.locks?navigator.locks.request("zuobiao-device",run):run());
    const raw=localStorage.getItem(PROFILE_KEY);if(raw){const p=ProfileSchema.parse(JSON.parse(raw));profileRef.current=p;setProfile(p);}
    const consent=localStorage.getItem(CONSENT_KEY)==="yes";setRemember(consent);
    if(consent){const rawChat=localStorage.getItem(CONVERSATION_KEY);if(rawChat){const schema=z.array(z.object({id:z.string(),role:z.enum(["user","assistant"]),content:z.string().max(12000),answer:AnswerSchema.optional(),mode:z.enum(["ai","example","support"]).optional(),baseId:z.string(),revision:z.number(),principlesSnapshot:z.array(ProfileSchema.shape.principles.element),materials:MaterialSnapshotSchema.optional()})).max(80);setMessages(schema.parse(JSON.parse(rawChat)));}}
   }catch{setStorageError("未能读取本机保存的内容，原始数据没有被覆盖。你可以先导出数据，再清除本机记录。")}
-  try{const draft=sessionStorage.getItem("zuobiao.pending-question");if(draft){setQuestion(draft.slice(0,12000));sessionStorage.removeItem("zuobiao.pending-question");}const tool=sessionStorage.getItem("zuobiao.pending-tool");if(tool&&thinkingTools.some(t=>t.id===tool))setThinkingToolId(tool);sessionStorage.removeItem("zuobiao.pending-tool");}catch{}
+  try{const draft=sessionStorage.getItem("zuobiao.draft.session.v1")||sessionStorage.getItem("zuobiao.pending-question")||(localStorage.getItem(CONSENT_KEY)==="yes"?localStorage.getItem(DRAFT_KEY):null);if(draft)setQuestion(draft.slice(0,12000));sessionStorage.removeItem("zuobiao.pending-question");const tool=sessionStorage.getItem("zuobiao.pending-tool");if(tool&&thinkingTools.some(t=>t.id===tool))setThinkingToolId(tool);sessionStorage.removeItem("zuobiao.pending-tool");}catch{}
+  try{const savedTheme=localStorage.getItem("zuobiao.theme.v1");if(savedTheme==="light"||savedTheme==="dark"||savedTheme==="system")setTheme(savedTheme);}catch{}
+  const updateConnection=()=>setOnline(navigator.onLine);updateConnection();window.addEventListener("online",updateConnection);window.addEventListener("offline",updateConnection);
+  const displayMode=matchMedia("(display-mode: standalone)");const updateStandalone=()=>setStandalone(displayMode.matches||Boolean((navigator as Navigator&{standalone?:boolean}).standalone));updateStandalone();displayMode.addEventListener?.("change",updateStandalone);
   const onStorage=(event:StorageEvent)=>{if(event.storageArea===localStorage&&(event.key===null||DEVICE_KEYS.includes(event.key as typeof DEVICE_KEYS[number]))){deviceConflict.current=true;abortRef.current?.abort();setStorageError("另一页面更新或清除了记录。这里已暂停保存，请先导出当前内容，再刷新读取最新记录。");}};
   window.addEventListener("storage",onStorage);
   setHydrated(true);void checkService();
-  return()=>{window.removeEventListener("hashchange",onHash);window.removeEventListener("storage",onStorage);abortRef.current?.abort();};
+  return()=>{window.removeEventListener("hashchange",onHash);window.removeEventListener("storage",onStorage);window.removeEventListener("online",updateConnection);window.removeEventListener("offline",updateConnection);displayMode.removeEventListener?.("change",updateStandalone);abortRef.current?.abort();};
  },[]);
  /* eslint-enable react-hooks/set-state-in-effect */
  useEffect(()=>{profileRef.current=profile;},[profile]);
@@ -90,14 +100,22 @@ export default function ZuobiaoApp(){
   if(!hydrated||storageError||!deviceRef.current||deviceConflict.current)return;
   void deviceRef.current.write({[CONVERSATION_KEY]:remember?JSON.stringify(messages):null}).catch(reportStorageFailure);
  },[messages,remember,hydrated,storageError]);
- useEffect(()=>{if(messages.length||busy)endRef.current?.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth",block:"nearest"});},[messages.length,busy]);
+ useEffect(()=>{if(!hydrated)return;const timer=setTimeout(()=>{try{if(question)sessionStorage.setItem("zuobiao.draft.session.v1",question);else sessionStorage.removeItem("zuobiao.draft.session.v1");}catch{}if(!storageError&&deviceRef.current&&!deviceConflict.current)void deviceRef.current.write({[DRAFT_KEY]:remember&&question?question:null}).catch(reportStorageFailure);},250);return()=>clearTimeout(timer);},[question,remember,hydrated,storageError]);
+ useEffect(()=>{const node=endRef.current;if(!node)return;const observer=new IntersectionObserver(([entry])=>{atBottomRef.current=entry.isIntersecting;},{rootMargin:"0px 0px 120px 0px"});observer.observe(node);return()=>observer.disconnect();},[messages.length]);
+ useEffect(()=>{if((messages.length||busy)&&(autoScrollRef.current||atBottomRef.current)){endRef.current?.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth",block:"nearest"});autoScrollRef.current=false;}},[messages.length,busy]);
+ useEffect(()=>{
+  document.documentElement.dataset.theme=theme;try{localStorage.setItem("zuobiao.theme.v1",theme);}catch{}
+  const media=matchMedia("(prefers-color-scheme: dark)");
+  const syncChrome=()=>{const dark=theme==="dark"||(theme==="system"&&media.matches);document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach(meta=>{meta.content=dark?"#171a1d":"#f4f0e8";});const status=document.querySelector<HTMLMetaElement>('meta[name="apple-mobile-web-app-status-bar-style"]');if(status)status.content=dark?"black-translucent":"default";};
+  syncChrome();media.addEventListener?.("change",syncChrome);return()=>media.removeEventListener?.("change",syncChrome);
+ },[theme]);
  async function checkService(){setService("checking");try{const r=await fetch("/api/chat",{signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error();const j=z.object({ready:z.boolean(),authenticated:z.boolean(),remaining:z.number().nullable()}).parse(await r.json());setSignedIn(j.authenticated);setService(j.ready?"ready":"offline");}catch{setService("unavailable");}}
  function selectThinkingTool(id:string){if(busy||savingRef.current)return;setThinkingToolId(id);setToolDetail(null);navigate("talk");setTimeout(()=>inputRef.current?.focus(),0);toast("已带入这个工具。写下你的处境，我们一起想一遍。");}
- function navigate(next:string){setTab(next);history.pushState(null,"",`#${next}`);}
+ function navigate(next:string){if(next==="tools"||next==="principles"){setMineView(next);setTab("mine");history.pushState(null,"",`#${next}`);return;}setTab(next);history.pushState(null,"",`#${next}`);}
  function reportStorageFailure(error:unknown){if(error instanceof Error&&error.message===STALE_DEVICE_ERROR)deviceConflict.current=true;setStorageError(error instanceof Error&&error.message===STALE_DEVICE_ERROR?"另一页面已更新记录。保存已暂停，请先导出当前内容，再刷新。":"本机保存失败。当前内容仍在页面中，请先导出，以免刷新后丢失。");}
  function deviceCurrent(){try{if(deviceConflict.current||!deviceRef.current?.isCurrent())throw new Error(STALE_DEVICE_ERROR);return true;}catch(e){reportStorageFailure(e);return false;}}
  async function commit(next:Profile){if(savingRef.current||storageError||!deviceCurrent())return false;savingRef.current=true;setSaving(true);try{await deviceRef.current!.write({[PROFILE_KEY]:JSON.stringify(next)});profileRef.current=next;setProfile(next);return true;}catch(e){reportStorageFailure(e);return false;}finally{savingRef.current=false;setSaving(false);}}
- async function setRememberChoice(value:boolean){if(savingRef.current||storageError||!deviceCurrent())return;savingRef.current=true;setSaving(true);try{await deviceRef.current!.write({[CONSENT_KEY]:value?"yes":"no",[CONVERSATION_KEY]:value?JSON.stringify(messages):null});setRemember(value);}catch(e){reportStorageFailure(e);}finally{savingRef.current=false;setSaving(false);}}
+ async function setRememberChoice(value:boolean){if(savingRef.current||storageError||!deviceCurrent())return;savingRef.current=true;setSaving(true);try{await deviceRef.current!.write({[CONSENT_KEY]:value?"yes":"no",[CONVERSATION_KEY]:value?JSON.stringify(messages):null,[DRAFT_KEY]:value&&question?question:null});setRemember(value);}catch(e){reportStorageFailure(e);}finally{savingRef.current=false;setSaving(false);}}
  async function applyBase(id:string){const b=bases.find(b=>b.id===id);if(!b)return;const changing=!!profileRef.current.baseId;if(!await commit(updateProfile(profileRef.current,{baseId:b.id as Profile["baseId"]},`选择基座：${b.shortName}`)))return;if(changing)setThinkingToolId(null);setDetail(null);setError("");navigate("talk");toast.success(`已选择「${b.shortName}」`);setTimeout(()=>inputRef.current?.focus(),0);return profileRef.current;}
  async function startExperience(id:string|null){
   const text=openingMessage(intake);setQuestion(text);
@@ -115,8 +133,9 @@ export default function ZuobiaoApp(){
   if(needsUrgentSupport(text)){const a=supportAnswer();const meta={baseId:active?.id||"none",revision:profile.revision,principlesSnapshot:structuredClone(profile.principles),materials:materialSnapshot(active?.id||"none")};setMessages(m=>[...m,{...meta,id:crypto.randomUUID(),role:"user",content:text},{...meta,id:crypto.randomUUID(),role:"assistant",content:answerText(a),answer:a,mode:"support"}].slice(-80) as Message[]);setQuestion("");setError("");return;}
   if(!deviceCurrent())return;
   if(!requestBase&&!exploring&&!requestsDirectHelp(text)){setIntake({...emptyIntake(),issue:text.slice(0,4000),note:text.slice(4000,4600)});setExploreMode("quick");navigate("explore");return;}
+  if(!online){setError("当前网络不可用。问题已经保留，恢复网络后再发送。");return;}
   if(!signedIn){setError("请填写有效的邀请码；无效或已撤销的邀请码无法使用。");document.getElementById("trial-code")?.focus();return;}
-  submittingRef.current=true;setBusy(true);setError("");const controller=new AbortController();abortRef.current=controller;
+  autoScrollRef.current=true;submittingRef.current=true;setBusy(true);setError("");const controller=new AbortController();abortRef.current=controller;
   const snapshot=structuredClone(currentProfile.principles);const revision=currentProfile.revision;const baseId=requestBase?.id||null;const toolId=requestBase?thinkingToolId:null;
   const input={role:"user" as const,content:text};const historyMessages=messages.filter(m=>m.mode!=="example").slice(-10).map(m=>({role:m.role,content:((m.role==="assistant"?`[历史回答，作答时基座 ${m.materials?.name||"未选定"}，个人原则修订号 ${m.revision}；当时工具：${m.materials?.thinkingTool?.name||"未选工具"}；本轮当前修订号 ${revision}]\n`:"")+m.content).slice(0,12000)}));
   try{
@@ -153,8 +172,9 @@ export default function ZuobiaoApp(){
  const visibleBases=topic==="全部"?bases:bases.filter(b=>b.topics.some(t=>t===topic));
  const renderSource=(s:SourceSnapshot)=><li key={s.id}><a href={s.url} target="_blank" rel="noreferrer">{s.title}<ExternalLink size={14}/></a><p>{s.author} · {s.publisher}</p><p className="source-sections">{s.sections.join("；")}</p></li>;
  return <div className="app-frame"><Toaster position="bottom-center" richColors/><Tabs value={tab} onValueChange={navigate}>
-  <header className="masthead"><a className="brand" href="#talk" onClick={()=>setTab("talk")} aria-label="坐标首页"><Compass size={26} strokeWidth={1.4}/><span>坐标</span><small>ZUOBIAO</small></a><TabsList className="main-tabs" variant="line"><TabsTrigger value="talk"><MessageCircle size={17}/>聊一件事</TabsTrigger><TabsTrigger value="explore"><BookOpen size={17}/>探索基座</TabsTrigger><TabsTrigger value="tools"><Lightbulb size={17}/>思考工具</TabsTrigger><TabsTrigger value="principles"><NotebookPen size={17}/>我的原则</TabsTrigger></TabsList><span className="edition">生活哲学 · 初版</span></header>
+  <header className="masthead"><a className="brand" href="#talk" onClick={()=>setTab("talk")} aria-label="坐标首页"><Compass size={26} strokeWidth={1.4}/><span>坐标</span><small>ZUOBIAO</small></a><TabsList className="main-tabs" variant="line"><TabsTrigger value="talk"><MessageCircle size={17}/>聊一件事</TabsTrigger><TabsTrigger value="explore"><BookOpen size={17}/>探索基座</TabsTrigger><TabsTrigger value="mine"><UserRound size={17}/>我的</TabsTrigger></TabsList><span className="edition">个人哲学书房</span></header>
   {storageError&&<div className="storage-alert" role="alert">{storageError}<Button variant="outline" onClick={exportData}>导出数据</Button><Button variant="outline" onClick={()=>location.reload()}>刷新记录</Button><Button variant="ghost" onClick={()=>setPending({kind:"clear"})}>清除本机记录</Button></div>}
+  {!online&&<div className="network-alert" role="status"><WifiOff size={16}/><span>当前离线。可以继续阅读和编辑草稿，AI 回答需要恢复网络。</span></div>}
   <TabsContent value="talk" className="page-body"><div className="conversation-layout"><main className="conversation">
    {!messages.length?<><p className="eyebrow">{active?"从此刻的困惑开始":"找到自己的思考起点"}</p><h1>{active?<>最近，有什么事<br/>让你停在了原地？</>:<>先从你的生活，<br/>找到思考的起点。</>}</h1><p className="lead">{active?"不必先想明白。把正在经历的事，慢慢说出来。":"不需要先懂哲学。说一句困扰，或点一个接近你的情境。最多 3 步，看看愿意借来思考的角度。"}</p>{!active&&<div className="first-step"><Button onClick={()=>{setIntake({...emptyIntake(),issue:question.slice(0,4000)});setExploreMode("quick");navigate("explore");}}>不知道怎么说，从这里开始<ArrowUpRight size={16}/></Button><button className="text-link" onClick={()=>{setExploreMode("browse");navigate("explore");}}>直接浏览基座</button></div>}<div className="prompt-examples">{initialExamples.map(q=><button key={q} disabled={saving||busy} onClick={()=>{setQuestion(q);if(!active){setIntake({...emptyIntake(),issue:q});setExploreMode("quick");navigate("explore");}else inputRef.current?.focus();}}>{q}<ArrowUpRight size={16}/></button>)}</div></>:<><div className="conversation-heading"><div><p className="eyebrow">把事情慢慢想清楚</p><h1>这一件事</h1></div><Button variant="ghost" disabled={saving||busy} onClick={()=>setPending({kind:"new"})}><Plus size={16}/>新的对话</Button></div><div className="messages">{messages.map(m=><article className={`message ${m.role}`} key={m.id}><div className="message-label">{m.role==="user"?(m.mode==="example"?"示例问题":"你"):(m.mode==="example"?"预写示例 · 非实时回答":m.mode==="support"?"先照顾眼前的安全":m.baseId==="none"?"探索回应 · 尚未选定基座":"坐标")}</div>{m.role==="user"?<p>{m.content}</p>:<><p>{m.answer?.understanding}</p>{m.answer?.perspective&&<div className="perspective-block"><span className="eyebrow">{m.baseId==="none"?"先看清处境与取舍":`借助「${m.materials?.name||bases.find(b=>b.id===m.baseId)?.shortName}」理解`}</span><p>{m.answer.perspective}</p></div>}{m.answer?.nextStep&&<p className="next-step">{m.answer.nextStep}</p>}{m.answer?.question&&<p className="follow-up">{m.answer.question}</p>}{m.mode!=="support"&&<div className="answer-actions"><Button variant="ghost" onClick={()=>setSourceMessage(m)}><BookOpen size={14}/>查看这次回答的依据</Button><span>原则修订 {m.revision}</span></div>}{m.answer?.principleProposal&&<div className="proposal"><p className="eyebrow">一条待你确认的原则</p><p>{m.answer.principleProposal.text}</p><Button variant="outline" disabled={saving||busy} onClick={()=>openEditor(m.answer!.principleProposal!,m.baseId)}>修改并确认<ArrowUpRight size={15}/></Button></div>}</>}</article>)}</div></>}
    {busy&&<div className="thinking" role="status"><LoaderCircle size={17} className="spin"/>{active?"正在结合你的基座与原则，认真理解这件事，最多等待 100 秒…":"正在理解这件事，先给你一个探索回应，最多等待 100 秒…"}<Button variant="ghost" onClick={()=>abortRef.current?.abort()}>停止</Button></div>}<div ref={endRef}/>
@@ -171,12 +191,15 @@ export default function ZuobiaoApp(){
    <div className="topic-filters" aria-label="按困惑浏览">{["全部","结果焦虑与比较","重复生活与空虚","选择困难","家庭期待"].map(t=><button key={t} aria-pressed={topic===t} onClick={()=>setTopic(t)}>{t}</button>)}</div>
    <div className="foundation-grid">{visibleBases.map(p=><article className={`foundation-card ${profile.baseId===p.id?"selected":""}`} key={p.id}><div className="card-top"><span className="serial">{String(bases.indexOf(p)+1).padStart(2,"0")}</span><span className="kind">{p.kindLabel}{profile.baseId===p.id&&<span className="selected-label"><Check size={13}/>当前基座</span>}</span></div><h2>{p.shortName}</h2><p className="card-subtitle">{p.subtitle}</p><p>{p.tagline}</p><div className="topic-tags">{p.topics.map(t=><span key={t}>{t}</span>)}</div><div className="card-footer"><span>{p.sources.length} 个参考来源</span><Button onClick={()=>setDetail(p.id)} variant="outline">了解这个基座<ArrowUpRight size={16}/></Button></div></article>)}</div>
   </>} </TabsContent>
-  <TabsContent value="tools" className="page-body"><ThinkingLibrary selectedId={thinkingToolId} onInspect={setToolDetail} disabled={saving||busy}/></TabsContent>
-  <TabsContent value="principles" className="page-body"><div className="section-heading"><p className="eyebrow">留下一点，你自己的理解</p><h1>我的原则</h1><p className="lead">以{active?`「${active.shortName}」` : "自己的经历"}为起点，慢慢写成自己的生活哲学。</p><div className="principle-toolbar"><Button onClick={()=>openEditor()} disabled={saving||busy||profile.principles.length>=20}><Plus size={16}/>写下一条原则</Button><Button variant="outline" onClick={exportData}><Download size={16}/>导出底稿</Button><span>修订 {profile.revision} · 仅存于这台设备</span></div></div>
+  <TabsContent value="mine" className="page-body"><div className="mine-top"><div><p className="eyebrow">只属于你的书房</p><h1>我的</h1><p>管理原则、思考工具与这台设备上的阅读偏好。</p></div><div className="app-status"><span>{standalone?"已在独立窗口运行":"可添加到 iPhone 主屏幕"}</span><small>数据不会自动同步到其他设备</small></div></div><div className="mine-tabs" role="tablist" aria-label="我的内容"><button role="tab" aria-selected={mineView==="principles"} onClick={()=>navigate("principles")}><NotebookPen size={17}/>我的原则</button><button role="tab" aria-selected={mineView==="tools"} onClick={()=>navigate("tools")}><Lightbulb size={17}/>思考工具</button></div>
+  {mineView==="tools"?<ThinkingLibrary selectedId={thinkingToolId} onInspect={setToolDetail} disabled={saving||busy}/>:<><div className="section-heading mine-principles"><p className="eyebrow">留下一点，你自己的理解</p><h1>我的原则</h1><p className="lead">以{active?`「${active.shortName}」` : "自己的经历"}为起点，慢慢写成自己的生活哲学。</p><div className="principle-toolbar"><Button onClick={()=>openEditor()} disabled={saving||busy||profile.principles.length>=20}><Plus size={16}/>写下一条原则</Button><Button variant="outline" onClick={exportData}><Download size={16}/>导出底稿</Button><span>修订 {profile.revision} · 仅存于这台设备</span></div></div>
    {!profile.principles.length?<div className="empty-page"><NotebookPen size={28}/><h2>还没有写下的原则</h2><p>你可以记录一条已经认同的想法，或在对话之后再来。<br/>只有你确认的内容，才会成为之后回答的依据。</p><Button variant="outline" onClick={()=>navigate("talk")}>从一次困惑开始</Button></div>:<div className="principle-list">{profile.principles.map((p,i)=><article className="personal-principle" key={p.id}><span className="serial">{String(i+1).padStart(2,"0")}</span><div><h2>{p.text}</h2>{p.reason&&<p><span>我的理由</span>{p.reason}</p>}{p.boundary&&<p><span>适用边界</span>{p.boundary}</p>}<small>{bases.find(b=>b.id===p.origin)?.shortName||"自己写下"} · 第 {p.version} 版</small></div><div className="principle-controls"><Button variant="ghost" aria-label={`修改原则 ${i+1}`} disabled={saving||busy} onClick={()=>openEditor(p,p.origin,p.id)}><FilePenLine size={17}/></Button><Button variant="ghost" aria-label={`删除原则 ${i+1}`} disabled={saving||busy} onClick={()=>setPending({kind:"delete",id:p.id})}><Trash2 size={17}/></Button></div></article>)}</div>}
    {!!profile.history.length&&<div className="revision-history"><h2>走过的修改</h2>{profile.history.slice(-6).reverse().map(h=><p key={h.revision}><span>修订 {h.revision}</span>{h.detail}</p>)}</div>}
+  </>}
+  <section className="appearance-panel" aria-labelledby="appearance-title"><div><h2 id="appearance-title">阅读外观</h2><p>跟随系统，也可以只在坐标里固定浅色或深色。</p></div><div className="theme-switcher" role="group" aria-label="阅读外观">{([['system','跟随系统',Laptop],['light','浅色',Sun],['dark','深色',Moon]] as const).map(([value,label,Icon])=><button key={value} aria-pressed={theme===value} onClick={()=>setTheme(value)}><Icon size={16}/>{label}</button>)}</div></section>
   </TabsContent>
  </Tabs>
+ <nav className="mobile-nav" aria-label="主要导航"><button aria-current={tab==="talk"?"page":undefined} onClick={()=>navigate("talk")}><MessageCircle size={20}/><span>聊一件事</span></button><button aria-current={tab==="explore"?"page":undefined} onClick={()=>navigate("explore")}><BookOpen size={20}/><span>探索基座</span></button><button aria-current={tab==="mine"?"page":undefined} onClick={()=>navigate("mine")}><UserRound size={20}/><span>我的</span></button></nav>
  <footer className="site-footer"><span>坐标 · 让思想与生活慢慢靠近</span><div><button onClick={()=>setInfo("sources")}>信源与编排说明</button><button onClick={()=>setInfo("privacy")}>隐私与数据</button></div></footer>
 
  <Sheet open={!!detailBase} onOpenChange={open=>{if(!open)setDetail(null);}}><SheetContent className="foundation-sheet"><SheetHeader><p className="eyebrow">{detailBase?.kindLabel} · 内容版本 2026.09</p><SheetTitle className="sheet-title">{detailBase?.shortName}</SheetTitle><SheetDescription>{detailBase?.subtitle}。{detailBase?.tagline}</SheetDescription></SheetHeader>{detailBase&&<div className="sheet-reading"><p>选择的是这里界定的思想路径，可以质疑或调整，不代表接受这个人物的全部观点。</p><section><h3>你会依循什么</h3>{detailBase.principles.map((p,i)=><article className="source-principle" key={p.id}><span>0{i+1}</span><div><h4>{p.title}</h4><p>{p.claim}</p><small>{p.sections.join("；")}</small>{"attribution" in p&&<details className="source-context"><summary>出处怎样支持这个判断</summary><p>{p.attribution}</p><p>{p.context}</p><p>{p.application}</p><p>{p.boundary}</p><ul className="source-list">{detailBase.sources.filter(s=>p.sourceIds.includes(s.id)).map(renderSource)}</ul></details>}</div></article>)}</section>{detailSupplement&&<PhilosophyReading supplement={detailSupplement}/>}<section><h3>带到生活里</h3><p className="reading-question">{detailBase.method.sampleQuestion}</p><p>{detailBase.method.sampleResponse}</p><small>{detailBase.method.applicationNote}</small></section><section><h3>与相近路径的区别</h3><p>{detailBase.difference}</p></section><details className="foundation-depth"><summary>展开思想范围、边界与来源</summary><section><h3>也需要看见的边界</h3>{detailBase.boundaries.map(b=><article key={b.title}><h4>{b.title}</h4><p>{b.text}</p></article>)}</section><section><h3>选取的思想范围</h3><p>{detailBase.historicalScope}</p></section><section><h3>回到来源</h3><ul className="source-list">{detailBase.sources.map(renderSource)}</ul><small>核查日期：{detailBase.researchedAt}。中文为原创转述，原作与现代应用分别标明。</small></section></details><div className="sheet-choice"><p>{detailBase.selectionPrompt}</p><Button onClick={()=>chooseBase(detailBase.id)} disabled={saving||busy||!!storageError}>{profile.baseId===detailBase.id?"回到对话":"选择这个起点"}<ArrowUpRight size={16}/></Button><small>你的个人原则会保留。新的思想可以先试用，再慢慢调整。</small></div></div>}</SheetContent></Sheet>

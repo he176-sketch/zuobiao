@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DeviceStore,PROFILE_KEY,CONVERSATION_KEY,CONSENT_KEY,DEVICE_STAMP_KEY } from '../lib/device-store.ts';
+import { DeviceStore,PROFILE_KEY,CONVERSATION_KEY,CONSENT_KEY,DRAFT_KEY,DEVICE_STAMP_KEY } from '../lib/device-store.ts';
 import { readRequestBody,responseSignal,MAX_REQUEST_BYTES } from '../lib/request-limits.ts';
 import { ChatInputSchema,validateAnswer,supportAnswer,needsUrgentSupport } from '../lib/contracts.ts';
 
@@ -18,6 +18,18 @@ test('清除后的协调标识阻止旧页复活对话，内容确实移除',asy
  const s=storage();const a=new DeviceStore(s);await a.write({[PROFILE_KEY]:'profile',[CONVERSATION_KEY]:'chat',[CONSENT_KEY]:'yes'});const stale=new DeviceStore(s);
  await a.clear();await assert.rejects(stale.write({[CONVERSATION_KEY]:'old chat'}),/STALE_DEVICE/);
  for(const key of [PROFILE_KEY,CONVERSATION_KEY,CONSENT_KEY])assert.equal(s.getItem(key),null);assert.ok(s.getItem(DEVICE_STAMP_KEY));
+});
+
+test('草稿只在用户同意本机保存时进入持久存储，清除记录一并移除',async()=>{
+ const s=storage();const store=new DeviceStore(s);
+ await store.write({[CONSENT_KEY]:'yes',[DRAFT_KEY]:'尚未发送的问题'});
+ assert.equal(s.getItem(DRAFT_KEY),'尚未发送的问题');
+ await store.write({[CONSENT_KEY]:'no',[DRAFT_KEY]:null});
+ assert.equal(s.getItem(DRAFT_KEY),null);
+ await store.write({[CONSENT_KEY]:'yes',[DRAFT_KEY]:'再次保存'});
+ await store.clear();
+ assert.equal(s.getItem(DRAFT_KEY),null);
+ assert.ok(s.getItem(DEVICE_STAMP_KEY));
 });
 test('完整合法中文原则和多轮历史不会触发过小的请求上限',async()=>{
  const principle={id:'p',text:'文'.repeat(500),reason:'理'.repeat(600),boundary:'界'.repeat(600),origin:'self',version:1,updatedAt:'2026-09-12'};

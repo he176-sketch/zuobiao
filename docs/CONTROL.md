@@ -1,4 +1,18 @@
-# 坐标｜04 免费网址与公开试用部署
+# 坐标｜04 iPhone 自用版与视觉升级
+
+## 当前交付：私人主屏幕 Web App
+
+本轮从完整有效提交 `862390e392f9e526730c5d1fbdf063da04d3d7f2` 建立 `codex/iphone-study-room`。接手工作树干净；另一个 worktree `/Users/lihe/Documents/ChatGPT/灵感库/zuobiao` 的 `lib/discovery.ts` 仍保留来源不明的 55 行新增、25 行删除，没有读取后覆盖或提交。GitHub main 保持 `cf0d19ef544bef9af5a38e9aa408275143006978`，既有 Cloudflare Pages 公开站不在本轮改权限。
+
+交付仍是原 React/Vinext Web App，增加 iOS 主屏幕所需 manifest、稳定 app id、180/192/512 图标、`viewport-fit=cover`、Apple Web App 元数据和 `standalone` 启动入口。没有新增 Service Worker，因此没有私人 API、鉴权或模型响应缓存，也没有后台自动重发。手机主导航收敛为“聊一件事 / 探索基座 / 我的”；思考工具与原则放入“我的”的二级入口，原 `#tools`、`#principles` 深链接仍兼容。十二基座、三步入口、十二题探索、模型协议、提示词、服务商、计费和邀请码服务端保护均未改。
+
+实际读取并使用：`design-taste-frontend`（`/Users/lihe/.codex/skills/taste-skill/SKILL.md`）确定暖白、墨色、单一松石绿、低动态和避免模板化卡片；`ui-ux-pro-max`（`/Users/lihe/.codex/skills/ui-ux-pro-max/SKILL.md`）落实 44px 触控、安全区、底部三栏、缩放与减少动态效果；`impeccable`（`/Users/lihe/.codex/skills/impeccable/SKILL.md`）用于检测与独立成品审查；`ego-browser`（`/Users/lihe/.agents/skills/ego-browser/SKILL.md`）用于 430×932、1440×1000 和浏览器截图验证。设计方向为现代、安静、有阅读感的个人哲学书房，沿用原指南针标志，以细页边线代替额外图片和持续动效。
+
+数据边界：草稿默认只进入当前页面会话；只有负责人开启“在本机保留对话”后才写入本机持久存储，并纳入同一原子清除流程。电脑浏览器、手机 Safari、主屏幕独立窗口不承诺同步或迁移。应用监听断网状态，离线时保留输入并拒绝发送；历史阅读位置不再因等待结束而强制拉回底部。没有新增云端原始对话收集。
+
+发布与验收回执将在本节补充。当前准确恢复目标仍为 Sites version 7：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`，部署 `appgdep_6aaaa2f07f108191aca5905d2b95264d`，AI 关闭、环境 revision 7；代码回退必须与访问策略恢复一起执行。第 04 轮公开部署历史保留在下文，不作为本轮私人手机验收。
+
+## 上一阶段：免费网址与公开试用部署
 
 ## 当前修复：完整应用迁入原 Pages 项目
 

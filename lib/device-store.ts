@@ -1,8 +1,9 @@
 export const PROFILE_KEY = 'zuobiao.profile.v1';
 export const CONVERSATION_KEY = 'zuobiao.conversation.v1';
 export const CONSENT_KEY = 'zuobiao.remember-conversation.v1';
+export const DRAFT_KEY = 'zuobiao.draft.v1';
 export const DEVICE_STAMP_KEY = 'zuobiao.device-stamp.v1';
-export const DEVICE_CONTENT_KEYS = [PROFILE_KEY, CONVERSATION_KEY, CONSENT_KEY] as const;
+export const DEVICE_CONTENT_KEYS = [PROFILE_KEY, CONVERSATION_KEY, CONSENT_KEY, DRAFT_KEY] as const;
 export const DEVICE_KEYS = [...DEVICE_CONTENT_KEYS, DEVICE_STAMP_KEY] as const;
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 type Changes = Partial<Record<typeof DEVICE_CONTENT_KEYS[number], string | null>>;
