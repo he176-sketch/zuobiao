@@ -2,7 +2,7 @@
 
 ## 当前交付：私人主屏幕 Web App
 
-本轮从完整有效提交 `862390e392f9e526730c5d1fbdf063da04d3d7f2` 建立 `codex/iphone-study-room`。接手工作树干净；另一个 worktree `/Users/lihe/Documents/ChatGPT/灵感库/zuobiao` 的 `lib/discovery.ts` 仍保留来源不明的 55 行新增、25 行删除，没有读取后覆盖或提交。GitHub main 保持 `cf0d19ef544bef9af5a38e9aa408275143006978`，既有 Cloudflare Pages 公开站不在本轮改权限。
+本轮从完整有效提交 `862390e392f9e526730c5d1fbdf063da04d3d7f2` 建立 `codex/iphone-study-room`。接手工作树干净；另一个 worktree `/Users/lihe/Documents/ChatGPT/灵感库/zuobiao` 的 `lib/discovery.ts` 仍保留来源不明的 55 行新增、25 行删除，没有读取后覆盖或提交。GitHub main 保持 `cf0d19ef544bef9af5a38e9aa408275143006978`。既有 Cloudflare Pages 公开站的浏览权限未改，本轮只关闭其 AI 服务端入口。
 
 交付仍是原 React/Vinext Web App，增加 iOS 主屏幕所需 manifest、稳定 app id、180/192/512 图标、`viewport-fit=cover`、Apple Web App 元数据和 `standalone` 启动入口。没有新增 Service Worker，因此没有私人 API、鉴权或模型响应缓存，也没有后台自动重发。手机主导航收敛为“聊一件事 / 探索基座 / 我的”；思考工具与原则放入“我的”的二级入口，原 `#tools`、`#principles` 深链接仍兼容。十二基座、三步入口、十二题探索、模型协议、提示词、服务商、计费和邀请码服务端保护均未改。
 
@@ -10,7 +10,19 @@
 
 数据边界：草稿默认只进入当前页面会话；只有负责人开启“在本机保留对话”后才写入本机持久存储，并纳入同一原子清除流程。电脑浏览器、手机 Safari、主屏幕独立窗口不承诺同步或迁移。应用监听断网状态，离线时保留输入并拒绝发送；历史阅读位置不再因等待结束而强制拉回底部。没有新增云端原始对话收集。
 
-发布与验收回执将在本节补充。当前准确恢复目标仍为 Sites version 7：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`，部署 `appgdep_6aaaa2f07f108191aca5905d2b95264d`，AI 关闭、环境 revision 7；代码回退必须与访问策略恢复一起执行。第 04 轮公开部署历史保留在下文，不作为本轮私人手机验收。
+发布提交为 `8fad9c4010f98b20dc3ff7eec3665ceab02a6fa2`，其中界面与主屏幕应用提交为 `e07b856144e99c3089de75b72aceb89eec652ee9`。Sites 保存为 version 9：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_6bacbb4319bc8191847e5859bfdc3fff`；最终私人部署 `appgdep_6aafd89ba518819185ac37a79999154a` 于 2026-09-20 12:59:27 UTC succeeded，环境 revision 8。访问策略 revision 3 为 custom，只保留 `leeyuecheng2000@gmail.com` owner，外部访客、工作区组、租户组均为 0；匿名访问 `chatgpt.site` 原址、自定义域名及各自 `/api/chat` 均返回 401。负责人通过 ChatGPT 登录后实际看到新版并启用邀请码。
+
+公开 Pages 的 AI 已关闭。先从原完整应用提交建立 `codex/pages-ai-freeze`，提交 `332a9752c4f7d372730a745328c5001bd932302a`，生产部署 `515e2e52-994e-479c-be41-65db1e5aa318` 把 `TRIAL_ENABLED` 设为 false；随后移除 Pages production 的 `PHILOSOPHY_API_KEY`。旧生产部署的环境不可变，因此将 Pages D1 活跃表原子改名为 `trial_budget_archived_20260920`：历史部署和数据库均保留，但所有旧代码因找不到活跃计数表而在预扣前 fail closed。正式域名、两次完整应用生产部署、相关预览/网关及项目列出的全部历史部署别名均检查 `/api/chat`，`READY_TRUE_HOSTS=[]`；有效码对正式域名、新部署、旧独立部署及预览部署的构造生成 POST 均返回 503，没有进入模型。
+
+冻结后 Pages 最终计数为 `total=4, used1=4, used2..5=0`，与冻结前一致；原始 13 字段已保存到仓库外 0600 文件 `/Users/lihe/.config/zuobiao-trial/pages-usage-frozen-2026-09-20.json`，SHA-256 `653e6087b1d7cab9dc7ba1957ee1431b0cc3fddc0b8feba4ac502ce8e254df8c`，不含对话。Sites 迁移前为 `total=3, used1=3`；`0002_pages_counter_handoff.sql` 只在 13 字段与已审计旧值完全一致时更新为 Pages 的 `4/4`，重复执行不再累加。version 9 首次在 AI 关闭状态部署后读回 13 字段与 Pages 完全一致，随后才启用私人 AI。
+
+真实验收使用斯多葛基座完成首答和一轮续聊，均返回结构化回答与依据，未失败、未重试；Sites 计数从 4 增至 6，因此本轮真实模型请求为 2/3。迁移和关闭检查没有模型调用。当前 Pages 归档计数保持 4，Sites 是唯一继续增长的用量真源。
+
+Wrangler OAuth 使用负责人 `leeyuecheng2000@gmail.com`、账户 `506d95d56fdbdcde82de00c0f0599f31`，将默认 26 项权限缩减为 `user:read`、`offline_access`、`account:read`、`d1:write`、`pages:write`。这是账户级授权，不是项目级隔离；Cloudflare/当前 Wrangler 没有提供更细的项目 scope。完成后执行 `wrangler logout`，再次 `whoami` 返回未认证，本机 `default.toml` 凭据文件不存在。本次令牌没有写入仓库、截图、前端或本文。
+
+桌面实际验证包括负责人登录、邀请码、首答、续聊、来源入口和 owner-only；430×932 移动尺寸与 1440×1000 桌面截图无横向溢出，macOS Safari/WebKit 已加载本地最终构建。iPhone 15 Pro Max 实机、Safari 软键盘、后台恢复、主屏幕独立窗口、手机端本机保存/导出仍未验证，不能写成已安装或真机通过。
+
+回退界面可在保持 access revision 3 的 owner-only 与当前计数不变时重新部署 Sites version 7：`appgprj_6aa4e53b21e08191a1782e3621dd7995~appgver_cbb5de3bf5148191a14ae04f4a35bd70`；要停用私人 AI，先把 `TRIAL_ENABLED=false` 再部署目标版本。不要回滚或清空数据库。公开 Pages 继续保持关闭；将归档表改回活跃表前，必须先停用私人 AI 并重新对账 Sites 当前计数，不能直接用 Pages 的旧 4 次覆盖 Sites。代码回退和访问权限恢复是两个独立步骤。
 
 ## 上一阶段：免费网址与公开试用部署
 
