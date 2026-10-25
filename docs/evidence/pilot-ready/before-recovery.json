@@ -1,0 +1,13 @@
+{
+  "kind": "controlled browser fetch simulation; zero real AI calls",
+  "before": {
+    "error": "Failed to fetch INTERNAL_TEST_MARKER重试",
+    "question": "不要问卷，直接回应：我周末想休息又想完成项目，该怎么取舍？",
+    "messages": 0,
+    "requests": 1
+  },
+  "after": {
+    "hash": "#explore",
+    "requests": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "坐标 · 个人哲学书房",
+  "short_name": "坐标",
+  "description": "带着生活中的困惑，探索哲学基座，慢慢形成自己的判断依据。",
+  "start_url": "/#talk",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f0e8",
+  "theme_color": "#f4f0e8",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

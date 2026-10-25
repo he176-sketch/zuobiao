@@ -1,0 +1,136 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "aa5a4df8-1f28-4257-944e-afd45770f6cd",
+  "prevId": "752b108e-de9d-4032-ba3d-2bac0ea6bbed",
+  "tables": {
+    "trial_budget": {
+      "name": "trial_budget",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "total": {
+          "name": "total",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "last_global": {
+          "name": "last_global",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "used1": {
+          "name": "used1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "used2": {
+          "name": "used2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "used3": {
+          "name": "used3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "used4": {
+          "name": "used4",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "used5": {
+          "name": "used5",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "last1": {
+          "name": "last1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "last2": {
+          "name": "last2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "last3": {
+          "name": "last3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "last4": {
+          "name": "last4",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "last5": {
+          "name": "last5",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "trial_usage_accounting": {
+          "name": "trial_usage_accounting",
+          "value": "\"trial_budget\".\"id\" = 'first-50' AND \"trial_budget\".\"total\" >= 0 AND \"trial_budget\".\"used1\" >= 0 AND \"trial_budget\".\"used2\" >= 0 AND \"trial_budget\".\"used3\" >= 0 AND \"trial_budget\".\"used4\" >= 0 AND \"trial_budget\".\"used5\" >= 0 AND \"trial_budget\".\"total\" = \"trial_budget\".\"used1\"+\"trial_budget\".\"used2\"+\"trial_budget\".\"used3\"+\"trial_budget\".\"used4\"+\"trial_budget\".\"used5\""
+        }
+      }
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

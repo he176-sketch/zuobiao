@@ -1,0 +1,56 @@
+[
+  {
+    "case": "unauthenticated",
+    "constructed": true,
+    "status": 401,
+    "expected": 401,
+    "result": {
+      "error": "请先登录，再开始对话。"
+    }
+  },
+  {
+    "case": "foreign-origin",
+    "constructed": true,
+    "status": 403,
+    "expected": 403,
+    "result": {
+      "text": "Forbidden"
+    }
+  },
+  {
+    "case": "unknown-tool",
+    "constructed": true,
+    "status": 400,
+    "expected": 400,
+    "result": {
+      "error": "请检查问题、基座或原则内容后重试。"
+    }
+  },
+  {
+    "case": "urgent-without-base",
+    "constructed": true,
+    "status": 200,
+    "expected": 200,
+    "result": {
+      "answer": {
+        "understanding": "听起来你此刻非常痛苦。你提到了伤害自己，我会认真对待。我们先让你安全地度过眼前这一会儿。",
+        "perspective": "",
+        "nextStep": "请先离开可能伤到自己的东西或地点，去有人陪着的地方，联系一个信任的人来陪你。如果已经受伤、服药过量，或觉得自己马上会行动，请立即联系当地急救或前往急诊，不要等待聊天回复。",
+        "question": "你现在有没有已经伤害自己，或者准备马上行动？身边有人能来陪你吗？",
+        "sourceIds": [],
+        "principleProposal": null,
+        "needsImmediateSupport": true
+      },
+      "mode": "support",
+      "baseId": null,
+      "profileRevision": 1,
+      "materials": {
+        "version": "2026-09-15.exploration",
+        "name": "探索回应 · 未选定基座",
+        "scope": "帮助澄清处境与现实取舍，不代表用户已经确认哲学立场。",
+        "principles": [],
+        "sources": []
+      }
+    }
+  }
+]

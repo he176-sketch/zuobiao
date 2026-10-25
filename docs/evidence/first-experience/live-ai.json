@@ -1,0 +1,382 @@
+{
+  "executedAt": "2026-09-15T06:40:58.362Z",
+  "kind": "real local app route and real configured provider; synthetic input",
+  "results": [
+    {
+      "case": "stoic",
+      "constructed": true,
+      "request": {
+        "baseId": "stoic",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 200,
+      "elapsedMs": 55793,
+      "result": {
+        "answer": {
+          "understanding": "你失去的不只是一个入选结果，还包括投入的时间、期待和可能的机会。失望并不说明你“想错了”，现实损失确实存在。但“这次认真准备仍没选上”是事实；“所以所有努力都没有意义”是受挫后形成的总体判断，两者还不能画等号。",
+          "perspective": "斯多葛会把你的准备、取舍和后续回应，与评审偏好、名额、竞争者表现等不能由你保证的结果分开。依据这个观点，我们可以说：努力不能保证入选，因此若只用入选证明努力有意义，你会把生活评价权完全交给外部结果；但这也不等于失败必须被美化。更实际的标准是，这次投入是否提升了能力、形成了作品，或让你更清楚规则，同时诚实评估继续投入的成本。",
+          "nextStep": "今天先做一次二十分钟复盘：只写三项——已确认的落选事实；能争取的反馈或后续机会；下一次只改一个最关键环节。若没有任何可核实反馈，先不要把原因归结为能力或人格。复盘后允许自己暂停一天，再决定继续、调整方向或止损；这三种选择都可以是负责的行动。",
+          "question": "这次没选上，眼下最重的损失是机会、时间，还是对自己能力的怀疑？",
+          "sourceIds": [
+            "epictetus-handbook",
+            "sep-epictetus"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "stoic",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-12.1",
+          "name": "斯多葛",
+          "scope": "选取伦理实践，不能代表完整斯多葛哲学。古代斯多葛的自然、理性、神意等主张在原体系中互相关联；本产品不要求用户接受其神学，也不把古代神学写成已证实的事实。",
+          "principles": [
+            {
+              "title": "分清哪些取决于自己",
+              "claim": "爱比克泰德把判断、选择与外部处境作区分；声望、财产和项目结果并不完全由个人决定。",
+              "sourceIds": [
+                "epictetus-handbook",
+                "sep-epictetus"
+              ]
+            },
+            {
+              "title": "检查判断，再决定怎样回应",
+              "claim": "在这个思想体系中，人对事情的价值判断会影响情绪与行动，因此值得检验最初印象。",
+              "sourceIds": [
+                "epictetus-handbook",
+                "sep-epictetus"
+              ]
+            },
+            {
+              "title": "用行动体现品格与责任",
+              "claim": "善好生活的重点在于合宜地运用选择能力；这也包含对他人的关切，而非退出关系和公共生活。",
+              "sourceIds": [
+                "sep-epictetus"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "epictetus-handbook",
+              "url": "https://classics.mit.edu/Epictetus/epicench.html",
+              "title": "The Enchiridion（《手册》）",
+              "author": "Epictetus（经 Arrian 记录编订）；English translation: Elizabeth Carter",
+              "publisher": "The Internet Classics Archive, MIT",
+              "sections": [
+                "1",
+                "5",
+                "20",
+                "24",
+                "29",
+                "§8：调整对发生之事的要求"
+              ]
+            },
+            {
+              "id": "sep-epictetus",
+              "url": "https://plato.stanford.edu/entries/epictetus/",
+              "title": "Epictetus",
+              "author": "Margaret Graver",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "4.3 Volition",
+                "4.4 Value",
+                "4.5 Emotional adjustment",
+                "4.6 Appropriate other-concern"
+              ]
+            }
+          ],
+          "philosophySupplement": {
+            "baseId": "stoic",
+            "version": "2026-09-12.1",
+            "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+            "positions": [
+              {
+                "entryIndex": 3,
+                "axisId": "CONTROL_SCOPE",
+                "title": "分清自己能负责什么",
+                "claim": "把自己的判断与选择，同不能保证的外部结果分开，先决定眼下能负责的行动。",
+                "tradeoff": "需要接受控制范围有限；这不意味着放弃改善处境，也不能承诺任何环境下都能平静。",
+                "sourceIds": [
+                  "epictetus-handbook"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Epictetus, Enchiridion, §1",
+                    "fr": "Épictète, Manuel, §1"
+                  },
+                  {
+                    "en": "Epictetus, Discourses",
+                    "fr": "Épictète, Entretiens"
+                  }
+                ]
+              },
+              {
+                "entryIndex": 6,
+                "axisId": "DESIRE",
+                "title": "松动“结果必须如愿”的要求",
+                "claim": "练习调整对外部结果的要求，不把每件事都如愿当成过好生活的前提。",
+                "tradeoff": "原立场对欲望的节制要求很高；生活应用需要区分接受已发生之事与继续争取改变。",
+                "sourceIds": [
+                  "epictetus-handbook"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Epictetus, Enchiridion, §8",
+                    "fr": "Épictète, Manuel, §8"
+                  }
+                ]
+              }
+            ],
+            "provenance": {
+              "author": "Fabrice Gallet",
+              "repository": "https://github.com/fbgallet/philoscopia-open",
+              "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+              "path": "data/movements/stoicism.json",
+              "license": "CC BY-SA 4.0",
+              "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+              "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "camus",
+      "constructed": true,
+      "request": {
+        "baseId": "camus",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 200,
+      "elapsedMs": 29124,
+      "result": {
+        "answer": {
+          "understanding": "你失去的不只是一次入选机会，也包括“认真准备应当得到回应”的期待。落选会让投入显得像被一笔勾销，这种失望很具体。但目前能确定的只是项目没有被选上，不能由此推出努力本身毫无意义。评审标准、名额、竞争者、时机和项目匹配度都可能影响结果；在没有反馈前，我们不知道主要原因。",
+          "perspective": "加缪所说的荒诞，包含人渴望努力与结果之间有清楚秩序，而世界并不保证这种对应的张力。他的回应不是声称失败自有安排，也不是要求你立刻积极起来，而是在没有最终保证时，仍清醒地决定是否投入。依据这个观点，我们可以把两件事分开：这次结果是否公平、项目是否需要调整，要靠事实复盘；你的努力是否值得，则不能完全交给一次评审裁定。代价是，你仍要承受落选，而且复盘也未必能给出完整答案。",
+          "nextStep": "今天先不要给全部努力下总判决。写下三栏：已经获得的能力或成果、尚不清楚的落选原因、下一次可验证的改动。然后只做一个动作，例如向评审礼貌索取具体反馈，或请一位懂行的人审看项目。若发现规则不透明或投入成本已超过承受范围，暂停或转向也是维护自己的合理选择，不等于认输。",
+          "question": "",
+          "sourceIds": [
+            "sep-camus",
+            "iep-camus"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "camus",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-12.1",
+          "name": "加缪",
+          "scope": "聚焦《西西弗神话》与《反抗者》的思想线索。加缪拒绝把自己简单归入存在主义，也没有给出一个包办一切的封闭体系；本基座是有明确选材范围的入口。",
+          "principles": [
+            {
+              "title": "承认意义追问与世界之间的张力",
+              "claim": "加缪所说的荒诞，涉及人的意义与秩序需求同世界不能充分满足这种需求之间的冲突。",
+              "sourceIds": [
+                "sep-camus",
+                "iep-camus"
+              ]
+            },
+            {
+              "title": "没有最终保证，仍然投入生活",
+              "claim": "他的回应强调在清醒中继续生活，以持续的反抗回应荒诞，而不依靠一个解释所有事情的最终承诺。",
+              "sourceIds": [
+                "sep-camus"
+              ]
+            },
+            {
+              "title": "维护尊严，也承认他人的尊严",
+              "claim": "在《反抗者》的讨论中，反抗通向共同的人类处境与团结；它受到限度约束，不能任意牺牲别人。",
+              "sourceIds": [
+                "iep-camus",
+                "sep-camus"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "sep-camus",
+              "url": "https://plato.stanford.edu/entries/camus/",
+              "title": "Albert Camus",
+              "author": "Ronald Aronson",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "1 The Paradoxes of Camus’s Absurdist Philosophy",
+                "3.4 Happiness in Facing One’s Fate",
+                "4.1 Absurdity, Rebellion, and Murder",
+                "6 Philosopher of the Present"
+              ]
+            },
+            {
+              "id": "iep-camus",
+              "url": "https://iep.utm.edu/albert-camus/",
+              "title": "Albert Camus (1913—1960)",
+              "author": "David Simpson",
+              "publisher": "Internet Encyclopedia of Philosophy",
+              "sections": [
+                "5.c.i The Absurd",
+                "5.c.ii Revolt"
+              ]
+            }
+          ],
+          "philosophySupplement": {
+            "baseId": "camus",
+            "version": "2026-09-12.1",
+            "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+            "positions": [
+              {
+                "entryIndex": 3,
+                "axisId": "LIFE_MEANING",
+                "title": "没有终极答案，仍投入生活",
+                "claim": "面对人渴望意义而世界不保证答案的张力，仍在当下投入生活，形成愿意承担的价值。",
+                "tradeoff": "它不承诺消除这份张力；自己创造意义也不能替代加缪关于荒诞、反抗和限度的全部思考。",
+                "sourceIds": [
+                  "sep-camus"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "The Myth of Sisyphus (1942)",
+                    "fr": "Le Mythe de Sisyphe (1942)"
+                  },
+                  {
+                    "en": "The Rebel (1951)",
+                    "fr": "L'Homme révolté (1951)"
+                  }
+                ]
+              },
+              {
+                "entryIndex": 0,
+                "axisId": "ETHICS_FOUNDATION",
+                "title": "反抗不公，也约束自己的手段",
+                "claim": "维护自己与他人共有的尊严，在拒绝不公时，也为自己的行动保留不能跨越的界限。",
+                "tradeoff": "共同尊严不能自动解决每个具体冲突；仍需要判断手段及其代价。",
+                "sourceIds": [
+                  "sep-camus"
+                ],
+                "epistemicStatus": "INFERABLE",
+                "upstreamReferences": [
+                  {
+                    "en": "The Rebel",
+                    "fr": "L'Homme révolté"
+                  }
+                ]
+              }
+            ],
+            "provenance": {
+              "author": "Fabrice Gallet",
+              "repository": "https://github.com/fbgallet/philoscopia-open",
+              "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+              "path": "data/philosophers/camus.json",
+              "license": "CC BY-SA 4.0",
+              "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+              "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+            }
+          }
+        }
+      }
+    },
+    {
+      "case": "pragmatic",
+      "constructed": true,
+      "request": {
+        "baseId": "pragmatic",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 502,
+      "elapsedMs": 31191,
+      "result": {
+        "error": "AI 服务暂时繁忙，请稍后重试。",
+        "code": "PROVIDER_ERROR"
+      }
+    },
+    {
+      "case": "confucian",
+      "constructed": true,
+      "request": {
+        "baseId": "confucian",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 502,
+      "elapsedMs": 31396,
+      "result": {
+        "error": "AI 服务暂时繁忙，请稍后重试。",
+        "code": "PROVIDER_ERROR"
+      }
+    },
+    {
+      "case": "unselected",
+      "constructed": true,
+      "request": {
+        "baseId": null,
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "我不知道，也不想答这些题。"
+          }
+        ]
+      },
+      "httpStatus": 502,
+      "elapsedMs": 3301,
+      "result": {
+        "error": "这次回答未通过内容与来源检查，请重试。",
+        "code": "INVALID_OR_TIMEOUT"
+      }
+    },
+    {
+      "case": "no-more-questions",
+      "constructed": true,
+      "request": {
+        "baseId": "stoic",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。\n你还没回答我，别再一直反问了。"
+          }
+        ]
+      },
+      "httpStatus": 502,
+      "elapsedMs": 31038,
+      "result": {
+        "error": "AI 服务暂时繁忙，请稍后重试。",
+        "code": "PROVIDER_ERROR"
+      }
+    }
+  ]
+}

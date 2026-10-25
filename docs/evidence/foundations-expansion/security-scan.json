@@ -1,0 +1,7 @@
+{
+  "checkedFiles": 284,
+  "configuredSecretValuesChecked": 1,
+  "findings": [],
+  "envIgnored": true,
+  "scope": "tracked/untracked nonignored project files and built dist; no private values emitted"
+}

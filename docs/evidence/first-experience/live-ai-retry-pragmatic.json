@@ -1,0 +1,163 @@
+{
+  "executedAt": "2026-09-15T06:44:43.185Z",
+  "kind": "real local app route and real configured provider; synthetic input",
+  "results": [
+    {
+      "case": "pragmatic",
+      "constructed": true,
+      "request": {
+        "baseId": "pragmatic",
+        "profileRevision": 2,
+        "principles": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "认真准备的项目没选上，我觉得努力没有意义。"
+          }
+        ]
+      },
+      "httpStatus": 200,
+      "elapsedMs": 28357,
+      "result": {
+        "answer": {
+          "understanding": "你失去的不只是一次入选机会，也可能是对投入会有回报的期待。认真准备之后落空，失望、委屈，甚至暂时不想再努力，都很可以理解。但目前能确定的是“这个项目这次没选上”；它还不能单独证明你的全部努力没有价值。评选标准、名额、竞争情况和他人判断都可能影响结果，具体原因现在还不能靠猜测确定。",
+          "perspective": "实用主义会追问“努力没有意义”这个判断会怎样解释经验、引导后续行动，以及它能否经得住更多证据。依据这个观点，我们可以先把问题缩小：哪些投入只服务于入选，哪些能力、材料、关系或认识仍然留下来了？杜威式探究也要求检查信念的依据和后果，因此不必强迫自己立刻积极，也不宜让一次结果直接决定以后是否投入。这里的代价是：复盘可能再次触碰失落，而且即使认真检查，也未必能得到完整原因。",
+          "nextStep": "等情绪稍缓，花二十分钟写三栏：已失去的、仍留下的、尚不知道的。然后只选一个可撤回的动作，例如索取一次具体反馈，或请可信任的人检查方案中最关键的一页。先收集新证据，再决定是修改重投、转向别处，还是停止投入；今天不必对“努力本身是否有意义”作终局判断。",
+          "question": "你现在有渠道得到评选方的具体反馈吗？",
+          "sourceIds": [
+            "james-pragmatism",
+            "dewey-how-we-think"
+          ],
+          "principleProposal": null,
+          "needsImmediateSupport": false
+        },
+        "mode": "ai",
+        "baseId": "pragmatic",
+        "profileRevision": 2,
+        "materials": {
+          "version": "2026-09-12.1",
+          "name": "经验与修订",
+          "scope": "“经验与修订”是产品名称，不是历史流派名称。选择詹姆斯关于实际差异的方法与杜威关于探究的思路，不宣称两位作者在真理、宗教或政治等问题上完全一致。",
+          "principles": [
+            {
+              "title": "问清一种想法会带来什么差异",
+              "claim": "詹姆斯的实用主义方法通过实际后果澄清观念的意义与分歧。",
+              "sourceIds": [
+                "james-pragmatism"
+              ]
+            },
+            {
+              "title": "从具体困惑开展探究",
+              "claim": "杜威把反思理解为对信念依据和后果的考察；明确问题、提出可能解释、推演并观察检验是探究的重要环节。",
+              "sourceIds": [
+                "dewey-how-we-think"
+              ]
+            },
+            {
+              "title": "让信念接受经验与理由的检验",
+              "claim": "实用主义探究保留可错性与修订空间；实际后果不是只计算眼前便利，也不能把想要的结果直接当成事实。",
+              "sourceIds": [
+                "sep-pragmatism",
+                "james-pragmatism"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "james-pragmatism",
+              "url": "https://www.gutenberg.org/cache/epub/5116/pg5116-images.html",
+              "title": "Pragmatism: A New Name for Some Old Ways of Thinking",
+              "author": "William James",
+              "publisher": "Project Gutenberg; original lectures published 1907",
+              "sections": [
+                "Lecture II. What Pragmatism Means",
+                "Lecture VI. Pragmatism’s Conception of Truth"
+              ]
+            },
+            {
+              "id": "dewey-how-we-think",
+              "url": "https://www.gutenberg.org/cache/epub/37423/pg37423-images.html",
+              "title": "How We Think（1910 edition）",
+              "author": "John Dewey",
+              "publisher": "Project Gutenberg; original D. C. Heath & Co.",
+              "sections": [
+                "Chapter I. What is Thought?",
+                "Chapter VI. The Analysis of a Complete Act of Thought"
+              ]
+            },
+            {
+              "id": "sep-pragmatism",
+              "url": "https://plato.stanford.edu/entries/pragmatism/",
+              "title": "Pragmatism",
+              "author": "Catherine Legg; Christopher Hookway",
+              "publisher": "Stanford Encyclopedia of Philosophy",
+              "sections": [
+                "1 The Development of Pragmatism",
+                "4 Pragmatist Epistemology",
+                "§4.1–4.2：探究、可错性与修订"
+              ]
+            }
+          ],
+          "philosophySupplement": {
+            "baseId": "pragmatic",
+            "version": "2026-09-12.1",
+            "note": "依据 Philoscopia 编者解释编写，结合原作或学术百科复核。选取部分实践方向，不代表整个学派；不用于问卷分数。",
+            "positions": [
+              {
+                "entryIndex": 6,
+                "axisId": "TRUTH_NATURE",
+                "title": "让想法接受经验检验",
+                "claim": "看一个想法怎样引导行动、解释经验，并能否经受后续检验，而不只看它是否听起来圆满。",
+                "tradeoff": "短期有用或让人舒服并不自动等于真实；仍要面对反证、更广的经验和长期后果。",
+                "sourceIds": [
+                  "james-pragmatism"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Peirce, 'How to Make Our Ideas Clear' (1878)",
+                    "fr": "Peirce, « Comment rendre nos idées claires » (1878)"
+                  },
+                  {
+                    "en": "James, Pragmatism (1907), lectures II and VI",
+                    "fr": "James, Le Pragmatisme (1907), leçons II et VI"
+                  }
+                ]
+              },
+              {
+                "entryIndex": 7,
+                "axisId": "CERTAINTY",
+                "title": "带着可修订的判断行动",
+                "claim": "从目前有理由接受的判断开始，遇到具体问题与反例再修订，不必先找到永不出错的根基。",
+                "tradeoff": "它不能提供永久确定的答案；需要说明什么证据会让自己改主意，避免随意更换原则。",
+                "sourceIds": [
+                  "sep-pragmatism"
+                ],
+                "epistemicStatus": "EXPLICIT",
+                "upstreamReferences": [
+                  {
+                    "en": "Peirce, 'The Fixation of Belief' (1877)",
+                    "fr": "Peirce, « La fixation de la croyance » (1877)"
+                  },
+                  {
+                    "en": "Dewey, Logic: The Theory of Inquiry (1938)",
+                    "fr": "Dewey, Logique : la théorie de l'enquête (1938)"
+                  }
+                ]
+              }
+            ],
+            "provenance": {
+              "author": "Fabrice Gallet",
+              "repository": "https://github.com/fbgallet/philoscopia-open",
+              "commit": "92b206c0c86cb93c377d34b0fdfc2aa7cd0821ef",
+              "path": "data/movements/pragmatism.json",
+              "license": "CC BY-SA 4.0",
+              "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+              "changes": "坐标选取并改编为中文，补充生活取舍、核对来源和解释边界；未采用上游权重评分。"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

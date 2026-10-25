@@ -1,0 +1,11 @@
+{
+  "forbiddenCodePoints": [
+    "U+9752",
+    "U+56CA"
+  ],
+  "forbiddenNameHits": [],
+  "secretHits": [],
+  "checkedSourceFiles": 171,
+  "rawConversationExportsTracked": false,
+  "note": "Constructed acceptance API outputs only; browser export was inspected outside repository and removed."
+}

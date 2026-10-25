@@ -1,0 +1,14 @@
+{
+  "forbiddenCodePoints": [
+    "U+9752",
+    "U+56CA"
+  ],
+  "forbiddenNameHits": [],
+  "secretHits": [
+    "dist/client/_next/static/chunks/zuobiao-app-CpsWj3sJ.js",
+    "dist/server/ssr/_next/static/zuobiao-app-CHEMiStp.js"
+  ],
+  "knownSecretValuesChecked": 1,
+  "filesChecked": 263,
+  "scope": "tracked and nonignored candidate files plus dist; no raw exports; no secret values printed"
+}

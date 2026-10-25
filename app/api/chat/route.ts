@@ -1,0 +1,40 @@
+import content from "@/lib/foundations.json";
+import { readRequestBody,responseSignal } from "@/lib/request-limits";
+import { env } from "cloudflare:workers";
+import { inviteFromRequest, inviteSlot, trialStatus, reserveTrial, TrialError, TRIAL_UNAVAILABLE, type TrialEnv } from "@/lib/trial";
+import { ChatInputSchema,needsUrgentSupport,supportAnswer,validateAnswer } from "@/lib/contracts";
+import { buildGuide,foundations,guideMaterials } from "@/lib/guide";
+
+const response=(data:unknown,status=200)=>Response.json(data,{status,headers:{"Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});
+function config(){const e=env as unknown as Record<string,string|undefined>;return {key:e.PHILOSOPHY_API_KEY||e.OPENAI_API_KEY,base:e.PHILOSOPHY_API_BASE_URL||"https://api.openai.com/v1",model:e.PHILOSOPHY_MODEL,reasoning:e.PHILOSOPHY_REASONING_EFFORT||"xhigh"};}
+export async function GET(request:Request){
+ const c=config();const e=env as unknown as TrialEnv;
+ try{let slot:number|undefined;try{slot=await inviteSlot(inviteFromRequest(request),e);}catch(error){if(!(error instanceof TrialError)||error.status!==401)throw error;}
+ const state=await trialStatus(e);return response({ready:!!(c.key&&c.model)&&state.ready,authenticated:!!slot,remaining:state.remaining,storage:"device-only",sourcesVersion:content.version});
+ }catch{return response({ready:false,authenticated:false,remaining:null,storage:"device-only",sourcesVersion:content.version});}
+}
+export async function POST(request:Request){
+ const origin=request.headers.get("origin");
+ if(origin&&origin!==new URL(request.url).origin)return response({error:"请求来源不一致，请重新打开页面。"},403);
+ const trialEnv=env as unknown as TrialEnv;const code=inviteFromRequest(request);
+ try{await inviteSlot(code,trialEnv);}catch(error){return response({error:error instanceof TrialError?error.message:TRIAL_UNAVAILABLE},error instanceof TrialError?error.status:503);}
+ if(!request.headers.get("content-type")?.includes("application/json"))return response({error:"请求格式不正确。"},415);
+ let body:string;try{body=await readRequestBody(request);}catch(e){return response({error:e instanceof Error&&e.message==="REQUEST_TOO_LARGE"?"累计内容过长，请减少原则内容或另开一次对话。":"请求内容无法读取。"},e instanceof Error&&e.message==="REQUEST_TOO_LARGE"?413:400);}
+ let raw:unknown;try{raw=JSON.parse(body);}catch{return response({error:"请求内容无法读取。"},400);}
+ const parsed=ChatInputSchema.safeParse(raw);if(!parsed.success)return response({error:"请检查问题、基座或原则内容后重试。"},400);
+ const input=parsed.data;const base=foundations.find(b=>b.id===input.baseId);
+ if(needsUrgentSupport(input.messages.at(-1)!.content))return response({answer:supportAnswer(),mode:"support",baseId:input.baseId,profileRevision:input.profileRevision,materials:guideMaterials(input.baseId)});
+ const c=config();if(!c.key||!c.model)return response({error:"AI 对话尚未接通。你的问题仍在输入框里，可以先浏览基座或阅读示例。",code:"AI_NOT_CONFIGURED"},503);
+ let api:URL;try{api=new URL(c.base.replace(/\/$/,"")+"/responses");if(api.protocol!=="https:")throw new Error();}catch{return response({error:"AI 服务配置需要修复，请稍后再试。"},503);}
+ try{await reserveTrial(trialEnv,code);}catch(error){return response({error:error instanceof TrialError?error.message:TRIAL_UNAVAILABLE},error instanceof TrialError?error.status:503);}
+ try{
+  const result=await fetch(api,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${c.key}`},signal:responseSignal(request.signal),body:JSON.stringify({model:c.model,input:[{role:"developer",content:buildGuide(input)},...input.messages],reasoning:{effort:c.reasoning},text:{format:{type:"json_object"}},stream:false,store:false,max_output_tokens:6500})});
+  if(!result.ok)return response({error:result.status===429?"AI 服务暂时繁忙，请稍后重试。":"AI 服务暂时未能完成回答，请稍后重试。",code:"PROVIDER_ERROR"},502);
+  const data=await result.json() as {status?:string;output?:{content?:{type:string;text?:string}[]}[]};const text=data.output?.flatMap(item=>item.content||[]).filter(part=>part.type==="output_text").map(part=>part.text||"").join("");
+  if(data.status&&data.status!=="completed")throw new Error("INCOMPLETE_ANSWER");
+  if(!text)throw new Error("EMPTY_ANSWER");
+  const materials=guideMaterials(input.baseId,input.thinkingToolId);
+  const answer=validateAnswer(JSON.parse(text),materials.sources.map(s=>s.id),base?.sources.map(s=>s.id)||[],!base);
+  return response({answer,mode:answer.needsImmediateSupport?"support":"ai",baseId:input.baseId,profileRevision:input.profileRevision,materials:answer.needsImmediateSupport?guideMaterials(input.baseId):materials});
+ }catch(e){if(e instanceof Error&&/network connection lost|fetch failed/i.test(e.message))return response({error:"AI 服务连接中断，问题已保留，请重试。",code:"PROVIDER_CONNECTION_ERROR"},502);return response({error:e instanceof Error&&/timeout|abort/i.test(e.name)?"回答花的时间有些长，问题已保留，可以重试。":"这次回答未通过内容与来源检查，请重试。",code:"INVALID_OR_TIMEOUT"},502);}
+}
